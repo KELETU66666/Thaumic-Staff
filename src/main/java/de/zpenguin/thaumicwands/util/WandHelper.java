@@ -2,6 +2,7 @@ package de.zpenguin.thaumicwands.util;
 
 import de.zpenguin.thaumicwands.api.ThaumicWandsAPI;
 import de.zpenguin.thaumicwands.api.item.wand.IWand;
+import de.zpenguin.thaumicwands.item.ItemScepter;
 import de.zpenguin.thaumicwands.item.ItemStaff;
 import de.zpenguin.thaumicwands.item.ItemWand;
 import de.zpenguin.thaumicwands.item.TW_Items;
@@ -26,17 +27,20 @@ public class WandHelper {
     }
 
     public static float getWandDiscount(ItemStack wand) {
+        if(wand.getItem() instanceof ItemScepter)
+            return ((ItemWand) TW_Items.itemWand).getCap(wand).getDiscount() - 0.10F;
         return ((ItemWand) TW_Items.itemWand).getCap(wand).getDiscount() + (wand.getItem() instanceof ItemStaff ? -0.05F : 0);
     }
 
     public static AspectList getActualCrystals(AspectList list, ItemStack wand) {
         if (list == null) return null;
         AspectList l = new AspectList();
-        AspectList subtract = ((ItemWand) TW_Items.itemWand).getCap(wand).getAspectDiscount();
+        AspectList subtract = ((IWand) wand.getItem()).getCap(wand).getAspectDiscount();
         for (Aspect a : list.getAspects()) {
             if (list.getAmount(a) - subtract.getAmount(a) > 0)
                 l.add(a, list.getAmount(a) - subtract.getAmount(a));
         }
+
         return l;
     }
 
@@ -51,6 +55,21 @@ public class WandHelper {
         nbt.setString("cap", cap);
 
         ItemStack is = new ItemStack(TW_Items.itemWand);
+        is.setTagCompound(nbt);
+        return is;
+    }
+
+    public static ItemStack getScepterWithParts(String rod, String cap) {
+        NBTTagCompound nbt = new NBTTagCompound();
+        if (ThaumicWandsAPI.getWandRod(rod) == null)
+            rod = "wood";
+        if (ThaumicWandsAPI.getWandCap(cap) == null)
+            cap = "iron";
+
+        nbt.setString("rod", rod);
+        nbt.setString("cap", cap);
+
+        ItemStack is = new ItemStack(TW_Items.itemScepter);
         is.setTagCompound(nbt);
         return is;
     }

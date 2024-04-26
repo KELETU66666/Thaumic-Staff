@@ -3,6 +3,7 @@ package de.zpenguin.thaumicwands.main;
 import java.util.HashMap;
 
 import de.zpenguin.thaumicwands.compat.TW_Compat;
+import de.zpenguin.thaumicwands.crafting.recipe.RecipeScepter;
 import de.zpenguin.thaumicwands.crafting.recipe.RecipeStaff;
 import de.zpenguin.thaumicwands.crafting.recipe.RecipeWand;
 import de.zpenguin.thaumicwands.item.TW_Items;
@@ -77,6 +78,7 @@ public class TW_Recipes {
         addShapedArcaneRecipe("ROD_GREATWOOD.1","ROD_GREATWOOD@1", new ItemStack(TW_Items.itemWandRod, 1, 0), 10, crystals, "  L"," L ","L  ",'L', new ItemStack(BlocksTC.logGreatwood));
 		r.getRegistry().register(new RecipeWand(getNameForRecipe(new ItemStack(TW_Items.itemWand))));
         r.getRegistry().register(new RecipeStaff(getNameForRecipe(new ItemStack(TW_Items.itemStaff))));
+        r.getRegistry().register(new RecipeScepter(getNameForRecipe(new ItemStack(TW_Items.itemScepter))));
 	}
 
 	private static void addInfusionRecipes() {

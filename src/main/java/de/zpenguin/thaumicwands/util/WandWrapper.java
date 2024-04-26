@@ -6,7 +6,6 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import thaumcraft.api.aspects.Aspect;
 import thaumcraft.api.aspects.AspectList;
-import thaumcraft.api.capabilities.ThaumcraftCapabilities;
 
 public class WandWrapper {
 
@@ -24,7 +23,7 @@ public class WandWrapper {
 
 
 	public boolean canCraft(EntityPlayer player) {
-		return isValidWand() && ThaumcraftCapabilities.knowsResearch(player, rod.getRequiredResearch(), cap.getRequiredResearch());
+		return isValidWand() /*&& ThaumcraftCapabilities.knowsResearch(player, rod.getRequiredResearch(), cap.getRequiredResearch())*/;
 	}
 
 	public boolean isValidWand() {
@@ -50,6 +49,10 @@ public class WandWrapper {
 
 	public ItemStack makeWand() {
 		return isValidWand() ? WandHelper.getWandWithParts(rod.getTag(), cap.getTag()) : ItemStack.EMPTY;
+	}
+
+	public ItemStack makeScepter() {
+		return isValidWand() ? WandHelper.getScepterWithParts(rod.getTag(), cap.getTag()) : ItemStack.EMPTY;
 	}
 
 	public WandWrapper copy() {

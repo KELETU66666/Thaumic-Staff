@@ -2,20 +2,25 @@ package de.zpenguin.thaumicwands.item;
 
 import baubles.api.BaubleType;
 import baubles.api.IBauble;
+import de.zpenguin.thaumicwands.api.item.wand.IWand;
 import de.zpenguin.thaumicwands.entity.EntityVisOrb;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.EnumHand;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.world.World;
 import thaumcraft.api.aura.AuraHelper;
+import thaumcraft.api.items.RechargeHelper;
+import thaumcraft.common.world.aura.AuraHandler;
 
 public class ItemPrimalCharm extends ItemBase implements IBauble {
 
 	public ItemPrimalCharm(String name) {
 		super(name);
+		this.maxStackSize = 1;
 	}
 
 
@@ -35,7 +40,13 @@ public class ItemPrimalCharm extends ItemBase implements IBauble {
 
 	@Override
 	public void onWornTick(ItemStack stack, EntityLivingBase player) {
-		onUpdate(stack, player.getEntityWorld(), player, 0, false);
+		if (!player.world.isRemote && player instanceof EntityPlayer && player.getEntityWorld().getTotalWorldTime() % 20 == 0) {
+			for (EnumHand hand : EnumHand.values())
+				if (player.getHeldItem(hand).getItem() instanceof IWand && AuraHandler.getAuraBase(player.world, player.getPosition()) > 1) {
+					RechargeHelper.rechargeItemBlindly(player.getHeldItem(hand), (EntityPlayer) player, 1);
+					AuraHandler.drainVis(player.world, player.getPosition(), 1, false);
+				}
+		}
 	}
 
 	@Override

@@ -14,6 +14,17 @@ item_wand_rod_silverwood.name=Silverwood Rod
 
 item_wand_rod_ta_adaminitewood.name=Adamintewood Rod 
 
+#Staff Core
+item_staff_rod_greatwood.name=Greatwood Staff Core
+item_staff_rod_reed.name=Reed Staff Core
+item_staff_rod_blaze.name=Blaze Staff Core
+item_staff_rod_ice.name=Ice Staff Core
+item_staff_rod_obsidian.name=Obsidian Staff Core
+item_staff_rod_quartz.name=Quartz Staff Core
+item_staff_rod_bone.name=Bone Staff Core
+item_staff_rod_silverwood.name=Silverwood Staff Core
+item_staff_rod_primal.name=Staff Core of the Primal
+
 #Wand Caps
 item_wand_cap_iron.name=Iron Cap
 item_wand_cap_copper.name=Copper Cap
@@ -41,7 +52,7 @@ item_wand_cap_pa_bismuth.name=Bismuth Cap
 item.wand.name=%CAP %ROD %OBJ
 #
 item.wand.wand.obj=Wand
-item.wand.sceptre.obj=Scepter
+item.wand.scepter.obj=Scepter
 item.wand.staff.obj=Staff
 
 item.wand.wood.rod=Wooden
@@ -53,6 +64,7 @@ item.wand.ice.rod=Icy
 item.wand.bone.rod=Bone
 item.wand.reed.rod=Reed
 item.wand.quartz.rod=Quartz
+item.wand.primal.rod=Primal
 item.wand.adaminitewood.rod=Adamintewood
 
 item.wand.iron.cap=Iron Capped

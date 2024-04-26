@@ -1,8 +1,10 @@
 package de.zpenguin.thaumicwands.client;
 
+import de.zpenguin.thaumicwands.client.model.BakedModelScepter;
 import de.zpenguin.thaumicwands.client.model.BakedModelStaff;
 import de.zpenguin.thaumicwands.client.model.BakedModelWand;
 import de.zpenguin.thaumicwands.client.render.entity.EntityVisOrbRenderer;
+import de.zpenguin.thaumicwands.client.render.item.ItemScepterRenderer;
 import de.zpenguin.thaumicwands.client.render.item.ItemStaffRenderer;
 import de.zpenguin.thaumicwands.client.render.item.ItemWandRenderer;
 import de.zpenguin.thaumicwands.client.render.tile.TileArcaneWorktableRenderer;
@@ -31,6 +33,7 @@ public class ClientProxy extends CommonProxy {
 
 		TW_Items.itemWand.setTileEntityItemStackRenderer(new ItemWandRenderer());
 		TW_Items.itemStaff.setTileEntityItemStackRenderer(new ItemStaffRenderer());
+		TW_Items.itemScepter.setTileEntityItemStackRenderer(new ItemScepterRenderer());
 	}
 
 	@Override
@@ -44,6 +47,7 @@ public class ClientProxy extends CommonProxy {
 	public static void bakeModel(ModelBakeEvent e) {
 		e.getModelRegistry().putObject(new ModelResourceLocation("thaumicwands:item_wand_3d"), new BakedModelWand());
 		e.getModelRegistry().putObject(new ModelResourceLocation("thaumicwands:item_staff_3d"), new BakedModelStaff());
+		e.getModelRegistry().putObject(new ModelResourceLocation("thaumicwands:item_scepter_3d"), new BakedModelScepter());
 	}
 
 }

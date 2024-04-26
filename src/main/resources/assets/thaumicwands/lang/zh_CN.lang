@@ -40,7 +40,7 @@ item_wand_cap_pa_alkimium.name=炼化杖端
 item.wand.name=%CAP%ROD%OBJ
 #
 item.wand.wand.obj=法杖
-item.wand.sceptre.obj=权杖
+item.wand.scepter.obj=权杖
 item.wand.staff.obj=手杖
 
 item.wand.wood.rod=木质
@@ -53,6 +53,7 @@ item.wand.bone.rod=骨制
 item.wand.reed.rod=甘蔗
 item.wand.quartz.rod=石英
 item.wand.adaminitewood.rod=鎏金木
+item.wand.primal.rod=元始
 
 item.wand.iron.cap=铁帽
 item.wand.brass.cap=黄铜绑扎
@@ -205,4 +206,8 @@ research.CAP_THAUMINITE.stage.1=好吧，这可比我想象中的还要简单。
 #Alkimium Caps
 research.CAP_ALKIMIUM.title=炼化杖端
 research.CAP_ALKIMIUM.stage.0=从我发现了炼化金属之后，我就开始大量地使用它来替换黄铜。现在，也是时候用它换掉我的黄铜杖端了。
-research.CAP_ALKIMIUM.stage.1=由于它仅是黄铜的一种派生金属，所以我最初其实并没有对它抱有太高的期望。然而我没料到，它居然能和多种要素发生谐振。 <br> 它不仅有着 5% 的灵气减免，还有着 1 的 §3Aqua§r，§2Terra§r以及§7Ordo§r水晶消耗减免，真是妙极了。 
+research.CAP_ALKIMIUM.stage.1=由于它仅是黄铜的一种派生金属，所以我最初其实并没有对它抱有太高的期望。然而我没料到，它居然能和多种要素发生谐振。 <br> 它不仅有着 5% 的灵气减免，还有着 1 的 §3Aqua§r，§2Terra§r以及§7Ordo§r水晶消耗减免，真是妙极了。 item_wand_cap_pa_bismuth.name=Bismuth Cap
+item.wand.bismuth.cap=Bismuth Attuned
+research.CAP_BISMUTH.title=Bismuth Wand Caps
+research.CAP_BISMUTH.stage.0=Bismuth shows a huge reactivity to aura, so turning it into a new pair of Wand Caps probably is not te worst idea, what is Thaumaturgy but a specialized from of Auromancy.
+research.CAP_BISMUTH.stage.1=As I exspected Bismuth is a marvelous conductor of vis, granting a 15% discount on all crafts performed with it, even though it is very colorful it does not react to any elemtals what so ever, but to §7ORDO§r and §8PERDITIO§r, which is probably a connection to the ordered vis and the entropic flux. I could have exspected that.

@@ -1,6 +1,7 @@
 package de.zpenguin.thaumicwands.container.slot;
 
-import de.zpenguin.thaumicwands.item.ItemWand;
+import de.zpenguin.thaumicwands.api.item.wand.IWand;
+import de.zpenguin.thaumicwands.item.TW_Items;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
@@ -13,7 +14,7 @@ public class SlotWand extends Slot {
 
 	@Override
 	public boolean isItemValid(ItemStack stack) {
-		return stack!=null && stack.getItem() instanceof ItemWand;
+		return stack!=null && stack.getItem() instanceof IWand && stack.getItem()!= TW_Items.itemStaff;
 	}
 
 }

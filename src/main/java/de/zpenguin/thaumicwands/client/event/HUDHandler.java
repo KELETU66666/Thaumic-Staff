@@ -3,6 +3,10 @@ package de.zpenguin.thaumicwands.client.event;
 import java.awt.Color;
 import java.text.DecimalFormat;
 
+import de.zpenguin.thaumicwands.api.item.wand.IWand;
+import de.zpenguin.thaumicwands.item.ItemScepter;
+import de.zpenguin.thaumicwands.item.ItemStaff;
+import net.minecraft.item.Item;
 import org.lwjgl.opengl.GL11;
 
 import de.zpenguin.thaumicwands.item.ItemWand;
@@ -46,9 +50,17 @@ public class HUDHandler {
 				EntityPlayer player = (EntityPlayer) Minecraft.getMinecraft().getRenderViewEntity();
 				if(player != null && Minecraft.getMinecraft().inGameHasFocus && Minecraft.isGuiEnabled())
 					if(!WandHelper.getHeldWand(player).isEmpty()) {
-					    double amount = RechargeHelper.getCharge(WandHelper.getHeldWand(player));
-					    double max = ((ItemWand) TW_Items.itemWand).getMaxCharge(WandHelper.getHeldWand(player), player);
-					    HudHandler.currentAura = new AuraChunk(null, (short) max, (float) amount, 0);
+						double amount = RechargeHelper.getCharge(WandHelper.getHeldWand(player));
+						if(WandHelper.getHeldWand(player).getItem() instanceof ItemWand) {
+							double max = ((IWand) TW_Items.itemWand).getMaxCharge(WandHelper.getHeldWand(player), player);
+							HudHandler.currentAura = new AuraChunk(null, (short) max, (float) amount, 0);
+						}else if(WandHelper.getHeldWand(player).getItem() instanceof ItemScepter){
+							double max = ((IWand) TW_Items.itemScepter).getMaxCharge(WandHelper.getHeldWand(player), player);
+							HudHandler.currentAura = new AuraChunk(null, (short) max, (float) amount, 0);
+						}else if(WandHelper.getHeldWand(player).getItem() instanceof ItemStaff){
+							double max = ((IWand) TW_Items.itemStaff).getMaxCharge(WandHelper.getHeldWand(player), player);
+							HudHandler.currentAura = new AuraChunk(null, (short) max, (float) amount, 0);
+						}
 					}
 			}
 	}
@@ -97,7 +109,8 @@ public class HUDHandler {
 	    GL11.glTranslatef(16.0F, 16.0F, 0.0F);
 
 	    double amount = RechargeHelper.getCharge(WandHelper.getHeldWand(player));
-	    double max = ((ItemWand) TW_Items.itemWand).getMaxCharge(WandHelper.getHeldWand(player), player);
+		Item wand = WandHelper.getHeldWand(player).getItem();
+	    double max = ((IWand) wand).getMaxCharge(WandHelper.getHeldWand(player), player);
 
 	    HudHandler.currentAura = new AuraChunk(null, (short) max, (float) amount, 0);
 	    GL11.glPushMatrix();
