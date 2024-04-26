@@ -1,0 +1,77 @@
+buildscript {
+    repositories {
+        jcenter()
+        maven { url = "https://files.minecraftforge.net/maven" }
+    }
+    dependencies {
+        classpath 'net.minecraftforge.gradle:ForgeGradle:2.3-SNAPSHOT'
+    }
+}
+apply plugin: 'net.minecraftforge.gradle.forge'
+//Only edit below this line, the above code adds and enables the necessary things for Forge to be setup.
+
+
+version = "${mod_main}.${mod_build}"
+group = "de.zpenguin.thaumicwands" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
+archivesBaseName = "thaumicwands"
+
+sourceCompatibility = targetCompatibility = '1.8' // Need this here so eclipse task generates correctly.
+compileJava {
+    sourceCompatibility = targetCompatibility = '1.8'
+}
+
+minecraft {
+	version = "${minecraft_main}.${minecraft_build}-${forge}"
+    runDir = "run"
+    mappings = mcp
+    useDepAts = true
+}
+
+jar {
+        manifest {
+        attributes 'FMLCorePlugin': 'de.zpenguin.thaumicwands.asm.ThaumicWandsCore',
+                   'FMLCorePluginContainsFMLMod': 'true'
+    }
+}
+
+repositories {
+    maven {
+        name 'jared maven'
+        url 'https://maven.blamejared.com/'
+    }
+    maven {
+        name 'DVS1 Maven FS'
+        url 'http://dvs1.progwml6.com/files/maven'
+    }
+    maven {
+        url 'http://www.cursemaven.com'
+    }
+}
+
+dependencies {
+	//compile 'baubles:Baubles:${minecraft_main}:${dependencies_baubles}'
+    compile "mezz.jei:jei_${minecraft_main}.${minecraft_build}:${dependencies_jei}"
+    compile "curse.maven:thaumcraft-223628:2629023"
+    compile "slimeknights.mantle:Mantle:${minecraft_main}-${dependencies_mantle}"
+    compile "slimeknights:TConstruct:${minecraft_main}.${minecraft_build}-${dependencies_tconstruct}"
+    compile "CraftTweaker2:CraftTweaker2-MC1120-Main:${minecraft_main}-${dependencies_crafttweaker}"
+}
+
+processResources {
+    // this will ensure that this task is redone when the versions change.
+    inputs.property "version", project.version
+    inputs.property "mcversion", project.minecraft.version
+
+    // replace stuff in mcmod.info, nothing else
+    from(sourceSets.main.resources.srcDirs) {
+        include 'mcmod.info'
+
+        // replace version and mcversion
+        expand 'version':project.version, 'mcversion':project.minecraft.version
+    }
+
+    // copy everything else except the mcmod.info
+    from(sourceSets.main.resources.srcDirs) {
+        exclude 'mcmod.info'
+    }
+}
