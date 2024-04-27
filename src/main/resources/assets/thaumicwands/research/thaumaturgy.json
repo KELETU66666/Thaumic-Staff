@@ -1,0 +1,558 @@
+{
+  "entries": [
+    {
+      "key": "BASETHAUMATURGY",
+      "name": "research.BASETHAUMATURGY.title",
+      "category": "THAUMATURGY",
+      "icons": [
+        "thaumicwands:textures/research/icon_thaumaturgy.png"
+      ],
+      "meta": [
+        "ROUND",
+        "HIDDEN"
+      ],
+      "parents": [
+        "FIRSTSTEPS"
+      ],
+      "location": [
+        0,
+        0
+      ],
+      "stages": [
+        {
+          "text": "research.BASETHAUMATURGY.stage.0",
+          "recipes": [
+            "BASETHAUMATURGY.1",
+            "BASETHAUMATURGY.2"
+          ]
+        }
+      ]
+    },
+    {
+      "key": "ADVANCED_NODE_DRAIN",
+      "name": "research.ADVANCED_AURA_DRAIN.title",
+      "category": "THAUMATURGY",
+      "icons": [
+        "thaumicwands:textures/research/r_nodetap1.png"
+      ],
+      "meta": [
+        "ROUND"
+      ],
+      "parents": [
+        "BASETHAUMATURGY"
+      ],
+      "location": [
+        2,
+        0
+      ],
+      "stages": [
+        {
+          "text": "research.ADVANCED_AURA_DRAIN.stage.0",
+          "required_knowledge": [
+            "THEORY;AUROMANCY;1"
+          ]
+        },
+        {
+          "text": "research.ADVANCED_AURA_DRAIN.stage.1",
+          "recipes": [
+            "thaumicwands:PRIMALCHARM.1"
+          ]
+        }
+      ]
+    },
+    {
+      "key": "MASTER_NODE_DRAIN",
+      "name": "research.MASTER_NODE_DRAIN.title",
+      "category": "THAUMATURGY",
+      "icons": [
+        "thaumicwands:textures/research/r_nodetap2.png"
+      ],
+      "meta": [
+        "ROUND"
+      ],
+      "parents": [
+        "ADVANCED_NODE_DRAIN"
+      ],
+      "location": [
+        4,
+        0
+      ],
+      "stages": [
+        {
+          "text": "research.MASTER_NODE_DRAIN.stage.0",
+          "required_knowledge": [
+            "THEORY;BASICS;1",
+            "THEORY;AUROMANCY;1"
+          ]
+        },
+        {
+          "text": "research.ADVANCED_AURA_DRAIN.stage.1",
+          "recipes": [
+            "thaumicwands:PRIMALCHARM.1"
+          ]
+        }
+      ]
+    },
+    {
+      "key": "PRIMALCHARM",
+      "name": "research.PRIMALCHARM.title",
+      "category": "THAUMATURGY",
+      "icons": [
+        "thaumicwands:item_primal_charm"
+      ],
+      "parents": [
+        "BASETHAUMATURGY",
+        "UNLOCKAUROMANCY@2",
+        "METALLURGY@2"
+      ],
+      "location": [
+        0,
+        -2
+      ],
+      "stages": [
+        {
+          "text": "research.PRIMALCHARM.stage.0",
+          "required_knowledge": [
+            "OBSERVATION;BASICS;1",
+            "OBSERVATION;AUROMANCY;1"
+          ]
+        },
+        {
+          "text": "research.PRIMALCHARM.stage.1",
+          "recipes": [
+            "thaumicwands:PRIMALCHARM.1"
+          ]
+        }
+      ]
+    },
+    {
+      "key": "CAP_COPPER",
+      "name": "research.CAP_COPPER.title",
+      "category": "THAUMATURGY",
+      "icons": [
+        "thaumicwands:item_wand_cap;1;1"
+      ],
+      "parents": [
+        "BASETHAUMATURGY"
+      ],
+      "location": [
+        -3,
+        0
+      ],
+      "stages": [
+        {
+          "text": "research.CAP_COPPER.stage.0",
+          "required_knowledge": [
+            "OBSERVATION;AUROMANCY;1"
+          ]
+        },
+        {
+          "text": "research.CAP_COPPER.stage.1",
+          "recipes": [
+            "thaumicwands:CAP_COPPER.1"
+          ]
+        }
+      ]
+    },
+    {
+      "key": "CAP_BRASS",
+      "name": "research.CAP_BRASS.title",
+      "category": "THAUMATURGY",
+      "icons": [
+        "thaumicwands:item_wand_cap;1;2"
+      ],
+      "parents": [
+        "BASETHAUMATURGY",
+        "METALLURGY@2"
+      ],
+      "location": [
+        -2,
+        -2
+      ],
+      "stages": [
+        {
+          "text": "research.CAP_BRASS.stage.0",
+          "required_knowledge": [
+            "OBSERVATION;ALCHEMY;1",
+            "OBSERVATION;AUROMANCY;1",
+            "THEORY;AUROMANCY;1"
+          ],
+          "required_item": [
+            "thaumcraft:ingot;1;2"
+          ]
+        },
+        {
+          "text": "research.CAP_BRASS.stage.1",
+          "recipes": [
+            "thaumicwands:CAP_BRASS.1"
+          ]
+        }
+      ]
+    },
+    {
+      "key": "CAP_SILVER",
+      "name": "research.CAP_SILVER.title",
+      "category": "THAUMATURGY",
+      "icons": [
+        "thaumicwands:item_wand_cap;1;4"
+      ],
+      "parents": [
+        "CAP_BRASS",
+        "INFUSION"
+      ],
+      "location": [
+        -4,
+        -3
+      ],
+      "stages": [
+        {
+          "text": "research.CAP_SILVER.stage.0",
+          "required_knowledge": [
+            "OBSERVATION;AUROMANCY;1",
+            "THEORY;AUROMANCY;1",
+            "THEORY;INFUSION;1"
+          ]
+        },
+        {
+          "text": "research.CAP_SILVER.stage.1",
+          "recipes": [
+            "thaumicwands:CAP_SILVER.1",
+            "thaumicwands:CAP_SILVER.2"
+          ]
+        }
+      ]
+    },
+    {
+      "key": "CAP_THAUMIUM",
+      "name": "research.CAP_THAUMIUM.title",
+      "category": "THAUMATURGY",
+      "icons": [
+        "thaumicwands:item_wand_cap;1;6"
+      ],
+      "parents": [
+        "CAP_BRASS",
+        "METALLURGY@3",
+        "INFUSION"
+      ],
+      "location": [
+        -2,
+        -5
+      ],
+      "stages": [
+        {
+          "text": "research.CAP_THAUMIUM.stage.0",
+          "required_knowledge": [
+            "OBSERVATION;AUROMANCY;2",
+            "THEORY;AUROMANCY;1",
+            "THEORY;INFUSION;1"
+          ],
+          "required_item": [
+            "thaumcraft:ingot;1"
+          ]
+        },
+        {
+          "text": "research.CAP_THAUMIUM.stage.1",
+          "recipes": [
+            "thaumicwands:CAP_THAUMIUM.1",
+            "thaumicwands:CAP_THAUMIUM.2"
+          ]
+        }
+      ]
+    },
+    {
+      "key": "CAP_VOID",
+      "name": "research.CAP_VOID.title",
+      "category": "THAUMATURGY",
+      "icons": [
+        "thaumicwands:item_wand_cap;1;8"
+      ],
+      "parents": [
+        "CAP_THAUMIUM",
+        "BASEELDRITCH@2",
+        "INFUSION"
+      ],
+      "location": [
+        -4,
+        -6
+      ],
+      "stages": [
+        {
+          "text": "research.CAP_VOID.stage.0",
+          "required_knowledge": [
+            "THEORY;AUROMANCY;2",
+            "THEORY;INFUSION;1",
+            "THEORY;ELDRITCH;1"
+          ]
+        },
+        {
+          "text": "research.CAP_VOID.stage.1",
+          "recipes": [
+            "thaumicwands:CAP_VOID.1",
+            "thaumicwands:CAP_VOID.2"
+          ],
+          "warp": 2
+        }
+      ]
+    },
+    {
+      "key": "ROD_GREATWOOD",
+      "name": "research.ROD_GREATWOOD.title",
+      "category": "THAUMATURGY",
+      "icons": [
+        "thaumicwands:item_wand_rod"
+      ],
+      "parents": [
+        "BASETHAUMATURGY",
+        "!PLANTWOOD"
+      ],
+      "location": [
+        1,
+        2
+      ],
+      "stages": [
+        {
+          "text": "research.ROD_GREATWOOD.stage.0",
+          "required_knowledge": [
+            "OBSERVATION;BASICS;1",
+            "OBSERVATION;AUROMANCY;1",
+            "THEORY;AUROMANCY;1"
+          ]
+        },
+        {
+          "text": "research.ROD_GREATWOOD.stage.1",
+          "recipes": [
+            "thaumicwands:ROD_GREATWOOD.1"
+          ]
+        }
+      ]
+    },
+    {
+      "key": "ROD_ELEMENTAL",
+      "name": "research.ROD_ELEMENTAL.title",
+      "category": "THAUMATURGY",
+      "icons": [
+        "thaumicwands:item_wand_rod;1;1",
+        "thaumicwands:item_wand_rod;1;2",
+        "thaumicwands:item_wand_rod;1;3",
+        "thaumicwands:item_wand_rod;1;4",
+        "thaumicwands:item_wand_rod;1;5",
+        "thaumicwands:item_wand_rod;1;6"
+      ],
+      "parents": [
+        "ROD_GREATWOOD",
+        "INFUSION"
+      ],
+      "location": [
+        -1,
+        3
+      ],
+      "stages": [
+        {
+          "text": "research.ROD_ELEMENTAL.stage.0",
+          "required_knowledge": [
+            "OBSERVATION;AUROMANCY;1",
+            "THEORY;BASICS;1",
+            "THEORY;INFUSION;1"
+          ]
+        },
+        {
+          "text": "research.ROD_ELEMENTAL.stage.1",
+          "recipes": [
+            "thaumicwands:ROD_ELEMENTAL.1",
+            "thaumicwands:ROD_ELEMENTAL.2",
+            "thaumicwands:ROD_ELEMENTAL.3",
+            "thaumicwands:ROD_ELEMENTAL.4",
+            "thaumicwands:ROD_ELEMENTAL.5",
+            "thaumicwands:ROD_ELEMENTAL.6"
+          ]
+        }
+      ]
+    },
+    {
+      "key": "ROD_SILVERWOOD",
+      "name": "research.ROD_SILVERWOOD.title",
+      "category": "THAUMATURGY",
+      "icons": [
+        "thaumicwands:item_wand_rod;1;7"
+      ],
+      "parents": [
+        "ROD_GREATWOOD",
+        "INFUSION"
+      ],
+      "location": [
+        1,
+        4
+      ],
+      "stages": [
+        {
+          "text": "research.ROD_SILVERWOOD.stage.0",
+          "required_knowledge": [
+            "OBSERVATION;AUROMANCY;2",
+            "THEORY;AUROMANCY;2",
+            "THEORY;INFUSION;1"
+          ]
+        },
+        {
+          "text": "research.ROD_SILVERWOOD.stage.1",
+          "recipes": [
+            "thaumicwands:ROD_SILVERWOOD.1"
+          ]
+        }
+      ]
+    },
+    {
+      "key": "STAFF",
+      "name": "research.STAFF.title",
+      "category": "THAUMATURGY",
+      "icons": [
+        "thaumicwands:item_staff_rod;1;0"
+      ],
+      "parents": [
+        "ROD_SILVERWOOD",
+        "INFUSION"
+      ],
+      "location": [
+        0,
+        6
+      ],
+      "stages": [
+        {
+          "text": "research.STAFF.stage.0",
+          "required_knowledge": [
+            "THEORY;AUROMANCY;2",
+            "THEORY;INFUSION;2"
+          ],
+          "required_item": [
+            "thaumicwands:item_wand_rod;1;0"
+          ]
+        },
+        {
+          "text": "research.STAFF.stage.1",
+          "recipes": [
+            "thaumicwands:CORE_GREATWOOD.1"
+          ]
+        }
+      ]
+    },
+    {
+      "key": "SCEPTER",
+      "name": "research.SCEPTER.title",
+      "category": "THAUMATURGY",
+      "icons": [
+        "thaumicwands:item_scepter"
+      ],
+      "parents": [
+        "ROD_SILVERWOOD",
+        "UNLOCKARTIFICE"
+      ],
+      "location": [
+        2,
+        6
+      ],
+      "stages": [
+        {
+          "text": "research.SCEPTER.stage.0",
+          "required_knowledge": [
+            "THEORY;AUROMANCY;1",
+            "THEORY;ARTIFICE;1",
+            "THEORY;INFUSION;1"
+          ],
+          "required_item": [
+            "thaumicwands:item_wand_rod;1;0"
+          ]
+        },
+        {
+          "text": "research.STAFF.stage.1"
+        }
+      ]
+    },
+    {
+      "key": "CORE_ELEMENTAL",
+      "name": "research.CORE_ELEMENTAL.title",
+      "category": "THAUMATURGY",
+      "icons": [
+        "thaumicwands:item_staff_rod;1;1",
+        "thaumicwands:item_staff_rod;1;2",
+        "thaumicwands:item_staff_rod;1;3",
+        "thaumicwands:item_staff_rod;1;4",
+        "thaumicwands:item_staff_rod;1;5",
+        "thaumicwands:item_staff_rod;1;6"
+      ],
+      "parents": [
+        "ROD_ELEMENTAL",
+        "INFUSION",
+        "STAFF"
+      ],
+      "meta": [
+        "HEX"
+      ],
+      "location": [
+        -2,
+        4
+      ],
+      "stages": [
+        {
+          "text": "research.CORE_ELEMENTAL.stage.0",
+          "required_knowledge": [
+            "THEORY;AUROMANCY;1",
+            "THEORY;ARTIFICE;1",
+            "THEORY;INFUSION;1"
+          ],
+          "required_item": [
+            "thaumicwands:item_staff_rod;1;0"
+          ]
+        },
+        {
+          "text": "research.CORE_ELEMENTAL.stage.1",
+          "recipes": [
+            "thaumicwands:CORE_ELEMENTAL.1",
+            "thaumicwands:CORE_ELEMENTAL.2",
+            "thaumicwands:CORE_ELEMENTAL.3",
+            "thaumicwands:CORE_ELEMENTAL.4",
+            "thaumicwands:CORE_ELEMENTAL.5",
+            "thaumicwands:CORE_ELEMENTAL.6"
+          ]
+        }
+      ]
+    },
+    {
+      "key": "CORE_SILVERWOOD",
+      "name": "research.CORE_SILVERWOOD.title",
+      "category": "THAUMATURGY",
+      "icons": [
+        "thaumicwands:item_staff_rod;1;7"
+      ],
+      "parents": [
+        "STAFF",
+        "ROD_SILVERWOOD"
+      ],
+      "meta": [
+        "HEX",
+        "RESERVE"
+      ],
+      "location": [
+        1,
+        8
+      ],
+      "stages": [
+        {
+          "text": "research.CORE_SILVERWOOD.stage.0",
+          "required_knowledge": [
+            "THEORY;AUROMANCY;2",
+            "THEORY;ARTIFICE;2",
+            "THEORY;INFUSION;2"
+          ],
+          "required_item": [
+            "thaumicwands:item_staff_rod;1;7"
+          ]
+        },
+        {
+          "text": "research.CORE_SILVERWOOD.stage.1",
+          "recipes": [
+            "thaumicwands:CORE_SILVERWOOD.1"
+          ]
+        }
+      ]
+    }
+  ]
+}

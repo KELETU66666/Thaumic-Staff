@@ -62,9 +62,9 @@ public class WandHelper {
     public static ItemStack getScepterWithParts(String rod, String cap) {
         NBTTagCompound nbt = new NBTTagCompound();
         if (ThaumicWandsAPI.getWandRod(rod) == null)
-            rod = "wood";
+            rod = "silverwood";
         if (ThaumicWandsAPI.getWandCap(cap) == null)
-            cap = "iron";
+            cap = "thaumium";
 
         nbt.setString("rod", rod);
         nbt.setString("cap", cap);
@@ -93,7 +93,7 @@ public class WandHelper {
         for (int i = 0; i != InventoryPlayer.getHotbarSize(); i++) {
             ItemStack wand = player.inventory.mainInventory.get(i);
             if (wand.getItem() instanceof IWand) {
-                if (RechargeHelper.getCharge(wand) < ((ItemWand) TW_Items.itemWand).getMaxCharge(wand, null)) {
+                if (RechargeHelper.getCharge(wand) < ((IWand) wand.getItem()).getMaxCharge(wand, null)) {
                     return wand;
                 }
             }
@@ -101,11 +101,24 @@ public class WandHelper {
 
         ItemStack wand = player.inventory.offHandInventory.get(0);
         if (wand.getItem() instanceof IWand)
-            if (RechargeHelper.getCharge(wand) + amount >= ((ItemWand) TW_Items.itemWand).getMaxCharge(wand, null))
+            if (RechargeHelper.getCharge(wand) + amount >= ((IWand) wand.getItem()).getMaxCharge(wand, null))
                 return wand;
 
         return ItemStack.EMPTY;
 
+    }
+
+    public static ItemStack isWandInBackpack(EntityPlayer player, int amount) {
+        for (int i = 0; i != player.inventory.mainInventory.size(); i++) {
+            ItemStack wand = player.inventory.mainInventory.get(i);
+            if (wand.getItem() instanceof IWand) {
+                if (RechargeHelper.getCharge(wand) < ((IWand) wand.getItem()).getMaxCharge(wand, null)) {
+                    return wand;
+                }
+            }
+        }
+
+        return ItemStack.EMPTY;
     }
 
     public static ItemStack getHeldWand(EntityPlayer player) {

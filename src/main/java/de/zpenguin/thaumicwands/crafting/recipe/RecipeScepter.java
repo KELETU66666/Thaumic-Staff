@@ -39,7 +39,7 @@ public class RecipeScepter extends Impl<IRecipe> implements IPlayerDependentArca
                 return false;
         if (!getParts(inv).isValidWand())
             return false;
-        if (!wrapper.canCraft(player))
+        if (!wrapper.canCraftScepter(player))
             return false;
         if (!checkCrystals(inv))
             return false;

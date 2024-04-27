@@ -55,6 +55,7 @@ dependencies {
     compile "slimeknights.mantle:Mantle:${minecraft_main}-${dependencies_mantle}"
     compile "slimeknights:TConstruct:${minecraft_main}.${minecraft_build}-${dependencies_tconstruct}"
     compile "CraftTweaker2:CraftTweaker2-MC1120-Main:${minecraft_main}-${dependencies_crafttweaker}"
+    compile "curse.maven:thaumic-augmentation-319441:4486505"
 }
 
 processResources {

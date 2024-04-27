@@ -23,13 +23,11 @@ import net.minecraft.item.EnumAction;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.EnumActionResult;
-import net.minecraft.util.EnumFacing;
-import net.minecraft.util.EnumHand;
-import net.minecraft.util.NonNullList;
+import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.RayTraceResult;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.translation.I18n;
 import net.minecraft.world.World;
@@ -42,11 +40,15 @@ import thaumcraft.api.casters.FocusPackage;
 import thaumcraft.api.casters.IFocusBlockPicker;
 import thaumcraft.api.casters.IFocusElement;
 import thaumcraft.api.casters.IInteractWithCaster;
+import thaumcraft.api.crafting.IDustTrigger;
 import thaumcraft.api.items.IArchitect;
 import thaumcraft.api.items.RechargeHelper;
+import thaumcraft.client.fx.FXDispatcher;
 import thaumcraft.common.items.casters.CasterManager;
 import thaumcraft.common.items.casters.ItemFocus;
+import thaumcraft.common.lib.SoundsTC;
 import thaumcraft.common.lib.utils.BlockUtils;
+import thaumcraft.common.lib.utils.EntityUtils;
 
 public class ItemWand extends ItemBase implements IWandBasic {
 
@@ -57,6 +59,28 @@ public class ItemWand extends ItemBase implements IWandBasic {
         this.setMaxStackSize(1);
     }
 
+
+    public void doSparkles(EntityPlayer player, World world, BlockPos pos, float hitX, float hitY, float hitZ, EnumHand hand, IDustTrigger trigger, IDustTrigger.Placement place) {
+        Vec3d v1 = EntityUtils.posToHand(player, hand);
+        Vec3d v2 = new Vec3d(pos);
+        v2 = v2.addVector(0.5, 0.5, 0.5);
+        v2 = v2.subtract(v1);
+        for (int cnt = 50, a = 0; a < cnt; ++a) {
+            boolean floaty = a < cnt / 3;
+            float r = MathHelper.getInt(world.rand, 255, 255) / 255.0f;
+            float g = MathHelper.getInt(world.rand, 189, 255) / 255.0f;
+            float b = MathHelper.getInt(world.rand, 64, 255) / 255.0f;
+            FXDispatcher.INSTANCE.drawSimpleSparkle(world.rand, v1.x, v1.y, v1.z, v2.x / 6.0 + world.rand.nextGaussian() * 0.05, v2.y / 6.0 + world.rand.nextGaussian() * 0.05 + (floaty ? 0.05 : 0.15), v2.z / 6.0 + world.rand.nextGaussian() * 0.05, 0.5f, r, g, b, world.rand.nextInt(5), floaty ? (0.3f + world.rand.nextFloat() * 0.5f) : 0.85f, floaty ? 0.2f : 0.5f, 16);
+        }
+        world.playSound(pos.getX(), pos.getY(), pos.getZ(), SoundsTC.dust, SoundCategory.PLAYERS, 0.33f, 1.0f + (float)world.rand.nextGaussian() * 0.05f, false);
+        List<BlockPos> sparkles = trigger.sparkle(world, player, pos, place);
+        if (sparkles != null) {
+            Vec3d v3 = new Vec3d(pos).addVector(hitX, hitY, hitZ);
+            for (BlockPos p : sparkles) {
+                FXDispatcher.INSTANCE.drawBlockSparkles(p, v3);
+            }
+        }
+    }
     @Override
     public void getSubItems(CreativeTabs tab, NonNullList<ItemStack> items) {
         if (tab == this.getCreativeTab()) {
@@ -86,8 +110,7 @@ public class ItemWand extends ItemBase implements IWandBasic {
         return name;
     }
 
-    public EnumActionResult onItemUseFirst(EntityPlayer player, World world, BlockPos pos, EnumFacing side, float hitX,
-                                           float hitY, float hitZ, EnumHand hand) {
+    public EnumActionResult onItemUseFirst(EntityPlayer player, World world, BlockPos pos, EnumFacing side, float hitX, float hitY, float hitZ, EnumHand hand) {
         IBlockState bs = world.getBlockState(pos);
         if (bs.getBlock() instanceof IInteractWithCaster && ((IInteractWithCaster) bs.getBlock())
                 .onCasterRightClick(world, player.getHeldItem(hand), player, pos, side, hand))

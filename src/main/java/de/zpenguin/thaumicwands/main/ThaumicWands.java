@@ -11,6 +11,7 @@ import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLLoadCompleteEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import thaumcraft.api.crafting.IDustTrigger;
 
 @Mod(modid = ThaumicWands.modID, name = ThaumicWands.modName, version = ThaumicWands.version, dependencies = ThaumicWands.dependencies)
 public class ThaumicWands {
@@ -41,6 +42,8 @@ public class ThaumicWands {
 	@EventHandler
 	public void postInit(FMLPostInitializationEvent e) {
 		proxy.postInit(e);
+		IDustTrigger.triggers.remove(3);
+		IDustTrigger.triggers.remove(2);
 	}
 
 	@EventHandler

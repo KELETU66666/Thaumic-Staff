@@ -43,7 +43,7 @@ public class TW_Wands {
 	public static final IStaffCore coreQuartz = new StaffCore("quartz", (int) (600 * 2.5), new ItemStack(TW_Items.itemStaffCore, 1, 5));
 	public static final IStaffCore coreBone = new StaffCore("bone", (int) (600 * 2.5), new ItemStack(TW_Items.itemStaffCore, 1, 6));
 	public static final IStaffCore coreSilverwood = new StaffCore("silverwood", (int) (800 * 2.5), new ItemStack(TW_Items.itemStaffCore, 1, 7));
-	public static final IStaffCore corePrimal = new StaffCore("primal", 250, new ItemStack(TW_Items.itemStaffCore, 1, 8), new UpdatePrimal());
+	public static final IStaffCore corePrimal = new StaffCore("primal", 375, new ItemStack(TW_Items.itemStaffCore, 1, 8), new UpdatePrimal());
 
 	public static void registerWandParts() {
 		for(IWandCap cap: CAPS)

@@ -76,7 +76,20 @@ public class TW_Recipes {
 
         crystals = new AspectList().add(Aspect.ENTROPY, 2);
         addShapedArcaneRecipe("ROD_GREATWOOD.1","ROD_GREATWOOD@1", new ItemStack(TW_Items.itemWandRod, 1, 0), 10, crystals, "  L"," L ","L  ",'L', new ItemStack(BlocksTC.logGreatwood));
-		r.getRegistry().register(new RecipeWand(getNameForRecipe(new ItemStack(TW_Items.itemWand))));
+
+        crystals = new AspectList().add(Aspect.ORDER, 2);
+        addShapedArcaneRecipe("CORE_GREATWOOD.1","STAFF@1", new ItemStack(TW_Items.itemStaffCore, 1, 0), 10, crystals, "  P"," L ","L  ",'L', new ItemStack(TW_Items.itemWandRod, 1, 0), 'P', TW_Items.itemPrimalCharm);
+
+        addShapedArcaneRecipe("CORE_ELEMENTAL.1","CORE_ELEMENTAL@1", new ItemStack(TW_Items.itemStaffCore, 1, 1), 7, crystals, "  P"," L ","L  ",'L', new ItemStack(TW_Items.itemWandRod, 1, 1), 'P', TW_Items.itemPrimalCharm);
+        addShapedArcaneRecipe("CORE_ELEMENTAL.2","CORE_ELEMENTAL@1", new ItemStack(TW_Items.itemStaffCore, 1, 2), 7, crystals, "  P"," L ","L  ",'L', new ItemStack(TW_Items.itemWandRod, 1, 2), 'P', TW_Items.itemPrimalCharm);
+        addShapedArcaneRecipe("CORE_ELEMENTAL.3","CORE_ELEMENTAL@1", new ItemStack(TW_Items.itemStaffCore, 1, 3), 7, crystals, "  P"," L ","L  ",'L', new ItemStack(TW_Items.itemWandRod, 1, 3), 'P', TW_Items.itemPrimalCharm);
+        addShapedArcaneRecipe("CORE_ELEMENTAL.4","CORE_ELEMENTAL@1", new ItemStack(TW_Items.itemStaffCore, 1, 4), 7, crystals, "  P"," L ","L  ",'L', new ItemStack(TW_Items.itemWandRod, 1, 4), 'P', TW_Items.itemPrimalCharm);
+        addShapedArcaneRecipe("CORE_ELEMENTAL.5","CORE_ELEMENTAL@1", new ItemStack(TW_Items.itemStaffCore, 1, 5), 7, crystals, "  P"," L ","L  ",'L', new ItemStack(TW_Items.itemWandRod, 1, 5), 'P', TW_Items.itemPrimalCharm);
+        addShapedArcaneRecipe("CORE_ELEMENTAL.6","CORE_ELEMENTAL@1", new ItemStack(TW_Items.itemStaffCore, 1, 6), 7, crystals, "  P"," L ","L  ",'L', new ItemStack(TW_Items.itemWandRod, 1, 6), 'P', TW_Items.itemPrimalCharm);
+
+        addShapedArcaneRecipe("CORE_SILVERWOOD.1","CORE_SILVERWOOD@1", new ItemStack(TW_Items.itemStaffCore, 1, 7), 20, crystals, "  P"," L ","L  ",'L', new ItemStack(TW_Items.itemWandRod, 1, 7), 'P', TW_Items.itemPrimalCharm);
+
+        r.getRegistry().register(new RecipeWand(getNameForRecipe(new ItemStack(TW_Items.itemWand))));
         r.getRegistry().register(new RecipeStaff(getNameForRecipe(new ItemStack(TW_Items.itemStaff))));
         r.getRegistry().register(new RecipeScepter(getNameForRecipe(new ItemStack(TW_Items.itemScepter))));
 	}
@@ -95,27 +108,30 @@ public class TW_Recipes {
 
 
         aspects = new AspectList().add(Aspect.AIR, 50).add(Aspect.MAGIC, 25).add(Aspect.MOTION, 25);
-        addInfusionRecipe("ROD_REED.1","ROD_REED@1", new ItemStack(TW_Items.itemWandRod,1,1), 3, new ItemStack(Items.REEDS), aspects, ThaumcraftApiHelper.makeCrystal(Aspect.AIR),ThaumcraftApiHelper.makeCrystal(Aspect.MOTION));
+        addInfusionRecipe("ROD_ELEMENTAL.1","ROD_ELEMENTAL@1", new ItemStack(TW_Items.itemWandRod,1,1), 3, new ItemStack(Items.REEDS), aspects, ThaumcraftApiHelper.makeCrystal(Aspect.AIR),ThaumcraftApiHelper.makeCrystal(Aspect.MOTION));
 
         aspects = new AspectList().add(Aspect.FIRE, 50).add(Aspect.MAGIC, 25).add(Aspect.BEAST, 25);
-        addInfusionRecipe("ROD_BLAZE.1","ROD_BLAZE@1", new ItemStack(TW_Items.itemWandRod,1,2), 3, new ItemStack(Items.BLAZE_ROD), aspects, ThaumcraftApiHelper.makeCrystal(Aspect.FIRE),ThaumcraftApiHelper.makeCrystal(Aspect.BEAST));
+        addInfusionRecipe("ROD_ELEMENTAL.2","ROD_ELEMENTAL@1", new ItemStack(TW_Items.itemWandRod,1,2), 3, new ItemStack(Items.BLAZE_ROD), aspects, ThaumcraftApiHelper.makeCrystal(Aspect.FIRE),ThaumcraftApiHelper.makeCrystal(Aspect.BEAST));
 
         aspects = new AspectList().add(Aspect.WATER, 50).add(Aspect.MAGIC, 25).add(Aspect.COLD, 25);
-        addInfusionRecipe("ROD_ICE.1","ROD_ICE@1", new ItemStack(TW_Items.itemWandRod,1,3), 3, new ItemStack(Blocks.ICE), aspects, ThaumcraftApiHelper.makeCrystal(Aspect.WATER),ThaumcraftApiHelper.makeCrystal(Aspect.COLD));
+        addInfusionRecipe("ROD_ELEMENTAL.3","ROD_ELEMENTAL@1", new ItemStack(TW_Items.itemWandRod,1,3), 3, new ItemStack(Blocks.ICE), aspects, ThaumcraftApiHelper.makeCrystal(Aspect.WATER),ThaumcraftApiHelper.makeCrystal(Aspect.COLD));
 
         aspects = new AspectList().add(Aspect.EARTH, 50).add(Aspect.MAGIC, 25).add(Aspect.DARKNESS, 25);
-        addInfusionRecipe("ROD_OBSIDIAN.1","ROD_OBSIDIAN@1", new ItemStack(TW_Items.itemWandRod,1,4), 3, new ItemStack(Blocks.OBSIDIAN), aspects, ThaumcraftApiHelper.makeCrystal(Aspect.EARTH),ThaumcraftApiHelper.makeCrystal(Aspect.DARKNESS));
+        addInfusionRecipe("ROD_ELEMENTAL.4","ROD_ELEMENTAL@1", new ItemStack(TW_Items.itemWandRod,1,4), 3, new ItemStack(Blocks.OBSIDIAN), aspects, ThaumcraftApiHelper.makeCrystal(Aspect.EARTH),ThaumcraftApiHelper.makeCrystal(Aspect.DARKNESS));
 
         aspects = new AspectList().add(Aspect.ORDER, 50).add(Aspect.MAGIC, 25).add(Aspect.CRYSTAL, 25);
-        addInfusionRecipe("ROD_QUARTZ.1","ROD_QUARTZ@1", new ItemStack(TW_Items.itemWandRod,1,5), 3, new ItemStack(Blocks.QUARTZ_BLOCK), aspects, ThaumcraftApiHelper.makeCrystal(Aspect.ORDER),ThaumcraftApiHelper.makeCrystal(Aspect.CRYSTAL));
+        addInfusionRecipe("ROD_ELEMENTAL.5","ROD_ELEMENTAL@1", new ItemStack(TW_Items.itemWandRod,1,5), 3, new ItemStack(Blocks.QUARTZ_BLOCK), aspects, ThaumcraftApiHelper.makeCrystal(Aspect.ORDER),ThaumcraftApiHelper.makeCrystal(Aspect.CRYSTAL));
 
         aspects = new AspectList().add(Aspect.ENTROPY, 50).add(Aspect.MAGIC, 25).add(Aspect.UNDEAD, 25);
-        addInfusionRecipe("ROD_BONE.1","ROD_BONE@1", new ItemStack(TW_Items.itemWandRod,1,6), 3, new ItemStack(Items.BONE), aspects, ThaumcraftApiHelper.makeCrystal(Aspect.ENTROPY),ThaumcraftApiHelper.makeCrystal(Aspect.UNDEAD));
+        addInfusionRecipe("ROD_ELEMENTAL.6","ROD_ELEMENTAL@1", new ItemStack(TW_Items.itemWandRod,1,6), 3, new ItemStack(Items.BONE), aspects, ThaumcraftApiHelper.makeCrystal(Aspect.ENTROPY),ThaumcraftApiHelper.makeCrystal(Aspect.UNDEAD));
 
         aspects = new AspectList().add(Aspect.AIR, 25).add(Aspect.FIRE, 25).add(Aspect.WATER, 25).add(Aspect.EARTH, 25).add(Aspect.ORDER, 25).add(Aspect.ENTROPY, 25).add(Aspect.MAGIC, 25).add(Aspect.AURA,25);
         addInfusionRecipe("ROD_SILVERWOOD.1","ROD_SILVERWOOD@1", new ItemStack(TW_Items.itemWandRod,1,7), 5, new ItemStack(BlocksTC.logSilverwood), aspects, ThaumcraftApiHelper.makeCrystal(Aspect.AIR), ThaumcraftApiHelper.makeCrystal(Aspect.FIRE), ThaumcraftApiHelper.makeCrystal(Aspect.WATER), ThaumcraftApiHelper.makeCrystal(Aspect.EARTH), ThaumcraftApiHelper.makeCrystal(Aspect.ORDER), ThaumcraftApiHelper.makeCrystal(Aspect.ENTROPY), ThaumcraftApiHelper.makeCrystal(Aspect.MAGIC));
 
-	}
+        aspects = new AspectList().add(Aspect.AIR, 50).add(Aspect.FIRE, 50).add(Aspect.WATER, 50).add(Aspect.EARTH, 50).add(Aspect.ORDER, 50).add(Aspect.ENTROPY, 50).add(Aspect.MAGIC, 100).add(Aspect.AURA,50);
+        addInfusionRecipe("CORE_PRIMAL.1","CORE_PRIMAL@1", new ItemStack(TW_Items.itemStaffCore,1,8), 7, new ItemStack(TW_Items.itemWandRod, 1, 7), aspects, new ItemStack(TW_Items.itemWandRod, 1, 1), new ItemStack(TW_Items.itemWandRod, 1, 2), new ItemStack(TW_Items.itemWandRod, 1, 3), new ItemStack(TW_Items.itemPrimalCharm), new ItemStack(TW_Items.itemWandRod, 1, 4), new ItemStack(TW_Items.itemWandRod, 1, 5), new ItemStack(TW_Items.itemWandRod, 1, 6), new ItemStack(TW_Items.itemPrimalCharm));
+
+    }
 
     public static void addShapedOreRecipe(String name,ItemStack output, Object... params) {
         ResourceLocation location = new ResourceLocation(ThaumicWands.modID, name);

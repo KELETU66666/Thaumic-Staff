@@ -2,7 +2,6 @@ package de.zpenguin.thaumicwands.util;
 
 import de.zpenguin.thaumicwands.api.item.wand.IStaffCore;
 import de.zpenguin.thaumicwands.api.item.wand.IWandCap;
-import de.zpenguin.thaumicwands.api.item.wand.IWandRod;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import thaumcraft.api.aspects.Aspect;
@@ -25,7 +24,7 @@ public class StaffWrapper {
 
 
 	public boolean canCraft(EntityPlayer player) {
-		return isValidStaff()/* && ThaumcraftCapabilities.knowsResearch(player, core.getRequiredResearch(), cap.getRequiredResearch())*/;
+		return isValidStaff() && ThaumcraftCapabilities.knowsResearch(player, "STAFF@1");
 	}
 
 	public boolean isValidStaff() {
