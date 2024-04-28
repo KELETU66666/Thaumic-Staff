@@ -20,7 +20,7 @@ public class TW_Items {
 	public static final Item itemWandRod = new ItemBaseMeta("item_wand_rod","greatwood","reed","blaze","ice","obsidian","quartz","bone","silverwood");
 	public static final Item itemStaffCore = new ItemBaseMeta("item_staff_rod","greatwood","reed","blaze","ice","obsidian","quartz","bone","silverwood","primal");
 	public static final Item itemPrimalCharm = new ItemPrimalCharm("item_primal_charm");
-
+	public static final Item itemBalancedCluster = new ItemPrimalCharm("item_balanced_cluster");
 	public static void registerItems(Register<Item> r) {
 		for(Item item : ITEMS)
 			registerItem(r, item);

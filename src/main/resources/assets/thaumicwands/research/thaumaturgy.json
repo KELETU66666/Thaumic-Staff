@@ -94,6 +94,48 @@
       ]
     },
     {
+      "key": "BALANCED_CRYSTAL",
+      "name": "research.BALANCED_CRYSTAL.title",
+      "category": "THAUMATURGY",
+      "icons": [
+        "thaumicwands:item_balanced_cluster"
+      ],
+      "parents": [
+        "BASETHAUMATURGY", "HEDGEALCHEMY"
+      ],
+      "location": [
+        -2,
+        -2
+      ],
+      "stages": [
+        {
+          "text": "research.BALANCED_CRYSTAL.stage.0",
+          "required_knowledge": [
+            "THEORY;BASICS;1",
+            "THEORY;ALCHEMY;1"
+          ],"required_item":[
+          "thaumcraft:crystal_essence;1;0;{Aspects:[{amount:1,key:'aer'}]}",
+          "thaumcraft:crystal_essence;1;0;{Aspects:[{amount:1,key:'terra'}]}",
+          "thaumcraft:crystal_essence;1;0;{Aspects:[{amount:1,key:'ignis'}]}",
+          "thaumcraft:crystal_essence;1;0;{Aspects:[{amount:1,key:'aqua'}]}",
+          "thaumcraft:crystal_essence;1;0;{Aspects:[{amount:1,key:'ordo'}]}",
+          "thaumcraft:crystal_essence;1;0;{Aspects:[{amount:1,key:'perditio'}]}"
+        ]
+        },
+        {
+          "text": "research.BALANCED_CRYSTAL.stage.1",
+          "recipes": [
+            "thaumicwands:BALANCED_CRYSTAL.1",
+            "thaumicwands:BALANCED_CRYSTAL.2",
+            "thaumicwands:BALANCED_CRYSTAL.3",
+            "thaumicwands:BALANCED_CRYSTAL.4",
+            "thaumicwands:BALANCED_CRYSTAL.5",
+            "thaumicwands:BALANCED_CRYSTAL.6"
+          ]
+        }
+      ]
+    },
+    {
       "key": "PRIMALCHARM",
       "name": "research.PRIMALCHARM.title",
       "category": "THAUMATURGY",
@@ -106,7 +148,7 @@
         "METALLURGY@2"
       ],
       "location": [
-        -2,
+        -3,
         0
       ],
       "stages": [

@@ -7,6 +7,7 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import thaumcraft.api.ThaumcraftApi;
 import thaumcraft.api.aspects.Aspect;
 import thaumcraft.api.aspects.AspectList;
+import static thaumcraft.api.capabilities.IPlayerKnowledge.EnumKnowledgeType.OBSERVATION;
 import thaumcraft.api.research.ResearchCategories;
 import thaumcraft.api.research.ResearchCategory;
 import thaumcraft.api.research.ResearchEntry;
@@ -51,10 +52,19 @@ public class TW_Research {
         ThaumcraftApi.registerResearchLocation(new ResourceLocation(ThaumicWands.modID, "research/thaumaturgy.json"));
     }
 
+    public static ResearchCategory getCategory(String cat) {
+        return ResearchCategories.getResearchCategory(cat);
+    }
+
     public static void postInit() {
         ResearchEntry entry = ResearchCategories.getResearch("FIRSTSTEPS");
         ResearchStage[] stages = entry.getStages();
-        stages[2].setRecipes(new ResourceLocation[]{TW_Recipes.recipes.get("FIRSTSTEPS.1")});
+        stages[0].setRecipes(new ResourceLocation[]{TW_Recipes.recipes.get("FIRSTSTEPS.1"), TW_Recipes.recipes.get("BASETHAUMATURGY.1"), TW_Recipes.recipes.get("BASETHAUMATURGY.2")});
+        stages[0].setKnow(new ResearchStage.Knowledge[]{new ResearchStage.Knowledge(OBSERVATION, getCategory("BASICS"), 1)});
+        stages[0].setCraft(null);
+        stages[1].setRecipes(new ResourceLocation[]{TW_Recipes.recipes.get("BASETHAUMATURGY.1"), TW_Recipes.recipes.get("BASETHAUMATURGY.2"), TW_Recipes.recipes.get("FIRSTSTEPS.1")});
+        stages[1].setKnow(new ResearchStage.Knowledge[]{new ResearchStage.Knowledge(OBSERVATION, getCategory("BASICS"), 1)});
+        stages[2].setRecipes(new ResourceLocation[]{TW_Recipes.recipes.get("BASETHAUMATURGY.1"), TW_Recipes.recipes.get("BASETHAUMATURGY.2"), TW_Recipes.recipes.get("FIRSTSTEPS.1")});
         entry.setStages(stages);
 
         ConfigResearch.TCCategories = new String[]{"BASICS", "THAUMATURGY", "ALCHEMY", "AUROMANCY", "ARTIFICE", "INFUSION", "GOLEMANCY", "ELDRITCH"};

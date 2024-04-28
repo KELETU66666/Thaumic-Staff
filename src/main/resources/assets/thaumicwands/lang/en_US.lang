@@ -1,6 +1,7 @@
 # --- Items ---
 
 item.item_primal_charm.name=Primal Charm
+item.item_balanced_cluster.name=Balanced Shard
 
 #Wand Rods
 item_wand_rod_greatwood.name=Greatwood Rod

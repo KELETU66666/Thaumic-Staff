@@ -26,6 +26,9 @@ import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.translation.I18n;
 import net.minecraft.world.World;
+import net.minecraftforge.common.capabilities.ICapabilityProvider;
+import net.minecraftforge.common.util.Constants;
+import net.minecraftforge.fml.common.Optional;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import thaumcraft.api.casters.*;
@@ -34,7 +37,12 @@ import thaumcraft.api.items.RechargeHelper;
 import thaumcraft.common.items.casters.CasterManager;
 import thaumcraft.common.items.casters.ItemFocus;
 import thaumcraft.common.lib.utils.BlockUtils;
+import thecodex6824.thaumicaugmentation.api.augment.AugmentableItem;
+import thecodex6824.thaumicaugmentation.api.augment.CapabilityAugmentableItem;
+import thecodex6824.thaumicaugmentation.api.augment.IAugmentableItem;
+import thecodex6824.thaumicaugmentation.common.capability.provider.SimpleCapabilityProvider;
 
+import javax.annotation.Nullable;
 import java.lang.reflect.Method;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
@@ -87,6 +95,16 @@ public class ItemStaff extends ItemBase implements IStaff {
         name = name.replace("%ROD", LocalizationHelper.localize("item.wand." + getCore(stack).getTag() + ".rod"));
         name = name.replace("%OBJ", LocalizationHelper.localize("item.wand.staff.obj"));
         return name;
+    }
+
+    @Override
+    @Optional.Method(modid = "thaumicaugmentation")
+    public ICapabilityProvider initCapabilities(ItemStack stack, @Nullable NBTTagCompound nbt) {
+        SimpleCapabilityProvider<IAugmentableItem> provider = new SimpleCapabilityProvider<>(new AugmentableItem(3), CapabilityAugmentableItem.AUGMENTABLE_ITEM);
+        if (nbt != null && nbt.hasKey("Parent", Constants.NBT.TAG_COMPOUND))
+            provider.deserializeNBT(nbt.getCompoundTag("Parent"));
+
+        return provider;
     }
 
     public EnumActionResult onItemUseFirst(EntityPlayer player, World world, BlockPos pos, EnumFacing side, float hitX,

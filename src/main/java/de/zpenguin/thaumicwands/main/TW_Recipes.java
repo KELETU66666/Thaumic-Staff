@@ -26,6 +26,7 @@ import thaumcraft.api.ThaumcraftApiHelper;
 import thaumcraft.api.aspects.Aspect;
 import thaumcraft.api.aspects.AspectList;
 import thaumcraft.api.blocks.BlocksTC;
+import thaumcraft.api.crafting.CrucibleRecipe;
 import thaumcraft.api.crafting.InfusionRecipe;
 import thaumcraft.api.crafting.ShapedArcaneRecipe;
 import thaumcraft.api.items.ItemsTC;
@@ -37,6 +38,7 @@ public class TW_Recipes {
 	public static void registerRecipes(Register<IRecipe> r) {
 		addCraftingRecipes();
 		addArcaneRecipes(r);
+        addCrucibleRecipes();
 		addInfusionRecipes();
 
 		TW_Compat.initRecipes();
@@ -54,7 +56,7 @@ public class TW_Recipes {
         AspectList crystals;
 
         crystals = new AspectList().add(Aspect.AIR,1).add(Aspect.FIRE,1).add(Aspect.WATER,1).add(Aspect.EARTH,1).add(Aspect.ORDER,1).add(Aspect.ENTROPY,1);
-        addShapedArcaneRecipe("FIRSTSTEPS.1","FIRSTSTEPS@2", new ItemStack(ItemsTC.thaumometer), 0, crystals, " G ","GPG"," G ", 'G',"ingotGold", 'P', Blocks.GLASS_PANE);
+        addShapedArcaneRecipe("FIRSTSTEPS.1","FIRSTSTEPS@1", new ItemStack(ItemsTC.thaumometer), 0, crystals, " G ","GPG"," G ", 'G',"ingotGold", 'P', Blocks.GLASS_PANE);
 
         crystals = new AspectList().add(Aspect.AIR,1).add(Aspect.FIRE,1).add(Aspect.WATER,1).add(Aspect.EARTH,1).add(Aspect.ORDER,1).add(Aspect.ENTROPY,1);
         addShapedArcaneRecipe("PRIMALCHARM.1","PRIMALCHARM@1", new ItemStack(TW_Items.itemPrimalCharm), 20, crystals, "AFW","BRB","EOP", 'A', ThaumcraftApiHelper.makeCrystal(Aspect.AIR), 'F', ThaumcraftApiHelper.makeCrystal(Aspect.FIRE), 'W', ThaumcraftApiHelper.makeCrystal(Aspect.WATER),'B',"ingotBrass", 'R', new ItemStack(ItemsTC.visResonator), 'E', ThaumcraftApiHelper.makeCrystal(Aspect.EARTH), 'O', ThaumcraftApiHelper.makeCrystal(Aspect.ORDER), 'P', ThaumcraftApiHelper.makeCrystal(Aspect.ENTROPY));
@@ -97,6 +99,15 @@ public class TW_Recipes {
         r.getRegistry().register(new RecipeScepter(getNameForRecipe(new ItemStack(TW_Items.itemScepter))));
 	}
 
+    private static void addCrucibleRecipes(){
+        addCrucibleRecipe("BALANCED_CRYSTAL.1", "BALANCED_CRYSTAL@1", new ItemStack(TW_Items.itemBalancedCluster), ThaumcraftApiHelper.makeCrystal(Aspect.AIR), new AspectList().add(Aspect.FIRE, 2).add(Aspect.WATER, 2).add(Aspect.EARTH, 2).add(Aspect.ORDER, 2).add(Aspect.ENTROPY, 2));
+        addCrucibleRecipe("BALANCED_CRYSTAL.2", "BALANCED_CRYSTAL@1", new ItemStack(TW_Items.itemBalancedCluster), ThaumcraftApiHelper.makeCrystal(Aspect.FIRE), new AspectList().add(Aspect.AIR, 2).add(Aspect.WATER, 2).add(Aspect.EARTH, 2).add(Aspect.ORDER, 2).add(Aspect.ENTROPY, 2));
+        addCrucibleRecipe("BALANCED_CRYSTAL.3", "BALANCED_CRYSTAL@1", new ItemStack(TW_Items.itemBalancedCluster), ThaumcraftApiHelper.makeCrystal(Aspect.WATER), new AspectList().add(Aspect.FIRE, 2).add(Aspect.AIR, 2).add(Aspect.EARTH, 2).add(Aspect.ORDER, 2).add(Aspect.ENTROPY, 2));
+        addCrucibleRecipe("BALANCED_CRYSTAL.4", "BALANCED_CRYSTAL@1", new ItemStack(TW_Items.itemBalancedCluster), ThaumcraftApiHelper.makeCrystal(Aspect.EARTH), new AspectList().add(Aspect.FIRE, 2).add(Aspect.WATER, 2).add(Aspect.AIR, 2).add(Aspect.ORDER, 2).add(Aspect.ENTROPY, 2));
+        addCrucibleRecipe("BALANCED_CRYSTAL.5", "BALANCED_CRYSTAL@1", new ItemStack(TW_Items.itemBalancedCluster), ThaumcraftApiHelper.makeCrystal(Aspect.ORDER), new AspectList().add(Aspect.FIRE, 2).add(Aspect.WATER, 2).add(Aspect.EARTH, 2).add(Aspect.AIR, 2).add(Aspect.ENTROPY, 2));
+        addCrucibleRecipe("BALANCED_CRYSTAL.6", "BALANCED_CRYSTAL@1", new ItemStack(TW_Items.itemBalancedCluster), ThaumcraftApiHelper.makeCrystal(Aspect.ENTROPY), new AspectList().add(Aspect.FIRE, 2).add(Aspect.WATER, 2).add(Aspect.EARTH, 2).add(Aspect.ORDER, 2).add(Aspect.AIR, 2));
+    }
+
 	private static void addInfusionRecipes() {
         AspectList aspects;
 
@@ -104,10 +115,10 @@ public class TW_Recipes {
         //addInfusionRecipe("CAP_SILVER.2","CAP_SILVER@1", new ItemStack(TW_Items.itemWandCap,1,4), 3, new ItemStack(TW_Items.itemWandCap,1,3), aspects, new ItemStack(ItemsTC.salisMundus), new ItemStack(ItemsTC.salisMundus));
 
         aspects = new AspectList().add(Aspect.ENERGY, 50).add(Aspect.AURA, 25).add(Aspect.MAGIC, 25);
-        addInfusionRecipe("CAP_THAUMIUM.2","CAP_THAUMIUM@1", new ItemStack(TW_Items.itemWandCap,1,4), 3, new ItemStack(TW_Items.itemWandCap,1,5), aspects, new ItemStack(ItemsTC.salisMundus), new ItemStack(ItemsTC.salisMundus), new ItemStack(ItemsTC.salisMundus));
+        addInfusionRecipe("CAP_THAUMIUM.2","CAP_THAUMIUM@1", new ItemStack(TW_Items.itemWandCap,1,4), 3, new ItemStack(TW_Items.itemWandCap,1,3), aspects, new ItemStack(ItemsTC.salisMundus), new ItemStack(ItemsTC.salisMundus), new ItemStack(ItemsTC.salisMundus));
 
         aspects = new AspectList().add(Aspect.ENERGY, 50).add(Aspect.VOID,50).add(Aspect.AURA, 25).add(Aspect.ELDRITCH, 25);
-        addInfusionRecipe("CAP_VOID.2", "CAP_VOID@1", new ItemStack(TW_Items.itemWandCap,1,6), 3, new ItemStack(TW_Items.itemWandCap,1,7), aspects, new ItemStack(ItemsTC.salisMundus), new ItemStack(ItemsTC.salisMundus), new ItemStack(ItemsTC.salisMundus), new ItemStack(ItemsTC.salisMundus));
+        addInfusionRecipe("CAP_VOID.2", "CAP_VOID@1", new ItemStack(TW_Items.itemWandCap,1,6), 3, new ItemStack(TW_Items.itemWandCap,1,5), aspects, new ItemStack(ItemsTC.salisMundus), new ItemStack(ItemsTC.salisMundus), new ItemStack(ItemsTC.salisMundus), new ItemStack(ItemsTC.salisMundus));
 
 
         aspects = new AspectList().add(Aspect.AIR, 50).add(Aspect.MAGIC, 25).add(Aspect.MOTION, 25);
@@ -148,6 +159,13 @@ public class TW_Recipes {
         ResourceLocation location = new ResourceLocation(ThaumicWands.modID, name);
         ShapedArcaneRecipe recipe = new ShapedArcaneRecipe(location, research, vis, crystals, output, input);
         ThaumcraftApi.addArcaneCraftingRecipe(location, recipe);
+        recipes.put(name, location);
+    }
+
+    public static void addCrucibleRecipe(String name, String research, ItemStack output, Object input, AspectList aspects) {
+        ResourceLocation location = new ResourceLocation(ThaumicWands.modID, name);
+        CrucibleRecipe recipe = new CrucibleRecipe(research, output, input, aspects);
+        ThaumcraftApi.addCrucibleRecipe(location, recipe);
         recipes.put(name, location);
     }
 

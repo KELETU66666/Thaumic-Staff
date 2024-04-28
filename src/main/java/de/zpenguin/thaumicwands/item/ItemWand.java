@@ -31,6 +31,9 @@ import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.translation.I18n;
 import net.minecraft.world.World;
+import net.minecraftforge.common.capabilities.ICapabilityProvider;
+import net.minecraftforge.common.util.Constants;
+import net.minecraftforge.fml.common.Optional;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import thaumcraft.api.aspects.Aspect;
@@ -49,6 +52,12 @@ import thaumcraft.common.items.casters.ItemFocus;
 import thaumcraft.common.lib.SoundsTC;
 import thaumcraft.common.lib.utils.BlockUtils;
 import thaumcraft.common.lib.utils.EntityUtils;
+import thecodex6824.thaumicaugmentation.api.augment.AugmentableItem;
+import thecodex6824.thaumicaugmentation.api.augment.CapabilityAugmentableItem;
+import thecodex6824.thaumicaugmentation.api.augment.IAugmentableItem;
+import thecodex6824.thaumicaugmentation.common.capability.provider.SimpleCapabilityProvider;
+
+import javax.annotation.Nullable;
 
 public class ItemWand extends ItemBase implements IWandBasic {
 
@@ -99,6 +108,16 @@ public class ItemWand extends ItemBase implements IWandBasic {
             if (entity instanceof EntityPlayer && itemSlot < 9)
                 if (getRod(stack).hasUpdate())
                     getRod(stack).getUpdate().onUpdate(stack, (EntityPlayer) entity);
+    }
+
+    @Override
+    @Optional.Method(modid = "thaumicaugmentation")
+    public ICapabilityProvider initCapabilities(ItemStack stack, @Nullable NBTTagCompound nbt) {
+        SimpleCapabilityProvider<IAugmentableItem> provider = new SimpleCapabilityProvider<>(new AugmentableItem(2), CapabilityAugmentableItem.AUGMENTABLE_ITEM);
+        if (nbt != null && nbt.hasKey("Parent", Constants.NBT.TAG_COMPOUND))
+            provider.deserializeNBT(nbt.getCompoundTag("Parent"));
+
+        return provider;
     }
 
     @Override
