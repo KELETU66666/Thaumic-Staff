@@ -127,13 +127,13 @@ public class TW_EventHandler {
     public static void rechargeWands(TickEvent.PlayerTickEvent e) {
         if (e.phase != TickEvent.Phase.START) {
             int i;
-            if (ThaumcraftCapabilities.getKnowledge(e.player).isResearchKnown("MASTER_NODE_DRAIN"))
+            if (ThaumcraftCapabilities.getKnowledge(e.player).isResearchComplete("MASTER_NODE_DRAIN"))
                 i = 3;
-            else if (ThaumcraftCapabilities.getKnowledge(e.player).isResearchKnown("ADVANCED_NODE_DRAIN"))
+            else if (ThaumcraftCapabilities.getKnowledge(e.player).isResearchComplete("ADVANCED_NODE_DRAIN"))
                 i = 2;
             else
                 i = 1;
-            ItemStack wand = ThaumcraftCapabilities.getKnowledge(e.player).isResearchKnown("MASTER_NODE_DRAIN") ? WandHelper.isWandInBackpack(e.player, i) : WandHelper.isWandInHotbarWithRoom(e.player, i);
+            ItemStack wand = ThaumcraftCapabilities.getKnowledge(e.player).isResearchComplete("MASTER_NODE_DRAIN") ? WandHelper.isWandInBackpack(e.player, i) : WandHelper.isWandInHotbarWithRoom(e.player, i);
 
             if (wand.getItem() instanceof IWand && getDrainSpeed(e.player, wand)) {
                 if (AuraHandler.getAuraBase(e.player.world, e.player.getPosition()) > i) {
