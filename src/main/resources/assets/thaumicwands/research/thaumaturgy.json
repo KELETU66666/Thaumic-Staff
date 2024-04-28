@@ -514,7 +514,7 @@
             "THEORY;INFUSION;2"
           ],
           "required_item": [
-            "thaumicwands:item_staff_rod;1;7"
+            "thaumicwands:item_wand_rod;1;7"
           ]
         },
         {
@@ -522,6 +522,56 @@
           "recipes": [
             "thaumicwands:CORE_SILVERWOOD.1"
           ]
+        }
+      ]
+    },
+    {
+      "key": "CORE_PRIMAL",
+      "name": "research.CORE_PRIMAL.title",
+      "category": "THAUMATURGY",
+      "icons": [
+        "thaumicwands:item_staff_rod;1;8"
+      ],
+      "parents": [
+        "STAFF",
+        "~ROD_ELEMENTAL",
+        "BASEELDRITCH"
+      ],
+      "meta": [
+        "HIDDEN",
+        "REVERSE"
+      ],
+      "location": [
+        -1,
+        8
+      ],
+      "stages": [
+        {
+          "text": "research.CORE_PRIMAL.stage.0",
+          "required_knowledge": [
+            "THEORY;AUROMANCY;1",
+            "THEORY;ARTIFICE;1",
+            "THEORY;INFUSION;2",
+            "THEORY;ELDRITCH;2"
+          ],
+          "required_craft": [
+            "thaumicwands:item_wand_rod;1;1",
+            "thaumicwands:item_wand_rod;1;2",
+            "thaumicwands:item_wand_rod;1;3",
+            "thaumicwands:item_wand_rod;1;4",
+            "thaumicwands:item_wand_rod;1;5",
+            "thaumicwands:item_wand_rod;1;6"
+          ],
+          "required_item": [
+            "thaumicwands:item_primal_charm"
+          ]
+        },
+        {
+          "text": "research.CORE_PRIMAL.stage.1",
+          "recipes": [
+            "thaumicwands:CORE_PRIMAL.1"
+          ],
+          "warp": 3
         }
       ]
     }

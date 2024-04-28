@@ -125,7 +125,7 @@ public class TW_EventHandler {
 
     @SubscribeEvent
     public static void rechargeWands(TickEvent.PlayerTickEvent e) {
-        if (e.phase == TickEvent.Phase.START) {
+        if (e.phase != TickEvent.Phase.START) {
             int i;
             if (ThaumcraftCapabilities.knowsResearch(e.player, "MASTER_NODE_DRAIN@1"))
                 i = 3;
