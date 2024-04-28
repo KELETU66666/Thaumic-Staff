@@ -8,28 +8,16 @@
           	"layer0": "thaumicwands:items/wand_cap_iron"
     	}
       },
-   "copper": {
+   "gold": {
          "model": "forge:item-layer", "transform": "forge:default-item",
          "textures": {
-          "layer0": "thaumicwands:items/wand_cap_copper"
+          "layer0": "thaumicwands:items/wand_cap_gold"
         }
       },
    "brass": {
         "model": "forge:item-layer", "transform": "forge:default-item",
         "textures": {
           "layer0": "thaumicwands:items/wand_cap_brass"
-        }
-      },
-   "silver_inert": {
-        "model": "forge:item-layer", "transform": "forge:default-item",
-        "textures": {
-          "layer0": "thaumicwands:items/wand_cap_silver_inert"
-        }
-      },
-   "silver": {
-        "model": "forge:item-layer", "transform": "forge:default-item",
-        "textures": {
-          "layer0": "thaumicwands:items/wand_cap_silver"
         }
       },
    "thaumium_inert": {

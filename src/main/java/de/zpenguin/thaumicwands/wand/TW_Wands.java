@@ -10,8 +10,6 @@ import de.zpenguin.thaumicwands.item.TW_Items;
 import de.zpenguin.thaumicwands.wand.updates.*;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
-import thaumcraft.api.aspects.Aspect;
-import thaumcraft.api.aspects.AspectList;
 
 public class TW_Wands {
 
@@ -19,14 +17,15 @@ public class TW_Wands {
 	public static final ArrayList<IWandRod> RODS = new ArrayList<IWandRod>();
 	public static final ArrayList<IStaffCore> STAFF = new ArrayList<IStaffCore>();
 
-	public static final IWandCap capIron = new WandCap("iron", 1F, new ItemStack(TW_Items.itemWandCap, 1, 0), 1, "UNLOCKTHAUMATURGY");
-	public static final IWandCap capCopper = new WandCap("copper", 1F, new AspectList().add(Aspect.ORDER,1).add(Aspect.ENTROPY,1),new ItemStack(TW_Items.itemWandCap, 1, 1), 5);
-	public static final IWandCap capBrass = new WandCap("brass", 0.95F, new ItemStack(TW_Items.itemWandCap, 1, 2), 10);
-	public static final IWandCap capSilver = new WandCap("silver", 0.95F, new AspectList().add(Aspect.AIR,1).add(Aspect.FIRE,1).add(Aspect.WATER,1).add(Aspect.EARTH,1),new ItemStack(TW_Items.itemWandCap, 1, 4), 15);
-	public static final IWandCap capThaumium = new WandCap("thaumium", 0.9F, new ItemStack(TW_Items.itemWandCap, 1, 6), 20);
-	public static final IWandCap capVoid = new WandCap("void", 0.8F, new ItemStack(TW_Items.itemWandCap,1,8), 25);
+	public static final IWandCap capIron = new WandCap("iron", 1.1F, new ItemStack(TW_Items.itemWandCap, 1, 0), 1, "UNLOCKTHAUMATURGY");
+	//public static final IWandCap capCopper = new WandCap("copper", 1F, new AspectList().add(Aspect.ORDER,1).add(Aspect.ENTROPY,1),new ItemStack(TW_Items.itemWandCap, 1, 1), 5);
+	public static final IWandCap capGold = new WandCap("gold", 1.0F, new ItemStack(TW_Items.itemWandCap, 1, 1), 10);
+	public static final IWandCap capBrass = new WandCap("brass", 1.0F, new ItemStack(TW_Items.itemWandCap, 1, 2), 15);
+	//public static final IWandCap capSilver = new WandCap("silver", 0.95F, new AspectList().add(Aspect.AIR,1).add(Aspect.FIRE,1).add(Aspect.WATER,1).add(Aspect.EARTH,1),new ItemStack(TW_Items.itemWandCap, 1, 4), 15);
+	public static final IWandCap capThaumium = new WandCap("thaumium", 0.9F, new ItemStack(TW_Items.itemWandCap, 1, 4), 20);
+	public static final IWandCap capVoid = new WandCap("void", 0.8F, new ItemStack(TW_Items.itemWandCap,1,6), 25);
 
-	public static final IWandRod rodWood = new WandRod("wood", 25, new ItemStack(Items.STICK), 1, "UNLOCKTHAUMATURGY");
+	public static final IWandRod rodWood = new WandRod("wood", 50, new ItemStack(Items.STICK), 1, "UNLOCKTHAUMATURGY");
 	public static final IWandRod rodGreatwood = new WandRod("greatwood", 100, new ItemStack(TW_Items.itemWandRod, 1, 0), 5);
 	public static final IWandRod rodReed = new WandRod("reed", 300, new ItemStack(TW_Items.itemWandRod, 1, 1), 10, new UpdateAir());
 	public static final IWandRod rodBlaze = new WandRod("blaze", 300, new ItemStack(TW_Items.itemWandRod, 1, 2), 10, new UpdateFire());

@@ -28,6 +28,7 @@ item_staff_rod_primal.name=Staff Core of the Primal
 #Wand Caps
 item_wand_cap_iron.name=Iron Cap
 item_wand_cap_copper.name=Copper Cap
+item_wand_cap_gold.name=Gold Cap
 item_wand_cap_brass.name=Brass Cap
 item_wand_cap_silver_inert.name=Inert Silver Cap
 item_wand_cap_silver.name=Charged Silver Cap
@@ -68,6 +69,7 @@ item.wand.primal.rod=Primal
 item.wand.adaminitewood.rod=Adamintewood
 
 item.wand.iron.cap=Iron Capped
+item.wand.gold.cap=Gold Bossed
 item.wand.brass.cap=Brass Banded
 item.wand.copper.cap=Copper Capped
 item.wand.silver.cap=Silver Bossed

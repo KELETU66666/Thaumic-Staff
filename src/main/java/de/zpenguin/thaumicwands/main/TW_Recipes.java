@@ -59,20 +59,23 @@ public class TW_Recipes {
         crystals = new AspectList().add(Aspect.AIR,1).add(Aspect.FIRE,1).add(Aspect.WATER,1).add(Aspect.EARTH,1).add(Aspect.ORDER,1).add(Aspect.ENTROPY,1);
         addShapedArcaneRecipe("PRIMALCHARM.1","PRIMALCHARM@1", new ItemStack(TW_Items.itemPrimalCharm), 20, crystals, "AFW","BRB","EOP", 'A', ThaumcraftApiHelper.makeCrystal(Aspect.AIR), 'F', ThaumcraftApiHelper.makeCrystal(Aspect.FIRE), 'W', ThaumcraftApiHelper.makeCrystal(Aspect.WATER),'B',"ingotBrass", 'R', new ItemStack(ItemsTC.visResonator), 'E', ThaumcraftApiHelper.makeCrystal(Aspect.EARTH), 'O', ThaumcraftApiHelper.makeCrystal(Aspect.ORDER), 'P', ThaumcraftApiHelper.makeCrystal(Aspect.ENTROPY));
 
+        //crystals = new AspectList().add(Aspect.AIR,2).add(Aspect.FIRE,2).add(Aspect.ORDER,2);
+        //addShapedArcaneRecipe("CAP_COPPER.1","CAP_COPPER@1", new ItemStack(TW_Items.itemWandCap, 1, 1), 10, crystals, "NNN","N N",'N',"nuggetCopper");
+
         crystals = new AspectList().add(Aspect.AIR,2).add(Aspect.FIRE,2).add(Aspect.ORDER,2);
-        addShapedArcaneRecipe("CAP_COPPER.1","CAP_COPPER@1", new ItemStack(TW_Items.itemWandCap, 1, 1), 10, crystals, "NNN","N N",'N',"nuggetCopper");
+        addShapedArcaneRecipe("CAP_GOLD.1","CAP_GOLD@1", new ItemStack(TW_Items.itemWandCap, 1, 1), 10, crystals, "NNN","N N",'N',"nuggetGold");
 
         crystals = new AspectList().add(Aspect.AIR,3).add(Aspect.FIRE,3).add(Aspect.ORDER,3);
-        addShapedArcaneRecipe("CAP_BRASS.1","CAP_BRASS@1", new ItemStack(TW_Items.itemWandCap, 1, 2), 10, crystals, "NNN","N N",'N',"nuggetBrass");
+        addShapedArcaneRecipe("CAP_BRASS.1","CAP_BRASS@1", new ItemStack(TW_Items.itemWandCap, 1, 2), 15, crystals, "NNN","N N",'N',"nuggetBrass");
 
-        crystals = new AspectList().add(Aspect.AIR,4).add(Aspect.FIRE,4).add(Aspect.ORDER,4);
-        addShapedArcaneRecipe("CAP_SILVER.1","CAP_SILVER@1", new ItemStack(TW_Items.itemWandCap, 1, 3), 10, crystals, "NNN","N N",'N',"nuggetSilver");
+        //crystals = new AspectList().add(Aspect.AIR,4).add(Aspect.FIRE,4).add(Aspect.ORDER,4);
+        //addShapedArcaneRecipe("CAP_SILVER.1","CAP_SILVER@1", new ItemStack(TW_Items.itemWandCap, 1, 3), 10, crystals, "NNN","N N",'N',"nuggetSilver");
 
         crystals = new AspectList().add(Aspect.AIR,5).add(Aspect.FIRE,5).add(Aspect.ORDER,5);
-        addShapedArcaneRecipe("CAP_THAUMIUM.1","CAP_THAUMIUM@1", new ItemStack(TW_Items.itemWandCap, 1, 5), 10, crystals, "NNN","N N",'N',"nuggetThaumium");
+        addShapedArcaneRecipe("CAP_THAUMIUM.1","CAP_THAUMIUM@1", new ItemStack(TW_Items.itemWandCap, 1, 3), 10, crystals, "NNN","N N",'N',"nuggetThaumium");
 
-        crystals = new AspectList().add(Aspect.AIR,7).add(Aspect.FIRE,7).add(Aspect.ORDER,7).add(Aspect.ENTROPY, 7);
-        addShapedArcaneRecipe("CAP_VOID.1","CAP_VOID@1", new ItemStack(TW_Items.itemWandCap, 1, 7), 10, crystals, "NNN","N N",'N',"nuggetVoid");
+        crystals = new AspectList().add(Aspect.AIR,7).add(Aspect.FIRE,7).add(Aspect.ORDER,7).add(Aspect.ENTROPY, 6);
+        addShapedArcaneRecipe("CAP_VOID.1","CAP_VOID@1", new ItemStack(TW_Items.itemWandCap, 1, 5), 10, crystals, "NNN","N N",'N',"nuggetVoid");
 
         crystals = new AspectList().add(Aspect.ENTROPY, 2);
         addShapedArcaneRecipe("ROD_GREATWOOD.1","ROD_GREATWOOD@1", new ItemStack(TW_Items.itemWandRod, 1, 0), 10, crystals, "  L"," L ","L  ",'L', new ItemStack(BlocksTC.logGreatwood));
@@ -97,14 +100,14 @@ public class TW_Recipes {
 	private static void addInfusionRecipes() {
         AspectList aspects;
 
-        aspects = new AspectList().add(Aspect.ENERGY, 30).add(Aspect.AURA, 15).add(Aspect.MAGIC, 15);
-        addInfusionRecipe("CAP_SILVER.2","CAP_SILVER@1", new ItemStack(TW_Items.itemWandCap,1,4), 3, new ItemStack(TW_Items.itemWandCap,1,3), aspects, new ItemStack(ItemsTC.salisMundus), new ItemStack(ItemsTC.salisMundus));
+        //aspects = new AspectList().add(Aspect.ENERGY, 30).add(Aspect.AURA, 15).add(Aspect.MAGIC, 15);
+        //addInfusionRecipe("CAP_SILVER.2","CAP_SILVER@1", new ItemStack(TW_Items.itemWandCap,1,4), 3, new ItemStack(TW_Items.itemWandCap,1,3), aspects, new ItemStack(ItemsTC.salisMundus), new ItemStack(ItemsTC.salisMundus));
 
         aspects = new AspectList().add(Aspect.ENERGY, 50).add(Aspect.AURA, 25).add(Aspect.MAGIC, 25);
-        addInfusionRecipe("CAP_THAUMIUM.2","CAP_THAUMIUM@1", new ItemStack(TW_Items.itemWandCap,1,6), 3, new ItemStack(TW_Items.itemWandCap,1,5), aspects, new ItemStack(ItemsTC.salisMundus), new ItemStack(ItemsTC.salisMundus), new ItemStack(ItemsTC.salisMundus));
+        addInfusionRecipe("CAP_THAUMIUM.2","CAP_THAUMIUM@1", new ItemStack(TW_Items.itemWandCap,1,4), 3, new ItemStack(TW_Items.itemWandCap,1,5), aspects, new ItemStack(ItemsTC.salisMundus), new ItemStack(ItemsTC.salisMundus), new ItemStack(ItemsTC.salisMundus));
 
         aspects = new AspectList().add(Aspect.ENERGY, 50).add(Aspect.VOID,50).add(Aspect.AURA, 25).add(Aspect.ELDRITCH, 25);
-        addInfusionRecipe("CAP_VOID.2", "CAP_VOID@1", new ItemStack(TW_Items.itemWandCap,1,8), 3, new ItemStack(TW_Items.itemWandCap,1,7), aspects, new ItemStack(ItemsTC.salisMundus), new ItemStack(ItemsTC.salisMundus), new ItemStack(ItemsTC.salisMundus), new ItemStack(ItemsTC.salisMundus));
+        addInfusionRecipe("CAP_VOID.2", "CAP_VOID@1", new ItemStack(TW_Items.itemWandCap,1,6), 3, new ItemStack(TW_Items.itemWandCap,1,7), aspects, new ItemStack(ItemsTC.salisMundus), new ItemStack(ItemsTC.salisMundus), new ItemStack(ItemsTC.salisMundus), new ItemStack(ItemsTC.salisMundus));
 
 
         aspects = new AspectList().add(Aspect.AIR, 50).add(Aspect.MAGIC, 25).add(Aspect.MOTION, 25);

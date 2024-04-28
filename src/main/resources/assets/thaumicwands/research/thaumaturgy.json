@@ -106,8 +106,8 @@
         "METALLURGY@2"
       ],
       "location": [
-        0,
-        -2
+        -2,
+        0
       ],
       "stages": [
         {
@@ -126,8 +126,8 @@
       ]
     },
     {
-      "key": "CAP_COPPER",
-      "name": "research.CAP_COPPER.title",
+      "key": "CAP_GOLD",
+      "name": "research.CAP_GOLD.title",
       "category": "THAUMATURGY",
       "icons": [
         "thaumicwands:item_wand_cap;1;1"
@@ -136,20 +136,23 @@
         "BASETHAUMATURGY"
       ],
       "location": [
-        -3,
-        0
+        0,
+        -2
       ],
       "stages": [
         {
-          "text": "research.CAP_COPPER.stage.0",
+          "text": "research.CAP_GOLD.stage.0",
           "required_knowledge": [
             "OBSERVATION;AUROMANCY;1"
+          ],
+          "required_item": [
+            "minecraft:gold_ingot"
           ]
         },
         {
-          "text": "research.CAP_COPPER.stage.1",
+          "text": "research.CAP_GOLD.stage.1",
           "recipes": [
-            "thaumicwands:CAP_COPPER.1"
+            "thaumicwands:CAP_GOLD.1"
           ]
         }
       ]
@@ -162,12 +165,12 @@
         "thaumicwands:item_wand_cap;1;2"
       ],
       "parents": [
-        "BASETHAUMATURGY",
-        "METALLURGY@2"
+        "METALLURGY@2",
+        "CAP_GOLD"
       ],
       "location": [
-        -2,
-        -2
+        0,
+        -4
       ],
       "stages": [
         {
@@ -190,44 +193,11 @@
       ]
     },
     {
-      "key": "CAP_SILVER",
-      "name": "research.CAP_SILVER.title",
-      "category": "THAUMATURGY",
-      "icons": [
-        "thaumicwands:item_wand_cap;1;4"
-      ],
-      "parents": [
-        "CAP_BRASS",
-        "INFUSION"
-      ],
-      "location": [
-        -4,
-        -3
-      ],
-      "stages": [
-        {
-          "text": "research.CAP_SILVER.stage.0",
-          "required_knowledge": [
-            "OBSERVATION;AUROMANCY;1",
-            "THEORY;AUROMANCY;1",
-            "THEORY;INFUSION;1"
-          ]
-        },
-        {
-          "text": "research.CAP_SILVER.stage.1",
-          "recipes": [
-            "thaumicwands:CAP_SILVER.1",
-            "thaumicwands:CAP_SILVER.2"
-          ]
-        }
-      ]
-    },
-    {
       "key": "CAP_THAUMIUM",
       "name": "research.CAP_THAUMIUM.title",
       "category": "THAUMATURGY",
       "icons": [
-        "thaumicwands:item_wand_cap;1;6"
+        "thaumicwands:item_wand_cap;1;4"
       ],
       "parents": [
         "CAP_BRASS",
@@ -235,8 +205,8 @@
         "INFUSION"
       ],
       "location": [
-        -2,
-        -5
+        0,
+        -6
       ],
       "stages": [
         {
@@ -264,7 +234,7 @@
       "name": "research.CAP_VOID.title",
       "category": "THAUMATURGY",
       "icons": [
-        "thaumicwands:item_wand_cap;1;8"
+        "thaumicwands:item_wand_cap;1;6"
       ],
       "parents": [
         "CAP_THAUMIUM",
@@ -272,8 +242,8 @@
         "INFUSION"
       ],
       "location": [
-        -4,
-        -6
+        0,
+        -8
       ],
       "stages": [
         {
@@ -524,11 +494,12 @@
       ],
       "parents": [
         "STAFF",
-        "ROD_SILVERWOOD"
+        "ROD_SILVERWOOD",
+        "~ROD_ELEMENTAL"
       ],
       "meta": [
         "HEX",
-        "RESERVE"
+        "REVERSE"
       ],
       "location": [
         1,

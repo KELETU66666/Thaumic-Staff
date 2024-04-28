@@ -6,6 +6,7 @@ import de.zpenguin.thaumicwands.entity.EntityVisOrb;
 import de.zpenguin.thaumicwands.main.ThaumicWands;
 import de.zpenguin.thaumicwands.tile.TileArcaneWorkbenchNew;
 import de.zpenguin.thaumicwands.util.WandHelper;
+import de.zpenguin.thaumicwands.wand.TW_Wands;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
@@ -115,9 +116,16 @@ public class TW_EventHandler {
         }
     }
 
+    private static boolean getDrainSpeed(EntityPlayer player, ItemStack stack){
+        if(((IWand) stack.getItem()).getCap(stack) == TW_Wands.capBrass)
+            return player.getEntityWorld().getTotalWorldTime() % 10 == 0;
+        else
+            return player.getEntityWorld().getTotalWorldTime() % 20 == 0;
+    }
+
     @SubscribeEvent
     public static void rechargeWands(TickEvent.PlayerTickEvent e) {
-        if (e.phase == TickEvent.Phase.START && e.player.getEntityWorld().getTotalWorldTime() % 20 == 0) {
+        if (e.phase == TickEvent.Phase.START) {
             int i;
             if (ThaumcraftCapabilities.knowsResearch(e.player, "MASTER_NODE_DRAIN@1"))
                 i = 3;
@@ -126,9 +134,12 @@ public class TW_EventHandler {
             else
                 i = 1;
             ItemStack wand = ThaumcraftCapabilities.knowsResearch(e.player, "MASTER_NODE_DRAIN@1") ? WandHelper.isWandInBackpack(e.player, i) : WandHelper.isWandInHotbarWithRoom(e.player, i);
-            if (wand.getItem() instanceof IWand && AuraHandler.getAuraBase(e.player.world, e.player.getPosition()) > i) {
-                RechargeHelper.rechargeItemBlindly(wand, e.player, i);
-                AuraHandler.drainVis(e.player.world, e.player.getPosition(), i, false);
+
+            if (wand.getItem() instanceof IWand && getDrainSpeed(e.player, wand)) {
+                if (AuraHandler.getAuraBase(e.player.world, e.player.getPosition()) > i) {
+                    RechargeHelper.rechargeItemBlindly(wand, e.player, i);
+                    AuraHandler.drainVis(e.player.world, e.player.getPosition(), i, false);
+                }
             }
         }
     }

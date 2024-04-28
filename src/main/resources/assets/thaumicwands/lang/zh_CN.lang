@@ -17,6 +17,7 @@ item_wand_rod_ta_adaminitewood.name=鎏金木杖柄
 #Wand Caps
 item_wand_cap_iron.name=铁杖端
 item_wand_cap_copper.name=铜杖端
+item_wand_cap_gold.name=金杖端
 item_wand_cap_brass.name=黄铜杖端
 item_wand_cap_silver_inert.name=惰性银杖端
 item_wand_cap_silver.name=充能银杖端
@@ -56,6 +57,7 @@ item.wand.adaminitewood.rod=鎏金木
 item.wand.primal.rod=元始
 
 item.wand.iron.cap=铁帽
+item.wand.gold.cap=金箍
 item.wand.brass.cap=黄铜绑扎
 item.wand.copper.cap=铜帽
 item.wand.silver.cap=银帽浮雕

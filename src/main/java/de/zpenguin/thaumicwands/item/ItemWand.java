@@ -84,7 +84,7 @@ public class ItemWand extends ItemBase implements IWandBasic {
     @Override
     public void getSubItems(CreativeTabs tab, NonNullList<ItemStack> items) {
         if (tab == this.getCreativeTab()) {
-            for (ItemStack wand : new ItemStack[]{WandHelper.getWandWithParts("wood", "iron"), WandHelper.getWandWithParts("greatwood", "brass"), WandHelper.getWandWithParts("silverwood", "thaumium")}) {
+            for (ItemStack wand : new ItemStack[]{WandHelper.getWandWithParts("wood", "iron"), WandHelper.getWandWithParts("greatwood", "gold"), WandHelper.getWandWithParts("silverwood", "thaumium")}) {
                 items.add(wand.copy());
                 RechargeHelper.rechargeItemBlindly(wand, null, getMaxCharge(wand, null));
                 items.add(wand);
