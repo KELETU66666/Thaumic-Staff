@@ -7,7 +7,7 @@ public class ItemBase extends Item {
 
     public ItemBase(String name) {
         this.setRegistryName(name);
-        this.setUnlocalizedName(name);
+        this.setTranslationKey(name);
         this.setCreativeTab(ConfigItems.TABTC);
         TW_Items.ITEMS.add(this);
     }

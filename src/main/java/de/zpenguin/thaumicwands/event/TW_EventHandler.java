@@ -8,7 +8,6 @@ import de.zpenguin.thaumicwands.tile.TileArcaneWorkbenchNew;
 import de.zpenguin.thaumicwands.util.WandHelper;
 import de.zpenguin.thaumicwands.wand.TW_Wands;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.SoundCategory;
@@ -78,16 +77,16 @@ public class TW_EventHandler {
                     }
                 }
 
-                if (player instanceof EntityPlayerMP && player.world.getBlockState(e.getPos()).getBlock() == BlocksTC.tableWood) {
+                if (player.world.getBlockState(e.getPos()).getBlock() == BlocksTC.tableWood) {
                     player.world.setBlockState(e.getPos(), BlocksTC.arcaneWorkbench.getDefaultState());
                     player.world.setTileEntity(e.getPos(), new TileArcaneWorkbenchNew());
                     TileArcaneWorkbenchNew taw = (TileArcaneWorkbenchNew) player.world.getTileEntity(e.getPos());
                     if ((taw != null) && !(wand.getItem() instanceof IStaff)) {
                         taw.inventoryCraft.setInventorySlotContents(15, wand.copy());
                         wand.shrink(1);
+                        taw.markDirty();
                     }
-                    player.notify();
-                    taw.markDirty();
+                    player.inventory.markDirty();
                     player.world.notifyBlockUpdate(e.getPos(), player.world.getBlockState(e.getPos()), player.world.getBlockState(e.getPos()), 3);
                 }
             }
@@ -97,7 +96,7 @@ public class TW_EventHandler {
     public static void doSparkles(EntityPlayer player, World world, BlockPos pos, float hitX, float hitY, float hitZ, EnumHand hand, IDustTrigger trigger, IDustTrigger.Placement place) {
         Vec3d v1 = EntityUtils.posToHand(player, hand);
         Vec3d v2 = new Vec3d(pos);
-        v2 = v2.addVector(0.5, 0.5, 0.5);
+        v2 = v2.add(0.5, 0.5, 0.5);
         v2 = v2.subtract(v1);
         for (int cnt = 50, a = 0; a < cnt; ++a) {
             boolean floaty = a < cnt / 3;
@@ -109,7 +108,7 @@ public class TW_EventHandler {
         world.playSound(pos.getX(), pos.getY(), pos.getZ(), SoundsTC.dust, SoundCategory.PLAYERS, 0.33f, 1.0f + (float) world.rand.nextGaussian() * 0.05f, false);
         List<BlockPos> sparkles = trigger.sparkle(world, player, pos, place);
         if (sparkles != null) {
-            Vec3d v3 = new Vec3d(pos).addVector(hitX, hitY, hitZ);
+            Vec3d v3 = new Vec3d(pos).add(hitX, hitY, hitZ);
             for (BlockPos p : sparkles) {
                 FXDispatcher.INSTANCE.drawBlockSparkles(p, v3);
             }
@@ -118,9 +117,9 @@ public class TW_EventHandler {
 
     private static boolean getDrainSpeed(EntityPlayer player, ItemStack stack){
         if(((IWand) stack.getItem()).getCap(stack) == TW_Wands.capBrass)
-            return player.getEntityWorld().getTotalWorldTime() % 30 == 0;
+            return player.getEntityWorld().getTotalWorldTime() % 10 == 0;
         else
-            return player.getEntityWorld().getTotalWorldTime() % 60 == 0;
+            return player.getEntityWorld().getTotalWorldTime() % 20 == 0;
     }
 
     @SubscribeEvent

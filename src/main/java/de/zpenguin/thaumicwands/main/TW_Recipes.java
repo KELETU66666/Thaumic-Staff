@@ -178,12 +178,12 @@ public class TW_Recipes {
 
     public static ResourceLocation getNameForRecipe(ItemStack output) {
         ModContainer activeContainer = Loader.instance().activeModContainer();
-        ResourceLocation baseLoc = new ResourceLocation(activeContainer.getModId(), output.getItem().getUnlocalizedName());
+        ResourceLocation baseLoc = new ResourceLocation(activeContainer.getModId(), output.getItem().getTranslationKey());
         ResourceLocation recipeLoc = baseLoc;
         int index = 0;
         while (CraftingManager.REGISTRY.containsKey(recipeLoc)) {
             index++;
-            recipeLoc = new ResourceLocation(activeContainer.getModId(), baseLoc.getResourcePath() + "_" + index);
+            recipeLoc = new ResourceLocation(activeContainer.getModId(), baseLoc.getPath() + "_" + index);
         }
         return recipeLoc;
     }

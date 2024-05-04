@@ -72,7 +72,7 @@ public class ItemWand extends ItemBase implements IWandBasic {
     public void doSparkles(EntityPlayer player, World world, BlockPos pos, float hitX, float hitY, float hitZ, EnumHand hand, IDustTrigger trigger, IDustTrigger.Placement place) {
         Vec3d v1 = EntityUtils.posToHand(player, hand);
         Vec3d v2 = new Vec3d(pos);
-        v2 = v2.addVector(0.5, 0.5, 0.5);
+        v2 = v2.add(0.5, 0.5, 0.5);
         v2 = v2.subtract(v1);
         for (int cnt = 50, a = 0; a < cnt; ++a) {
             boolean floaty = a < cnt / 3;
@@ -84,7 +84,7 @@ public class ItemWand extends ItemBase implements IWandBasic {
         world.playSound(pos.getX(), pos.getY(), pos.getZ(), SoundsTC.dust, SoundCategory.PLAYERS, 0.33f, 1.0f + (float)world.rand.nextGaussian() * 0.05f, false);
         List<BlockPos> sparkles = trigger.sparkle(world, player, pos, place);
         if (sparkles != null) {
-            Vec3d v3 = new Vec3d(pos).addVector(hitX, hitY, hitZ);
+            Vec3d v3 = new Vec3d(pos).add(hitX, hitY, hitZ);
             for (BlockPos p : sparkles) {
                 FXDispatcher.INSTANCE.drawBlockSparkles(p, v3);
             }

@@ -37,8 +37,8 @@ public class ResearchHelper {
 	}
 
 	public static void makeAid(Block block, Class<? extends TheorycraftCard>... cards) {
-		if(TheorycraftManager.aids.get(block.getUnlocalizedName()) == null)
-			TheorycraftManager.aids.put(block.getUnlocalizedName(), new AidBase(block, cards));
+		if(TheorycraftManager.aids.get(block.getTranslationKey()) == null)
+			TheorycraftManager.aids.put(block.getTranslationKey(), new AidBase(block, cards));
 	}
 
 	public static void registerCards(Class<? extends TheorycraftCard>... cards) {

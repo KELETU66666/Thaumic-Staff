@@ -1,29 +1,21 @@
 package de.zpenguin.thaumicwands.client;
 
-import de.zpenguin.thaumicwands.block.tile.TileNodeStabilizer;
 import de.zpenguin.thaumicwands.client.model.BakedModelScepter;
 import de.zpenguin.thaumicwands.client.model.BakedModelStaff;
 import de.zpenguin.thaumicwands.client.model.BakedModelWand;
 import de.zpenguin.thaumicwands.client.render.entity.EntityVisOrbRenderer;
-import de.zpenguin.thaumicwands.client.render.entity.RenderAuraNode;
-import de.zpenguin.thaumicwands.client.render.entity.RenderNodeMagnet;
 import de.zpenguin.thaumicwands.client.render.item.ItemScepterRenderer;
 import de.zpenguin.thaumicwands.client.render.item.ItemStaffRenderer;
 import de.zpenguin.thaumicwands.client.render.item.ItemWandRenderer;
 import de.zpenguin.thaumicwands.client.render.tile.TileArcaneWorktableRenderer;
-import de.zpenguin.thaumicwands.client.render.tile.TileNodeStabilizerRenderer;
-import de.zpenguin.thaumicwands.entity.EntityNodeMagnet;
 import de.zpenguin.thaumicwands.entity.EntityVisOrb;
-import de.zpenguin.thaumicwands.entity.node.EntityAuraNode;
 import de.zpenguin.thaumicwands.item.TW_Items;
 import de.zpenguin.thaumicwands.main.CommonProxy;
 import de.zpenguin.thaumicwands.main.ThaumicWands;
 import de.zpenguin.thaumicwands.tile.TileArcaneWorkbenchNew;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
-import net.minecraft.item.Item;
 import net.minecraftforge.client.event.ModelBakeEvent;
-import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
@@ -48,13 +40,7 @@ public class ClientProxy extends CommonProxy {
 	public void init(FMLInitializationEvent e) {
 		super.init(e);
 		ClientRegistry.bindTileEntitySpecialRenderer(TileArcaneWorkbenchNew.class, new TileArcaneWorktableRenderer());
-		ClientRegistry.bindTileEntitySpecialRenderer(TileNodeStabilizer.class, new TileNodeStabilizerRenderer());
-
-		ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(CommonProxy.nodeStabilizer), 0, new ModelResourceLocation(ThaumicWands.modID + ":" + CommonProxy.nodeStabilizer.getUnlocalizedName().substring(5), "inventory"));
-
 		RenderingRegistry.registerEntityRenderingHandler(EntityVisOrb.class, new EntityVisOrbRenderer(Minecraft.getMinecraft().getRenderManager()));
-		RenderingRegistry.registerEntityRenderingHandler(EntityAuraNode.class, new RenderAuraNode(Minecraft.getMinecraft().getRenderManager()));
-		RenderingRegistry.registerEntityRenderingHandler(EntityNodeMagnet.class, new RenderNodeMagnet(Minecraft.getMinecraft().getRenderManager()));
 	}
 
 	@SubscribeEvent
