@@ -32,7 +32,7 @@ public class ThaumicWands {
 
 	public static final String modID = "thaumicwands";
 	public static final String modName = "Thaumic Wands";
-	public static final String version = "1.3.1";
+	public static final String version = "1.4.0";
 	public static final String dependencies = "required-after:thaumcraft;";
 	
 	public static final Logger logger = LogManager.getLogger("Thaumic Wands");
