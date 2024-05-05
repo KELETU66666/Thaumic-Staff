@@ -10,7 +10,7 @@ public class UpdateEarth implements IWandUpdate {
     @Override
     public void onUpdate(ItemStack stack, EntityPlayer player) {
         if (player.getEntityWorld().getTotalWorldTime() % 20 == 0)
-            if (player.getPosition().getY() <= 30 && RechargeHelper.getChargePercentage(stack, player) < 0.2F)
+            if (player.getPosition().getY() <= 30 && RechargeHelper.getChargePercentage(stack, player) < 0.5F)
                 RechargeHelper.rechargeItemBlindly(stack, player, 1);
     }
 

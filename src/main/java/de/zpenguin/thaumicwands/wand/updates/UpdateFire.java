@@ -14,7 +14,7 @@ public class UpdateFire implements IWandUpdate {
 	public void onUpdate(ItemStack stack, EntityPlayer player) {
 		if(player.getEntityWorld().getTotalWorldTime() % 20 == 0) {
 			Biome b = player.getEntityWorld().getBiome(player.getPosition());
-		if(BiomeDictionary.getTypes(b).contains(Type.DRY) && !BiomeDictionary.getTypes(b).contains(Type.NETHER) && RechargeHelper.getChargePercentage(stack, player) < 0.2F)
+		if(BiomeDictionary.getTypes(b).contains(Type.DRY) && !BiomeDictionary.getTypes(b).contains(Type.NETHER) && RechargeHelper.getChargePercentage(stack, player) < 0.5F)
 				RechargeHelper.rechargeItemBlindly(stack, player, 1);
 		}
 	}

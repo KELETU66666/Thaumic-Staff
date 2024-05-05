@@ -59,12 +59,18 @@ public class TW_Research {
     public static void postInit() {
         ResearchEntry entry = ResearchCategories.getResearch("FIRSTSTEPS");
         ResearchStage[] stages = entry.getStages();
-        stages[0].setRecipes(new ResourceLocation[]{TW_Recipes.recipes.get("FIRSTSTEPS.1"), TW_Recipes.recipes.get("BASETHAUMATURGY.1"), TW_Recipes.recipes.get("BASETHAUMATURGY.2")});
-        stages[0].setKnow(new ResearchStage.Knowledge[]{new ResearchStage.Knowledge(OBSERVATION, getCategory("BASICS"), 1)});
-        stages[0].setCraft(null);
-        stages[1].setRecipes(new ResourceLocation[]{TW_Recipes.recipes.get("BASETHAUMATURGY.1"), TW_Recipes.recipes.get("BASETHAUMATURGY.2"), TW_Recipes.recipes.get("FIRSTSTEPS.1")});
-        stages[1].setKnow(new ResearchStage.Knowledge[]{new ResearchStage.Knowledge(OBSERVATION, getCategory("BASICS"), 1)});
-        stages[2].setRecipes(new ResourceLocation[]{TW_Recipes.recipes.get("BASETHAUMATURGY.1"), TW_Recipes.recipes.get("BASETHAUMATURGY.2"), TW_Recipes.recipes.get("FIRSTSTEPS.1")});
+        if(stages.length > 0) {
+            stages[0].setRecipes(new ResourceLocation[]{TW_Recipes.recipes.get("FIRSTSTEPS.1"), TW_Recipes.recipes.get("BASETHAUMATURGY.1"), TW_Recipes.recipes.get("BASETHAUMATURGY.2")});
+            stages[0].setKnow(new ResearchStage.Knowledge[]{new ResearchStage.Knowledge(OBSERVATION, getCategory("BASICS"), 1)});
+            stages[0].setCraft(null);
+        }
+        if(stages.length > 1) {
+            stages[1].setRecipes(new ResourceLocation[]{TW_Recipes.recipes.get("BASETHAUMATURGY.1"), TW_Recipes.recipes.get("BASETHAUMATURGY.2"), TW_Recipes.recipes.get("FIRSTSTEPS.1")});
+            stages[1].setKnow(new ResearchStage.Knowledge[]{new ResearchStage.Knowledge(OBSERVATION, getCategory("BASICS"), 1)});
+        }
+        if(stages.length > 2) {
+            stages[2].setRecipes(new ResourceLocation[]{TW_Recipes.recipes.get("BASETHAUMATURGY.1"), TW_Recipes.recipes.get("BASETHAUMATURGY.2"), TW_Recipes.recipes.get("FIRSTSTEPS.1")});
+        }
         entry.setStages(stages);
 
         ConfigResearch.TCCategories = new String[]{"BASICS", "THAUMATURGY", "ALCHEMY", "AUROMANCY", "ARTIFICE", "INFUSION", "GOLEMANCY", "ELDRITCH"};

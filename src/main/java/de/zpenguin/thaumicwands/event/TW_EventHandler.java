@@ -3,11 +3,14 @@ package de.zpenguin.thaumicwands.event;
 import de.zpenguin.thaumicwands.api.item.wand.IStaff;
 import de.zpenguin.thaumicwands.api.item.wand.IWand;
 import de.zpenguin.thaumicwands.entity.EntityVisOrb;
+import de.zpenguin.thaumicwands.main.CommonProxy;
 import de.zpenguin.thaumicwands.main.ThaumicWands;
 import de.zpenguin.thaumicwands.tile.TileArcaneWorkbenchNew;
 import de.zpenguin.thaumicwands.util.WandHelper;
 import de.zpenguin.thaumicwands.wand.TW_Wands;
+import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.SoundCategory;
@@ -15,11 +18,15 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
+import net.minecraftforge.client.event.ModelRegistryEvent;
+import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import thaumcraft.api.aspects.AspectHelper;
 import thaumcraft.api.aspects.AspectList;
 import thaumcraft.api.blocks.BlocksTC;
@@ -141,5 +148,11 @@ public class TW_EventHandler {
                 }
             }
         }
+    }
+
+    @SubscribeEvent
+    @SideOnly(Side.CLIENT)
+    public static void modelRegistryEvent(ModelRegistryEvent event) {
+        ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(CommonProxy.nodeStabilizer), 0, new ModelResourceLocation(ThaumicWands.modID + ":" + CommonProxy.nodeStabilizer.getTranslationKey().substring(5), "inventory"));
     }
 }

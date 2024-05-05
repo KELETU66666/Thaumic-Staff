@@ -94,6 +94,8 @@ public class TW_Recipes {
 
         addShapedArcaneRecipe("CORE_SILVERWOOD.1","CORE_SILVERWOOD@1", new ItemStack(TW_Items.itemStaffCore, 1, 7), 20, crystals, "  P"," L ","L  ",'L', new ItemStack(TW_Items.itemWandRod, 1, 7), 'P', TW_Items.itemPrimalCharm);
 
+        addShapedArcaneRecipe("NODE_STABILIZER.1","NODE_STABILIZER@1", new ItemStack(CommonProxy.nodeStabilizer), 25, crystals, " G ","QPQ","BNB",'G', "ingotGold", 'Q', "blockQuartz", 'P', new ItemStack(Blocks.PISTON), 'B', new ItemStack(BlocksTC.stoneArcaneBrick), 'N', "nitor");
+
         r.getRegistry().register(new RecipeWand(getNameForRecipe(new ItemStack(TW_Items.itemWand))));
         r.getRegistry().register(new RecipeStaff(getNameForRecipe(new ItemStack(TW_Items.itemStaff))));
         r.getRegistry().register(new RecipeScepter(getNameForRecipe(new ItemStack(TW_Items.itemScepter))));
@@ -145,6 +147,8 @@ public class TW_Recipes {
         aspects = new AspectList().add(Aspect.AIR, 50).add(Aspect.FIRE, 50).add(Aspect.WATER, 50).add(Aspect.EARTH, 50).add(Aspect.ORDER, 50).add(Aspect.ENTROPY, 50).add(Aspect.MAGIC, 100).add(Aspect.AURA,50);
         addInfusionRecipe("CORE_PRIMAL.1","CORE_PRIMAL@1", new ItemStack(TW_Items.itemStaffCore,1,8), 7, new ItemStack(TW_Items.itemWandRod, 1, 7), aspects, new ItemStack(TW_Items.itemWandRod, 1, 1), new ItemStack(TW_Items.itemWandRod, 1, 2), new ItemStack(TW_Items.itemWandRod, 1, 3), new ItemStack(TW_Items.itemPrimalCharm), new ItemStack(TW_Items.itemWandRod, 1, 4), new ItemStack(TW_Items.itemWandRod, 1, 5), new ItemStack(TW_Items.itemWandRod, 1, 6), new ItemStack(TW_Items.itemPrimalCharm));
 
+        aspects = new AspectList().add(Aspect.AURA, 200).add(Aspect.MECHANISM, 50);
+        addInfusionRecipe("NODE_MAGNET.1","NODE_MAGNET@1", new ItemStack(TW_Items.itemNodeMagnet), 6, new ItemStack(ItemsTC.morphicResonator), aspects, new ItemStack(BlocksTC.crystalAir), new ItemStack(BlocksTC.crystalFire), new ItemStack(BlocksTC.crystalWater), new ItemStack(BlocksTC.crystalAir), new ItemStack(BlocksTC.crystalAir), new ItemStack(BlocksTC.crystalEarth), new ItemStack(BlocksTC.crystalOrder), new ItemStack(BlocksTC.crystalEntropy), new ItemStack(BlocksTC.crystalTaint), new ItemStack(BlocksTC.plankGreatwood), new ItemStack(ItemsTC.mind, 1, 1), "blockIron", "plateBrass", new ItemStack(ItemsTC.mechanismSimple));
     }
 
     public static void addShapedOreRecipe(String name,ItemStack output, Object... params) {

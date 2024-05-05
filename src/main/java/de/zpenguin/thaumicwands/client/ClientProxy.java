@@ -1,14 +1,20 @@
 package de.zpenguin.thaumicwands.client;
 
+import de.zpenguin.thaumicwands.block.tile.TileNodeStabilizer;
 import de.zpenguin.thaumicwands.client.model.BakedModelScepter;
 import de.zpenguin.thaumicwands.client.model.BakedModelStaff;
 import de.zpenguin.thaumicwands.client.model.BakedModelWand;
 import de.zpenguin.thaumicwands.client.render.entity.EntityVisOrbRenderer;
+import de.zpenguin.thaumicwands.client.render.entity.RenderAuraNode;
+import de.zpenguin.thaumicwands.client.render.entity.RenderNodeMagnet;
 import de.zpenguin.thaumicwands.client.render.item.ItemScepterRenderer;
 import de.zpenguin.thaumicwands.client.render.item.ItemStaffRenderer;
 import de.zpenguin.thaumicwands.client.render.item.ItemWandRenderer;
 import de.zpenguin.thaumicwands.client.render.tile.TileArcaneWorktableRenderer;
+import de.zpenguin.thaumicwands.client.render.tile.TileNodeStabilizerRenderer;
+import de.zpenguin.thaumicwands.entity.EntityNodeMagnet;
 import de.zpenguin.thaumicwands.entity.EntityVisOrb;
+import de.zpenguin.thaumicwands.entity.node.EntityAuraNode;
 import de.zpenguin.thaumicwands.item.TW_Items;
 import de.zpenguin.thaumicwands.main.CommonProxy;
 import de.zpenguin.thaumicwands.main.ThaumicWands;
@@ -40,7 +46,11 @@ public class ClientProxy extends CommonProxy {
 	public void init(FMLInitializationEvent e) {
 		super.init(e);
 		ClientRegistry.bindTileEntitySpecialRenderer(TileArcaneWorkbenchNew.class, new TileArcaneWorktableRenderer());
+		ClientRegistry.bindTileEntitySpecialRenderer(TileNodeStabilizer.class, new TileNodeStabilizerRenderer());
+
 		RenderingRegistry.registerEntityRenderingHandler(EntityVisOrb.class, new EntityVisOrbRenderer(Minecraft.getMinecraft().getRenderManager()));
+		RenderingRegistry.registerEntityRenderingHandler(EntityAuraNode.class, new RenderAuraNode(Minecraft.getMinecraft().getRenderManager()));
+		RenderingRegistry.registerEntityRenderingHandler(EntityNodeMagnet.class, new RenderNodeMagnet(Minecraft.getMinecraft().getRenderManager()));
 	}
 
 	@SubscribeEvent

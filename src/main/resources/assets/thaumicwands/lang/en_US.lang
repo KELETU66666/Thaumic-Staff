@@ -1,7 +1,11 @@
+# --- Blocks ---
+tile.node_stabilizer.name=Node Stabilizer
+
 # --- Items ---
 
 item.item_primal_charm.name=Primal Charm
 item.item_balanced_cluster.name=Balanced Shard
+item.item_magnet_placer.name=Node Magnet
 
 #Wand Rods
 item_wand_rod_greatwood.name=Greatwood Rod
@@ -124,21 +128,16 @@ research.PRIMALCHARM.title=Primal Charm
 research.PRIMALCHARM.stage.0=While I was unable to charge my wand from the aura around me, I found small orbs of vis allowing me to charge it nonetheless, however it should be possible to construct a device that is able to drain atleast a little of the surrounding aura to charge my wand.
 research.PRIMALCHARM.stage.1=I came up with a small device that is basically an augmented vis resonator, creating a vis-feedback-loop from the oscillations of included vis crystals, turning aura into concentrated vis orbs, to be collected using a wand.  
 
-# Copper Caps
-research.CAP_COPPER.title=Copper Wand Caps
-research.CAP_COPPER.stage.0=Those Engineers use this metal to build their silly machines and conduct something they call flux (these fools have no idea what they are talking about), hopefully it is able to conduct vis aswell.
-research.CAP_COPPER.stage.1=If the Engineers knew what they've got at hand there...<BR> This metal, though not better at channeling vis that iron, has a even more interesting property regarding vis crystals. It seems that the vis emitted from this metall is somehow tinted with §7ORDO§r and §8PERDITIO§r, resulting in a decreased amount of vis crystals of these types. 
+# Gold Caps
+research.CAP_GOLD.title=Gold Wand Caps
+research.CAP_GOLD.stage.0=Gold is a far superior focusing agent than iron, maybe i can use it to create caps?
+research.CAP_GOLD.stage.1=Gold is a far superior focusing agent than iron, and wands capped with this material takes no penalty when used to channel vis.
 
 # Brass Caps
 research.CAP_BRASS.title=Brass Wand Caps
 research.CAP_BRASS.stage.0=This new metal I created seems to conduct vis better than regular iron, so what if I capped of my wand with some alchemical brass.
-research.CAP_BRASS.stage.1=My newly made brass wand caps conduct vis far better than mundane iron does, resulting in a vis discount of 5% 
-
-# Silver Caps
-research.CAP_SILVER.title=Silver Wand Caps
-research.CAP_SILVER.stage.0=Silver is a metal that is mostly used by Engineers, but it there are also some people that specialize in witchcraft who use it to protect themselves of werewolfs, so maybe there is more to it.
-research.CAP_SILVER.stage.1=The witches were right, silver is an incredible vis conductor, but I doubt that they know how to make it show it's full potential, it took me an arcane infusion to make the silver work as a decent vis conductor, but it was worth it. In regards to vis discount it is not really better than brass, but it has a crystal discount on all of 4 elemental aspects, which is great.
-
+research.CAP_BRASS.stage.1=Like gold, wands capped with this material takes no penalty when used to channel vis. More importantly however, is the fact that these caps can draw vis from the aura easier than normal, allowing the wands they are placed on to charge faster.
+#
 # Thaumium Caps
 research.CAP_THAUMIUM.title=Thaumium Wand Caps
 research.CAP_THAUMIUM.stage.0=How could I not think of this, thaumium is a incredibly magical metal, so making caps out of it is only logical, but I have a feeling that this will prove as a harder task than all the others.
@@ -154,41 +153,79 @@ research.ROD_GREATWOOD.title=Greatwood Wand Rod
 research.ROD_GREATWOOD.stage.0=On my journeys I came across a tree that is somehow different, my Wand is already made of wood, but this wood feels more magical, I probably should try to craft a new wand rod out of it.
 research.ROD_GREATWOOD.stage.1=Greatwood is actually great, it took a little vis and some §8Perditio§r Crystals, but I was able to turn it into a new wand rod, that is a lot better than plain wood. It allowes one to store 200 vis, which allows whole new posiibilities, but I have seen some other trees lately.
 
-# Reed Rod
-research.ROD_REED.title=Reed Wand Rod
-research.ROD_REED.stage.0=I had an idea, what about sugarcane, it react naturally to §e aer§r, so it probably has some effects on my wand. It will take a little effort, but I have high hopes for this one. 
-research.ROD_REED.stage.1=This is interresting, the infusion caused the sugarcane to hold 600 vis, which is more than greatwood, intrestingly I feel some weird resonace if I hold it high enough, I wonder what happens if it gets high enough.
+# Elemental Rod
+research.ROD_ELEMENTAL.title=Elemental Wand Cores
+research.ROD_ELEMENTAL.stage.0=TODO: Elemental Wand cores description.
+research.ROD_ELEMENTAL.stage.1=Each of these wand cores can hold 300 vis and can linked to a specific primal element which grants them additional abilities.<PAGE><LINE>§l§nReed Wand Core§r<BR>A wand core made from reeds has slightly greater storage potential than greatwood cores. What makes it superior to greatwood cores however is that if the level of vis stored inside it drops below 50% and player position higher than 100, its will slowly replenish without drawing from the aura.<PAGE>§l§nBlazing Wand Core§r<BR> I feel some weird resonace near to my furnace, I wonder what happens if it gets hot enough.<PAGE>§l§nObsidian Wand Core§r<BR> I feel some weird resonace near the ground, I wonder what happens if it get low enough.<PAGE>§l§nIcy Wand Core§r<BR>I feel some weird resonace near to snow, I wonder what happens if it gets cold enough.
 
-# Blaze Rod
-research.ROD_BLAZE.title=Blaze Wand Rod
-research.ROD_BLAZE.stage.0=I had an idea, what about blaze rod, it react naturally to §6ignis§r and it has a fitting shape, so it probably has some effects on my wand. It will take a little effort, but I have high hopes for this one. 
-research.ROD_BLAZE.stage.1=This is interresting, the infusion caused the blaze rod to hold 600 vis, which is more than greatwood, intrestingly I feel some weird resonace near to my furnace, I wonder what happens if it gets hot enough.
+thaumicwands.todo.description=Quartz wands and Bone wands.
 
-# Ice Rod
-research.ROD_ICE.title=Ice Wand Rod
-research.ROD_ICE.stage.0=I had an idea, what about ice, it react naturally to §9aqua§r, so it probably has some effects on my wand. It will take a little effort, but I have high hopes for this one. 
-research.ROD_ICE.stage.1=This is interresting, the infusion caused the ice to hold 600 vis, which is more than greatwood, intrestingly I feel some weird resonace near to snow, I wonder what happens if it gets cold enough.
-
-# Obsidian Rod
-research.ROD_OBSIDIAN.title=Obsidian Wand Rod
-research.ROD_OBSIDIAN.stage.0=I had an idea, what about obsidian, it react naturally to §2terra§r, so it probably has some effects on my wand. It will take a little effort, but I have high hopes for this one. 
-research.ROD_OBSIDIAN.stage.1=This is interresting, the infusion caused the obsidain to hold 600 vis, which is more than greatwood, intrestingly I feel some weird resonace near the ground, I wonder what happens if it get low enough.
-
-# Quartz Rod
-research.ROD_QUARTZ.title=Quartz Wand Rod
-research.ROD_QUARTZ.stage.0=I had an idea, what about quartz, it react naturally to §fordo§r, so it probably has some effects on my wand. It will take a little effort, but I have high hopes for this one. 
-research.ROD_QUARTZ.stage.1=This is interresting, the infusion caused the quartz to hold 600 vis, which is more than greatwood.
-
-# Bone Rod
-research.ROD_BONE.title=Bone Wand Rod
-research.ROD_BONE.stage.0=I had an idea, what about bone, it react naturally to §8perditio§r, so it probably has some effects on my wand. It will take a little effort, how could I think this is a good idea.
-research.ROD_BONE.stage.1=This is interresting, the infusion caused the bone to hold 600 vis, which is more than greatwood.
 
 #Silverwood Rod
 research.ROD_SILVERWOOD.title=Silverwood Wand Rod
 research.ROD_SILVERWOOD.stage.0=The Wood of this tree seems to hold a much higher magical potential than all other plants I have seen so far, perfect for a sizable wand core, my ambition is high, and so will be the effort I will put into it.
 research.ROD_SILVERWOOD.stage.1=I've done it, even though this wood had a lot of potential I was able to increase the amount of storable vis even further, it took quite a bit of essentia, but I am sure that 800 vis should be enough for now.
 
+# Staff
+research.STAFF.title=Magic Staves
+research.STAFF.stage.0=Wands are the stock and trade of the thaumaturge, but sometimes you want more bang for your buck, then you need to create a new type of wands.
+research.STAFF.stage.1=Magical staves are basically just bigger wands.<BR>A staff made from greatwood has 150% the vis storage potential of a greatwood wand, being able to store up to 375 vis of each type. They also grant an additional 10% vis discount to foci.<BR>Since they are physically larger and sturdier than a wand, they can actually be used as weapons in an emergency.<PAGE>Unfortunately this also makes it unsuitable for the intricate workmanship and fine control required by an arcane workbench or similar crafting.<BR>Note: You still need to add caps to a stave rod, just like you would for a wand.
+
+# Elemental Staff Core
+research.CORE_ELEMENTAL.title=Elemental Wand Cores
+research.CORE_ELEMENTAL.stage.0=TODO: Elemental Staff Cores description.
+research.CORE_ELEMENTAL.stage.1=Like the elemental wand cores, these stave cores are linked to a specific primal element which grants them additional abilities and slowly replenish their vis stores if they get low enough. They can store 500 vis of each type.
+
+# Silverwood Staff Core
+research.CORE_SILVERWOOD.title=Silverwood Staff Core
+research.CORE_SILVERWOOD.stage.0=TODO: Silverwood Staff Core description.
+research.CORE_SILVERWOOD.stage.1=Staff cores crafted from silverwood can store up to 750 vis.
+
+# Primal Staff Core
+research.CORE_PRIMAL.title=Staff Core of the Primal
+research.CORE_PRIMAL.stage.0=TODO: Staff Core of the Primal description.
+research.CORE_PRIMAL.stage.1=This core pulses with latent energy.<BR>It combines all the features of the lesser stave cores - it has the vis storage capacity of the silverwood core and is able to replenish its vis stores like the various primal wand cores.<BR>This is truly a potent tool in any thaumaturge's arsenal.<BR>Note: You still need to add caps to this stave rod, just like you would for a wand.
+
+# Scepter
+research.SCEPTER.title=Crafting Scepters
+research.SCEPTER.stage.0=Wands are the stock and trade of the thaumaturge, but sometimes you want more vis stores, then you need to create a new type of wands.
+research.SCEPTER.stage.1=Crafting scepters are specialized wands made to be used to craft mystical objects and nothing else. Foci cannot be attached to them, but they have several features that still make them worthwhile using.<BR>Firstly, they have an additional 10% vis discount above and beyond what their caps would normally grant.<BR>Secondly they are able to hold 50% more vis than their cores would normally allow.<BR>Like other wands they can be crafted using most combinations of rods and caps - just a few examples are given on the next page.
+
+# - Node -
+
+nodetype.0=Normal
+nodetype.1=Sinister
+nodetype.2=Hungry
+nodetype.3=Pure
+nodetype.4=Tainted
+nodetype.5=Unstable
+nodetype.6=Astral
+
+# Node Stabilizer
+research.NODES.title=Nodes
+research.NODES.stage.0=TODO: Description of Nodes.
+
+# Advanced Node Drain
+research.ADVANCED_NODE_DRAIN.title=Advanced Aura Tapping
+research.ADVANCED_NODE_DRAIN.stage.0=Usually the process of drawing vis from the aura with a wand is quite slow...
+research.ADVANCED_NODE_DRAIN.stage.1=Usually the process of drawing vis from the aura with a wand is quite slow... but not anymore.<BR>You have discovered a more efficient way of tapping into the aura, doubling the normal draw rate. In addition you no longer need to hold the wand in your hand to do this, merely having it on your hotbar is sufficient.
+
+# Master Node Drain
+research.MASTER_NODE_DRAIN.title=Master Aura Tapping
+research.MASTER_NODE_DRAIN.stage.0=You have added further refinements to the methods you use to tap the aura.
+research.MASTER_NODE_DRAIN.stage.1=You are now able to draw vis three times faster than normal.
+
+# Node Stabilizer
+research.NODE_STABILIZER.title=Node Stabilizer
+research.NODE_STABILIZER.stage.0=Aura nodes have a tendancy to move around and merge just when you don't want it. So you need to create a machine solves that problem.
+research.NODE_STABILIZER.stage.1=Aura nodes have a tendancy to move around and merge just when you don't want it. This device solves that problem.<BR>Simply place it below a node and it will become trapped in a mystical bubble and held in place. The node will not be attracted to other nodes, nor will other nodes be attracted to it.
+
+# Node Magnet
+research.NODE_MAGNET.title=Node Attraction
+research.NODE_MAGNET.stage.0=Manipulating the aura is one thing, but if you were able to move nodes around you could insure a steady supply of vis where and when you want it.
+research.NODE_MAGNET.stage.1=To this end you have developed Node Magnets.<BR>The magnet focuses on the nearest node within 32 blocks and slowly draws it towards itself. It sounds simple, but in effect the node is being forcefully ripped through the aura. This not only requires large amounts of vis of all types, but causes considerable amounts of flux.<BR>The larger a node is, the slower the it moves.<PAGE>The Node Magnet itself is quite fragile and care must be taken not to damage or topple it. It can survive minor knocks, but anything more will shatter the delicate components.<BR>It can be picked up by right-clicking when you sneaking.
+research.NODE_MAGNET.addenda=§nWarning!§r<BR><BR>The moment you place down the node magnet you notice something strange: It seems to emit an almost inaudible humming noise that still manages to set your teeth on edge.<BR>Angry grunts and howls from the surrounding area seems to indicate you are not the only one disturbed by the noise.
+#
 # - Thaumic Additions Compat -
 
 #Mithrillium Caps
