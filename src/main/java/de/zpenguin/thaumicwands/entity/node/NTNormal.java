@@ -1,8 +1,7 @@
-
 package de.zpenguin.thaumicwands.entity.node;
 
 import thaumcraft.api.aspects.Aspect;
-import thaumcraft.api.aspects.AspectHelper;
+import thaumcraft.common.world.aura.AuraHandler;
 
 public class NTNormal
 extends NodeType {
@@ -20,8 +19,8 @@ extends NodeType {
             return;
         }
         Aspect aspect = node.getAspect();
-        if (aspect != null) {
-            NodeHandler.addNodeRechargeTicket(node, aspect.isPrimal() ? aspect : AspectHelper.getRandomPrimal(node.world.rand, aspect), this.calculateStrength(node));
+        if (aspect != null && AuraHandler.getVis(node.world, node.getPosition()) < AuraHandler.getAuraBase(node.world, node.getPosition())) {
+            AuraHandler.addVis(node.world, node.getPosition(), this.calculateStrength(node));
         }
     }
 

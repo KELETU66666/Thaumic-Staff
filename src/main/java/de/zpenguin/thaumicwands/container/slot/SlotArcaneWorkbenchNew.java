@@ -2,7 +2,6 @@ package de.zpenguin.thaumicwands.container.slot;
 
 import de.zpenguin.thaumicwands.api.recipe.IPlayerDependentArcaneRecipe;
 import de.zpenguin.thaumicwands.crafting.ThaumicWandsCraftingManager;
-import de.zpenguin.thaumicwands.util.ReflectionHelper;
 import de.zpenguin.thaumicwands.util.WandHelper;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.Container;
@@ -49,7 +48,7 @@ public class SlotArcaneWorkbenchNew extends SlotCraftingArcaneWorkbench {
 			ic = new InventoryCrafting((Container) new ContainerDummy(), 3, 3);
 			for(int i = 0; i < 9; i++)
 				ic.setInventorySlotContents(i, this.craftMatrix.getStackInSlot(i));
-			ReflectionHelper.setInventoryEventHandler(ic, ReflectionHelper.getInventoryEventHandler(craftMatrix));
+
 			nonnulllist = CraftingManager.getRemainingItems(ic, thePlayer.world);
 		}
 

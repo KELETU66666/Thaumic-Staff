@@ -179,8 +179,7 @@ jar {
         if (project.use_access_transformer.toBoolean()) {
             attribute_map['FMLAT'] = project.archives_base_name + '_at.cfg'
         }
-        attributes 'FMLCorePlugin': 'de.zpenguin.thaumicwands.asm.ThaumicWandsCore',
-                'FMLCorePluginContainsFMLMod': 'true'
+        attributes(attribute_map)
     }
     // Add all embedded dependencies into the jar
     from(provider{ configurations.embed.collect {it.isDirectory() ? it : zipTree(it)} })

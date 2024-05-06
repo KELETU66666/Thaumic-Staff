@@ -3,7 +3,6 @@ package de.zpenguin.thaumicwands.container;
 import de.zpenguin.thaumicwands.container.slot.SlotArcaneWorkbenchNew;
 import de.zpenguin.thaumicwands.container.slot.SlotWand;
 import de.zpenguin.thaumicwands.crafting.ThaumicWandsCraftingManager;
-import de.zpenguin.thaumicwands.util.ReflectionHelper;
 import de.zpenguin.thaumicwands.util.WandHelper;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -41,7 +40,6 @@ public class ContainerArcaneWorkbenchNew extends Container {
 
     public ContainerArcaneWorkbenchNew(InventoryPlayer inv, TileArcaneWorkbench e) {
         this.tileEntity = e;
-        ReflectionHelper.setInventoryEventHandler(tileEntity.inventoryCraft, this);
         this.ip = inv;
 
         // Crafting Grid 0-8
@@ -140,13 +138,6 @@ public class ContainerArcaneWorkbenchNew extends Container {
             entityplayermp.connection.sendPacket(new SPacketSetSlot(this.windowId, 16, itemstack));
         }
 
-    }
-
-    @Override
-    public void onContainerClosed(EntityPlayer par1EntityPlayer) {
-        super.onContainerClosed(par1EntityPlayer);
-        if (!(this.tileEntity.getWorld()).isRemote)
-            ReflectionHelper.setInventoryEventHandler(tileEntity.inventoryCraft, new ContainerDummy());
     }
 
     @Override
