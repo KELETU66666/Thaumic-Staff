@@ -35,9 +35,10 @@ public class EntityAuraNode extends Entity {
         super(worldIn);
         this.setSize(0.5f, 0.5f);
         this.isImmuneToFire = true;
-        setRenderDistanceWeight(4.0);
+        renderDistanceWeight = 4.0;
         this.noClip = true;
     }
+
 
     public void onUpdate() {
         if (this.getNodeSize() == 0) {
