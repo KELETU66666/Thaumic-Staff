@@ -1,4 +1,3 @@
-
 package de.zpenguin.thaumicwands.entity.node;
 
 import net.minecraft.util.math.BlockPos;
@@ -26,7 +25,7 @@ extends NTNormal {
             Vec3d vres = vsource.add(vtar.x, vtar.y, vtar.z);
             BlockPos t = new BlockPos(MathHelper.floor(vres.x), MathHelper.floor(vres.y), MathHelper.floor(vres.z));
             Biome biome = node.world.getBiome(t);
-            if (biome.getBiomeName() == BiomeHandler.EERIE.biomeName) continue;
+            if (biome == BiomeHandler.EERIE) continue;
             Utils.setBiomeAt(node.world, t, BiomeHandler.EERIE);
             break;
         }
