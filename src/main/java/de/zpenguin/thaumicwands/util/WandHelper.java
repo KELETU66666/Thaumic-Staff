@@ -33,7 +33,11 @@ public class WandHelper {
     }
 
     public static AspectList getActualCrystals(AspectList list, ItemStack wand) {
-        if (list == null) return null;
+        if (list == null)
+            return null;
+        if(!(wand.getItem() instanceof IWand))
+            return null;
+
         AspectList l = new AspectList();
         AspectList subtract = ((IWand) wand.getItem()).getCap(wand).getAspectDiscount();
         for (Aspect a : list.getAspects()) {
