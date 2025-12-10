@@ -7,8 +7,7 @@ import thaumcraft.common.world.aura.AuraThread;
 
 @Mixin(AuraThread.class)
 public class MixinAuraChunk {
-
-    @Redirect(method={"processAuraChunk"}, at=@At(value="INVOKE", target = "Ljava/lang/Math;min(FF)F", ordinal = 2), remap = false)
+    @Redirect(method = {"processAuraChunk"}, at = @At(value = "INVOKE", target = "Ljava/lang/Math;min(FF)F", ordinal = 2), remap = false)
     private float preventAuraRegen(float v, float v1) {
         return 0;
     }

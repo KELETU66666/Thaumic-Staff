@@ -538,7 +538,8 @@
         {
           "text": "research.STAFF.stage.1",
           "recipes": [
-            "thaumicwands:CORE_GREATWOOD.1"
+            "thaumicwands:CORE_GREATWOOD.1",
+            "thaumicwands:fake_staff"
           ]
         }
       ]
@@ -571,7 +572,10 @@
           ]
         },
         {
-          "text": "research.STAFF.stage.1"
+          "text": "research.STAFF.stage.1",
+          "recipes": [
+            "thaumicwands:fake_scepter"
+          ]
         }
       ]
     },

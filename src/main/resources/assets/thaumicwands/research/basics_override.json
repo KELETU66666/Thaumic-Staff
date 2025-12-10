@@ -1,0 +1,63 @@
+{
+  "entries": [
+    {
+      "key": "FIRSTSTEPS",
+      "name": "research.FIRSTSTEPS.title",
+      "icons": [
+        "thaumcraft:textures/items/thaumonomicon.png"
+      ],
+      "category": "BASICS",
+      "location": [
+        0,
+        0
+      ],
+      "parents": [
+        "!gotthaumonomicon"
+      ],
+      "siblings": [
+        "KNOWLEDGETYPES",
+        "!gotdream"
+      ],
+      "meta": [
+        "ROUND",
+        "SPIKY"
+      ],
+      "stages": [
+        {
+          "text": "research.FIRSTSTEPS.stage.1",
+          "required_craft": [
+            "thaumcraft:arcane_workbench"
+          ],
+          "recipes": [
+            "thaumicwands:BASETHAUMATURGY.1",
+            "thaumicwands:BASETHAUMATURGY.2"
+          ]
+        },
+        {
+          "text": "research.FIRSTSTEPS.stage.2",
+          "required_craft": [
+            "thaumcraft:thaumometer"
+          ],
+          "required_knowledge": [
+            "OBSERVATION;BASICS;1"
+          ],
+          "recipes": [
+            "thaumicwands:FIRSTSTEPS.1",
+            "thaumicwands:BASETHAUMATURGY.1",
+            "thaumicwands:BASETHAUMATURGY.2"
+          ]
+        },
+        {
+          "text": "research.FIRSTSTEPS.stage.3",
+          "recipes": [
+            "thaumicwands:FIRSTSTEPS.1",
+            "thaumicwands:BASETHAUMATURGY.1",
+            "thaumicwands:BASETHAUMATURGY.2",
+            "thaumcraft:StoneArcane",
+            "thaumcraft:BrickArcane"
+          ]
+        }
+      ]
+    }
+  ]
+}

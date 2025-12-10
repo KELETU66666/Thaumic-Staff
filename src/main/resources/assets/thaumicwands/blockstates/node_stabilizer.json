@@ -1,7 +1,7 @@
 {
   "forge_marker": 1,
   "defaults": {
-    "model": "thaumicwands:node_stabilizer",
+    "model": "thaumcraft:node_stabilizer",
     "transform": "forge:default-block"
   },
   "variants": {

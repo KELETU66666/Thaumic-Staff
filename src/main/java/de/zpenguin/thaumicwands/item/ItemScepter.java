@@ -17,7 +17,10 @@ import net.minecraft.item.EnumAction;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.*;
+import net.minecraft.util.EnumActionResult;
+import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumHand;
+import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.translation.I18n;
@@ -25,7 +28,8 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import thaumcraft.api.aspects.Aspect;
-import thaumcraft.api.casters.*;
+import thaumcraft.api.casters.CasterTriggerRegistry;
+import thaumcraft.api.casters.IInteractWithCaster;
 import thaumcraft.api.items.RechargeHelper;
 
 import java.util.List;
@@ -66,22 +70,21 @@ public class ItemScepter extends ItemBase implements IScepter {
         return name;
     }
 
-    public EnumActionResult onItemUseFirst(EntityPlayer player, World world, BlockPos pos, EnumFacing side, float hitX,
-                                           float hitY, float hitZ, EnumHand hand) {
+    @Override
+    public EnumActionResult onItemUseFirst(EntityPlayer player, World world, BlockPos pos, EnumFacing side, float hitX, float hitY, float hitZ, EnumHand hand) {
         IBlockState bs = world.getBlockState(pos);
-        if (bs.getBlock() instanceof IInteractWithCaster && ((IInteractWithCaster) bs.getBlock())
-                .onCasterRightClick(world, player.getHeldItem(hand), player, pos, side, hand))
+        if (bs.getBlock() instanceof IInteractWithCaster && ((IInteractWithCaster) bs.getBlock()).onCasterRightClick(world, player.getHeldItem(hand), player, pos, side, hand)) {
             return EnumActionResult.PASS;
-        TileEntity tile = world.getTileEntity(pos);
-        if (tile != null && tile instanceof IInteractWithCaster && ((IInteractWithCaster) tile).onCasterRightClick(world,
-                player.getHeldItem(hand), player, pos, side, hand))
-            return EnumActionResult.PASS;
-        if (CasterTriggerRegistry.hasTrigger(bs))
-            return CasterTriggerRegistry.performTrigger(world, player.getHeldItem(hand), player, pos, side, bs)
-                    ? EnumActionResult.SUCCESS
-                    : EnumActionResult.FAIL;
-
-        return EnumActionResult.PASS;
+        } else {
+            TileEntity tile = world.getTileEntity(pos);
+            if (tile != null && tile instanceof IInteractWithCaster && ((IInteractWithCaster) tile).onCasterRightClick(world, player.getHeldItem(hand), player, pos, side, hand)) {
+                return EnumActionResult.PASS;
+            } else if (CasterTriggerRegistry.hasTrigger(bs)) {
+                return CasterTriggerRegistry.performTrigger(world, player.getHeldItem(hand), player, pos, side, bs) ? EnumActionResult.SUCCESS : EnumActionResult.FAIL;
+            } else {
+                return EnumActionResult.PASS;
+            }
+        }
     }
 
     public int getMaxItemUseDuration(ItemStack itemstack) {

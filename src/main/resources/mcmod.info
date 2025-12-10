@@ -1,14 +1,15 @@
 [
-{
-  "modid": "thaumicwands",
-  "name": "Thaumic Wands",
-  "description": "Brings back Wands to Thaumcraft",
-  "version": "1.5.0",
-  "mcversion": "1.12.2",
-  "authorList": ["Zoko061602", "keletu"],
-  "credits": "Special thanks to Azanor for making Thaumcraft",
-  "parent": "",
-  "screenshots": [],
-  "dependencies": ["Thaumcraft"]
-}
+  {
+    "modid": "${mod_id}",
+    "name": "${mod_name}",
+    "description": "${mod_description}",
+    "version": "${version}",
+    "mcversion": "${mcversion}",
+    "url": "https://www.curseforge.com/minecraft/mc-mods/thaumic-staff",
+    "updateUrl": "",
+    "authorList": ${mod_author},
+  "credits": "",
+  "logoFile": "",
+  "dependencies": []
+  }
 ]

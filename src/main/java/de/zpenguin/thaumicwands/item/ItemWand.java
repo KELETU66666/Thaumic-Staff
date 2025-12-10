@@ -1,10 +1,5 @@
 package de.zpenguin.thaumicwands.item;
 
-import java.lang.reflect.Method;
-import java.text.DecimalFormat;
-import java.util.ArrayList;
-import java.util.List;
-
 import de.zpenguin.thaumicwands.api.ThaumicWandsAPI;
 import de.zpenguin.thaumicwands.api.item.wand.IWandBasic;
 import de.zpenguin.thaumicwands.api.item.wand.IWandCap;
@@ -33,16 +28,13 @@ import net.minecraft.util.text.translation.I18n;
 import net.minecraft.world.World;
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
 import net.minecraftforge.common.util.Constants;
+import net.minecraftforge.fml.common.FMLCommonHandler;
+import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.Optional;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import thaumcraft.api.aspects.Aspect;
-import thaumcraft.api.casters.CasterTriggerRegistry;
-import thaumcraft.api.casters.FocusEngine;
-import thaumcraft.api.casters.FocusPackage;
-import thaumcraft.api.casters.IFocusBlockPicker;
-import thaumcraft.api.casters.IFocusElement;
-import thaumcraft.api.casters.IInteractWithCaster;
+import thaumcraft.api.casters.*;
 import thaumcraft.api.crafting.IDustTrigger;
 import thaumcraft.api.items.IArchitect;
 import thaumcraft.api.items.RechargeHelper;
@@ -52,12 +44,20 @@ import thaumcraft.common.items.casters.ItemFocus;
 import thaumcraft.common.lib.SoundsTC;
 import thaumcraft.common.lib.utils.BlockUtils;
 import thaumcraft.common.lib.utils.EntityUtils;
+import thecodex6824.thaumicaugmentation.ThaumicAugmentation;
 import thecodex6824.thaumicaugmentation.api.augment.AugmentableItem;
 import thecodex6824.thaumicaugmentation.api.augment.CapabilityAugmentableItem;
 import thecodex6824.thaumicaugmentation.api.augment.IAugmentableItem;
 import thecodex6824.thaumicaugmentation.common.capability.provider.SimpleCapabilityProvider;
+import thecodex6824.thaumicaugmentation.common.util.ItemHelper;
 
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+import java.lang.reflect.Method;
+import java.text.DecimalFormat;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 
 public class ItemWand extends ItemBase implements IWandBasic {
 
@@ -81,7 +81,7 @@ public class ItemWand extends ItemBase implements IWandBasic {
             float b = MathHelper.getInt(world.rand, 64, 255) / 255.0f;
             FXDispatcher.INSTANCE.drawSimpleSparkle(world.rand, v1.x, v1.y, v1.z, v2.x / 6.0 + world.rand.nextGaussian() * 0.05, v2.y / 6.0 + world.rand.nextGaussian() * 0.05 + (floaty ? 0.05 : 0.15), v2.z / 6.0 + world.rand.nextGaussian() * 0.05, 0.5f, r, g, b, world.rand.nextInt(5), floaty ? (0.3f + world.rand.nextFloat() * 0.5f) : 0.85f, floaty ? 0.2f : 0.5f, 16);
         }
-        world.playSound(pos.getX(), pos.getY(), pos.getZ(), SoundsTC.dust, SoundCategory.PLAYERS, 0.33f, 1.0f + (float)world.rand.nextGaussian() * 0.05f, false);
+        world.playSound(pos.getX(), pos.getY(), pos.getZ(), SoundsTC.dust, SoundCategory.PLAYERS, 0.33f, 1.0f + (float) world.rand.nextGaussian() * 0.05f, false);
         List<BlockPos> sparkles = trigger.sparkle(world, player, pos, place);
         if (sparkles != null) {
             Vec3d v3 = new Vec3d(pos).add(hitX, hitY, hitZ);
@@ -90,6 +90,7 @@ public class ItemWand extends ItemBase implements IWandBasic {
             }
         }
     }
+
     @Override
     public void getSubItems(CreativeTabs tab, NonNullList<ItemStack> items) {
         if (tab == this.getCreativeTab()) {
@@ -129,43 +130,52 @@ public class ItemWand extends ItemBase implements IWandBasic {
         return name;
     }
 
+    @Override
     public EnumActionResult onItemUseFirst(EntityPlayer player, World world, BlockPos pos, EnumFacing side, float hitX, float hitY, float hitZ, EnumHand hand) {
         IBlockState bs = world.getBlockState(pos);
-        if (bs.getBlock() instanceof IInteractWithCaster && ((IInteractWithCaster) bs.getBlock())
-                .onCasterRightClick(world, player.getHeldItem(hand), player, pos, side, hand))
+        if (bs.getBlock() instanceof IInteractWithCaster && ((IInteractWithCaster) bs.getBlock()).onCasterRightClick(world, player.getHeldItem(hand), player, pos, side, hand)) {
             return EnumActionResult.PASS;
-        TileEntity tile = world.getTileEntity(pos);
-        if (tile != null && tile instanceof IInteractWithCaster && ((IInteractWithCaster) tile).onCasterRightClick(world,
-                player.getHeldItem(hand), player, pos, side, hand))
-            return EnumActionResult.PASS;
-        if (CasterTriggerRegistry.hasTrigger(bs))
-            return CasterTriggerRegistry.performTrigger(world, player.getHeldItem(hand), player, pos, side, bs)
-                    ? EnumActionResult.SUCCESS
-                    : EnumActionResult.FAIL;
-        ItemStack fb = getFocusStack(player.getHeldItem(hand));
-        if (fb != null && !fb.isEmpty()) {
-            FocusPackage core = ItemFocus.getPackage(fb);
-            for (IFocusElement fe : core.nodes) {
-                if (fe instanceof IFocusBlockPicker && player.isSneaking() && world.getTileEntity(pos) == null)
-                    if (!world.isRemote) {
-                        ItemStack isout = new ItemStack(bs.getBlock(), 1, bs.getBlock().getMetaFromState(bs));
-                        try {
-                            if (bs != Blocks.AIR) {
-                                ItemStack is = BlockUtils.getSilkTouchDrop(bs);
-                                if (is != null && !is.isEmpty())
-                                    isout = is.copy();
+        } else {
+            TileEntity tile = world.getTileEntity(pos);
+            if (tile != null && tile instanceof IInteractWithCaster && ((IInteractWithCaster) tile).onCasterRightClick(world, player.getHeldItem(hand), player, pos, side, hand)) {
+                return EnumActionResult.PASS;
+            } else if (CasterTriggerRegistry.hasTrigger(bs)) {
+                return CasterTriggerRegistry.performTrigger(world, player.getHeldItem(hand), player, pos, side, bs) ? EnumActionResult.SUCCESS : EnumActionResult.FAIL;
+            } else {
+                ItemStack fb = this.getFocusStack(player.getHeldItem(hand));
+                if (fb != null && !fb.isEmpty()) {
+                    FocusPackage core = ItemFocus.getPackage(fb);
+                    Iterator var13 = core.nodes.iterator();
+
+                    while (var13.hasNext()) {
+                        IFocusElement fe = (IFocusElement) var13.next();
+                        if (fe instanceof IFocusBlockPicker && player.isSneaking() && world.getTileEntity(pos) == null) {
+                            if (!world.isRemote) {
+                                ItemStack isout = new ItemStack(bs.getBlock(), 1, bs.getBlock().getMetaFromState(bs));
+
+                                try {
+                                    if (bs.getBlock() != Blocks.AIR) {
+                                        ItemStack is = BlockUtils.getSilkTouchDrop(bs);
+                                        if (is != null && !is.isEmpty()) {
+                                            isout = is.copy();
+                                        }
+                                    }
+                                } catch (Exception ignored) {
+                                }
+
+                                this.storePickedBlock(player.getHeldItem(hand), isout);
+                                return EnumActionResult.SUCCESS;
                             }
-                        } catch (Exception exception) {
+
+                            player.swingArm(hand);
+                            return EnumActionResult.PASS;
                         }
-                        storePickedBlock(player.getHeldItem(hand), isout);
-                    } else {
-                        player.swingArm(hand);
-                        return EnumActionResult.PASS;
                     }
-                return EnumActionResult.SUCCESS;
+                }
+
+                return EnumActionResult.PASS;
             }
         }
-        return EnumActionResult.PASS;
     }
 
     public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand hand) {
@@ -403,4 +413,50 @@ public class ItemWand extends ItemBase implements IWandBasic {
         return false;
     }
 
+    @SuppressWarnings("ConstantConditions")
+    @Override
+    public @Nullable NBTTagCompound getNBTShareTag(@Nonnull ItemStack stack) {
+        if(Loader.isModLoaded("thaumicaugmentation")) {
+            NBTTagCompound tag = new NBTTagCompound();
+            if(stack.hasTagCompound()) {
+                NBTTagCompound itemTag = stack.getTagCompound().copy();
+                if(FMLCommonHandler.instance().getEffectiveSide() == Side.CLIENT && !ThaumicAugmentation.proxy.isSingleplayer()) {
+                    itemTag.removeTag("cap");
+                }
+                tag.setTag("item", itemTag);
+            }
+            NBTTagCompound cap = ItemHelper.tryMakeCapabilityTag(stack, CapabilityAugmentableItem.AUGMENTABLE_ITEM);
+            if(cap != null) {
+                tag.setTag("cap", cap);
+            }
+            return tag;
+        }
+        return super.getNBTShareTag(stack);
+    }
+
+    @SuppressWarnings("ConstantConditions")
+    @Override
+    public void readNBTShareTag(@Nonnull ItemStack stack, @Nullable NBTTagCompound tag) {
+        if(Loader.isModLoaded("thaumicaugmentation")) {
+            if(tag != null) {
+                if(tag.hasKey("cap", 10)) {
+                    ((AugmentableItem) stack.getCapability(CapabilityAugmentableItem.AUGMENTABLE_ITEM, null)).deserializeNBT(tag.getCompoundTag("cap"));
+                }
+                if(tag.hasKey("item", 10)) {
+                    stack.setTagCompound(tag.getCompoundTag("item"));
+                } else if(FMLCommonHandler.instance().getEffectiveSide() == Side.SERVER) {
+                    tag.removeTag("cap");
+                    if(!tag.isEmpty()) {
+                        stack.setTagCompound(tag);
+                    }
+                }
+
+                if(FMLCommonHandler.instance().getEffectiveSide() == Side.CLIENT && !ThaumicAugmentation.proxy.isSingleplayer()) {
+                    stack.setTagInfo("cap", tag.getCompoundTag("cap"));
+                }
+            }
+        } else {
+            super.readNBTShareTag(stack, tag);
+        }
+    }
 }

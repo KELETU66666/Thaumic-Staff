@@ -6,7 +6,8 @@
   "mixins": [
     "MixinArcaneWorkbench",
     "MixinArcaneWorkbenchCharger",
-    "MixinAuraChunk"
+    "MixinAuraChunk",
+    "MixinResearchManager"
   ],
   "client": [],
   "server": []

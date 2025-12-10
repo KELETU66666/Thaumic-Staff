@@ -22,6 +22,7 @@ import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
+import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
@@ -34,6 +35,7 @@ import thaumcraft.api.capabilities.ThaumcraftCapabilities;
 import thaumcraft.api.crafting.IDustTrigger;
 import thaumcraft.api.items.RechargeHelper;
 import thaumcraft.client.fx.FXDispatcher;
+import thaumcraft.common.container.InventoryFake;
 import thaumcraft.common.lib.SoundsTC;
 import thaumcraft.common.lib.utils.EntityUtils;
 import thaumcraft.common.world.aura.AuraHandler;
@@ -95,6 +97,7 @@ public class TW_EventHandler {
                     }
                     player.inventory.markDirty();
                     player.world.notifyBlockUpdate(e.getPos(), player.world.getBlockState(e.getPos()), player.world.getBlockState(e.getPos()), 3);
+                    FMLCommonHandler.instance().firePlayerCraftingEvent(player, new ItemStack(BlocksTC.arcaneWorkbench), new InventoryFake(1));
                 }
             }
         }
@@ -122,8 +125,8 @@ public class TW_EventHandler {
         }
     }
 
-    private static boolean getDrainSpeed(EntityPlayer player, ItemStack stack){
-        if(((IWand) stack.getItem()).getCap(stack) == TW_Wands.capBrass)
+    private static boolean getDrainSpeed(EntityPlayer player, ItemStack stack) {
+        if (((IWand) stack.getItem()).getCap(stack) == TW_Wands.capBrass)
             return player.getEntityWorld().getTotalWorldTime() % 10 == 0;
         else
             return player.getEntityWorld().getTotalWorldTime() % 20 == 0;

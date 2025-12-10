@@ -21,6 +21,8 @@ import de.zpenguin.thaumicwands.main.ThaumicWands;
 import de.zpenguin.thaumicwands.tile.TileArcaneWorkbenchNew;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
+import net.minecraft.item.Item;
+import net.minecraftforge.client.ForgeHooksClient;
 import net.minecraftforge.client.event.ModelBakeEvent;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
@@ -47,6 +49,8 @@ public class ClientProxy extends CommonProxy {
 		super.init(e);
 		ClientRegistry.bindTileEntitySpecialRenderer(TileArcaneWorkbenchNew.class, new TileArcaneWorktableRenderer());
 		ClientRegistry.bindTileEntitySpecialRenderer(TileNodeStabilizer.class, new TileNodeStabilizerRenderer());
+
+		ForgeHooksClient.registerTESRItemStack(Item.getItemFromBlock(CommonProxy.nodeStabilizer), 0, TileNodeStabilizer.class);
 
 		RenderingRegistry.registerEntityRenderingHandler(EntityVisOrb.class, new EntityVisOrbRenderer(Minecraft.getMinecraft().getRenderManager()));
 		RenderingRegistry.registerEntityRenderingHandler(EntityAuraNode.class, new RenderAuraNode(Minecraft.getMinecraft().getRenderManager()));

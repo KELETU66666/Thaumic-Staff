@@ -1,19 +1,13 @@
 package de.zpenguin.thaumicwands.main;
 
 import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.event.CommandEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
-import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import thaumcraft.api.ThaumcraftApi;
 import thaumcraft.api.aspects.Aspect;
 import thaumcraft.api.aspects.AspectList;
-import static thaumcraft.api.capabilities.IPlayerKnowledge.EnumKnowledgeType.OBSERVATION;
 import thaumcraft.api.research.ResearchCategories;
 import thaumcraft.api.research.ResearchCategory;
-import thaumcraft.api.research.ResearchEntry;
-import thaumcraft.api.research.ResearchStage;
 import thaumcraft.common.config.ConfigResearch;
-import thaumcraft.common.lib.CommandThaumcraft;
 
 import java.util.LinkedHashMap;
 
@@ -29,26 +23,9 @@ public class TW_Research {
             .add(Aspect.PLANT, 15)
             .add(Aspect.ENERGY, 10);
 
-
-    @SubscribeEvent
-    public static void commandEvent(CommandEvent ce) {
-        if (ce.getCommand() instanceof CommandThaumcraft && ce.getParameters().length > 0 && ce.getParameters()[0].equalsIgnoreCase("reload")) {
-            new Thread(() -> {
-                while (ResearchCategories.getResearchCategory("BASICS").research.containsKey("THAUMATURGY"))
-                    try {
-                        Thread.sleep(10L);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-
-                init();
-            }).start();
-        }
-    }
-
-
     public static void init() {
         ResearchCategories.registerCategory("THAUMATURGY", "FIRSTSTEPS", tabAspects, iconThaumaturgy, backThaumaturgy, backOverlay);
+        ThaumcraftApi.registerResearchLocation(new ResourceLocation(ThaumicWands.modID, "research/basics_override.json"));
         ThaumcraftApi.registerResearchLocation(new ResourceLocation(ThaumicWands.modID, "research/thaumaturgy.json"));
     }
 
@@ -57,22 +34,6 @@ public class TW_Research {
     }
 
     public static void postInit() {
-        ResearchEntry entry = ResearchCategories.getResearch("FIRSTSTEPS");
-        ResearchStage[] stages = entry.getStages();
-        if(stages.length > 0) {
-            stages[0].setRecipes(new ResourceLocation[]{TW_Recipes.recipes.get("FIRSTSTEPS.1"), TW_Recipes.recipes.get("BASETHAUMATURGY.1"), TW_Recipes.recipes.get("BASETHAUMATURGY.2")});
-            stages[0].setKnow(new ResearchStage.Knowledge[]{new ResearchStage.Knowledge(OBSERVATION, getCategory("BASICS"), 1)});
-            stages[0].setCraft(null);
-        }
-        if(stages.length > 1) {
-            stages[1].setRecipes(new ResourceLocation[]{TW_Recipes.recipes.get("BASETHAUMATURGY.1"), TW_Recipes.recipes.get("BASETHAUMATURGY.2"), TW_Recipes.recipes.get("FIRSTSTEPS.1")});
-            stages[1].setKnow(new ResearchStage.Knowledge[]{new ResearchStage.Knowledge(OBSERVATION, getCategory("BASICS"), 1)});
-        }
-        if(stages.length > 2) {
-            stages[2].setRecipes(new ResourceLocation[]{TW_Recipes.recipes.get("BASETHAUMATURGY.1"), TW_Recipes.recipes.get("BASETHAUMATURGY.2"), TW_Recipes.recipes.get("FIRSTSTEPS.1")});
-        }
-        entry.setStages(stages);
-
         ConfigResearch.TCCategories = new String[]{"BASICS", "THAUMATURGY", "ALCHEMY", "AUROMANCY", "ARTIFICE", "INFUSION", "GOLEMANCY", "ELDRITCH"};
         LinkedHashMap<String, ResearchCategory> map = new LinkedHashMap<>();
         map.put("BASICS", ResearchCategories.researchCategories.get("BASICS"));
