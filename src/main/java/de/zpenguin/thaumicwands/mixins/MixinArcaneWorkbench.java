@@ -26,16 +26,15 @@ public class MixinArcaneWorkbench extends BlockTCDevice {
     }
 
     @Inject(method = "onBlockActivated", at = @At(value = "HEAD"), cancellable = true)
-    public void mixinOnBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing side, float hitX, float hitY, float hitZ, CallbackInfoReturnable<Boolean> cir){
-        if(world.isRemote)
+    public void mixinOnBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing side, float hitX, float hitY, float hitZ, CallbackInfoReturnable<Boolean> cir) {
+        if (world.isRemote)
             cir.setReturnValue(true);
         player.openGui(ThaumicWands.instance, TW_GuiHandler.guiArcaneWorkbench, world, pos.getX(), pos.getY(), pos.getZ());
         cir.setReturnValue(true);
     }
 
     @Override
-    public TileEntity createTileEntity(World world, IBlockState state)
-    {
+    public TileEntity createTileEntity(World world, IBlockState state) {
         return new TileArcaneWorkbenchNew();
     }
 }

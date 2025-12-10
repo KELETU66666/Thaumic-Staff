@@ -11,7 +11,6 @@
         "ROUND",
         "HIDDEN"
       ],
-      "siblings": [ "NODES" ],
       "parents": [
         "FIRSTSTEPS"
       ],
@@ -30,29 +29,6 @@
             "BASETHAUMATURGY.1",
             "BASETHAUMATURGY.2"
           ]
-        }
-      ]
-    },
-    {
-      "key": "NODES",
-      "name": "research.NODES.title",
-      "category": "THAUMATURGY",
-      "icons": [
-        "thaumicwands:textures/research/r_nodes.png"
-      ],
-      "meta": [
-        "ROUND"
-      ],
-      "parents": [
-        "BASETHAUMATURGY"
-      ],
-      "location": [
-        2,
-        0
-      ],
-      "stages": [
-        {
-          "text": "research.NODES.stage.0"
         }
       ]
     },
@@ -122,75 +98,6 @@
       ]
     },
     {
-      "key": "NODE_STABILIZER",
-      "name": "research.NODE_STABILIZER.title",
-      "category": "THAUMATURGY",
-      "icons": [
-        "thaumicwands:node_stabilizer"
-      ],
-      "parents": [
-        "MASTER_NODE_DRAIN",
-        "RECHARGEPEDESTAL"
-      ],
-      "location": [
-        6,
-        -2
-      ],
-      "stages": [
-        {
-          "text": "research.NODE_STABILIZER.stage.0",
-          "required_knowledge": [
-            "THEORY;AUROMANCY;2"
-          ]
-        },
-        {
-          "text": "research.NODE_STABILIZER.stage.1",
-          "recipes": [
-            "thaumicwands:NODE_STABILIZER.1"
-          ]
-        }
-      ]
-    },
-    {
-      "key": "NODE_MAGNET",
-      "name": "research.NODE_MAGNET.title",
-      "category": "THAUMATURGY",
-      "icons": [
-        "thaumicwands:item_magnet_placer"
-      ],
-      "parents": [
-        "NODE_STABILIZER",
-        "CRYSTALFARMER",
-        "MINDBIOTHAUMIC",
-        "BASICTURRET"
-      ],
-      "meta": ["SPIKY", "HIDDEN"],
-      "location": [
-        6,
-        -4
-      ],
-      "stages": [
-        {
-          "text": "research.NODE_MAGNET.stage.0",
-          "required_knowledge": [
-            "THEORY;BASICS;1",
-            "THEORY;AUROMANCY;1",
-            "THEORY;AUROMANCY;1"
-          ],
-          "warp": 2
-        },
-        {
-          "text": "research.NODE_MAGNET.stage.1",
-          "recipes": [
-            "thaumicwands:NODE_MAGNET.1"
-          ]
-        }
-      ],
-      "addenda": [
-      {"text": "research.NODE_MAGNET.addenda","required_research":["!NODEMAGNETDANGER"]}
-    ]
-    },
-    {
       "key": "BALANCED_CRYSTAL",
       "name": "research.BALANCED_CRYSTAL.title",
       "category": "THAUMATURGY",
@@ -198,7 +105,8 @@
         "thaumicwands:item_balanced_cluster"
       ],
       "parents": [
-        "BASETHAUMATURGY", "HEDGEALCHEMY"
+        "BASETHAUMATURGY",
+        "HEDGEALCHEMY"
       ],
       "location": [
         -2,
@@ -210,14 +118,15 @@
           "required_knowledge": [
             "THEORY;BASICS;1",
             "THEORY;ALCHEMY;1"
-          ],"required_item":[
-          "thaumcraft:crystal_essence;1;0;{Aspects:[{amount:1,key:'aer'}]}",
-          "thaumcraft:crystal_essence;1;0;{Aspects:[{amount:1,key:'terra'}]}",
-          "thaumcraft:crystal_essence;1;0;{Aspects:[{amount:1,key:'ignis'}]}",
-          "thaumcraft:crystal_essence;1;0;{Aspects:[{amount:1,key:'aqua'}]}",
-          "thaumcraft:crystal_essence;1;0;{Aspects:[{amount:1,key:'ordo'}]}",
-          "thaumcraft:crystal_essence;1;0;{Aspects:[{amount:1,key:'perditio'}]}"
-        ]
+          ],
+          "required_item": [
+            "thaumcraft:crystal_essence;1;0;{Aspects:[{amount:1,key:'aer'}]}",
+            "thaumcraft:crystal_essence;1;0;{Aspects:[{amount:1,key:'terra'}]}",
+            "thaumcraft:crystal_essence;1;0;{Aspects:[{amount:1,key:'ignis'}]}",
+            "thaumcraft:crystal_essence;1;0;{Aspects:[{amount:1,key:'aqua'}]}",
+            "thaumcraft:crystal_essence;1;0;{Aspects:[{amount:1,key:'ordo'}]}",
+            "thaumcraft:crystal_essence;1;0;{Aspects:[{amount:1,key:'perditio'}]}"
+          ]
         },
         {
           "text": "research.BALANCED_CRYSTAL.stage.1",

@@ -17,40 +17,40 @@ import java.util.List;
 
 public class BakedModelScepter implements IBakedModel {
 
-	@Override
-	public List<BakedQuad> getQuads(IBlockState state, EnumFacing side, long rand) {
-		return ImmutableList.of();
-	}
+    @Override
+    public List<BakedQuad> getQuads(IBlockState state, EnumFacing side, long rand) {
+        return ImmutableList.of();
+    }
 
-	@Override
-	public boolean isAmbientOcclusion() {
-		return false;
-	}
+    @Override
+    public boolean isAmbientOcclusion() {
+        return false;
+    }
 
-	@Override
-	public boolean isGui3d() {
-		return true;
-	}
+    @Override
+    public boolean isGui3d() {
+        return true;
+    }
 
-	@Override
-	public boolean isBuiltInRenderer() {
-		return true;
-	}
+    @Override
+    public boolean isBuiltInRenderer() {
+        return true;
+    }
 
-	@Override
-	public TextureAtlasSprite getParticleTexture() {
-		return Minecraft.getMinecraft().getTextureMapBlocks().getAtlasSprite("minecraft:dirt");
-	}
+    @Override
+    public TextureAtlasSprite getParticleTexture() {
+        return Minecraft.getMinecraft().getTextureMapBlocks().getAtlasSprite("minecraft:dirt");
+    }
 
-	@Override
-	public ItemOverrideList getOverrides() {
-		return ItemOverrideList.NONE;
-	}
+    @Override
+    public ItemOverrideList getOverrides() {
+        return ItemOverrideList.NONE;
+    }
 
-	@Override
-	public Pair<? extends IBakedModel, Matrix4f> handlePerspective(TransformType cameraTransformType) {
-		ItemScepterRenderer.transform = cameraTransformType;
-		return Pair.of(this, null);
-	}
+    @Override
+    public Pair<? extends IBakedModel, Matrix4f> handlePerspective(TransformType cameraTransformType) {
+        ItemScepterRenderer.transform = cameraTransformType;
+        return Pair.of(this, null);
+    }
 
 }

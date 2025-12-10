@@ -11,28 +11,29 @@ import net.minecraft.item.ItemStack;
 
 public class TileArcaneWorktableRenderer extends TileEntitySpecialRenderer<TileArcaneWorkbenchNew> {
 
-	static ModelWand model = new ModelWand();
-	static ModelScepter scepter = new ModelScepter();
-	@Override
-	public void render(TileArcaneWorkbenchNew te, double x, double y, double z, float partialTicks, int destroyStage, float alpha) {
-		super.render(te, x, y, z, partialTicks, destroyStage, alpha);
-		ItemStack wand = te.inventoryCraft.getStackInSlot(15);
-		if(wand.isEmpty()) return;
+    static ModelWand model = new ModelWand();
+    static ModelScepter scepter = new ModelScepter();
 
-		GlStateManager.pushMatrix();
-		GlStateManager.translate(x, y+1.6875, z - 0.2);
-		//GlStateManager.scale(0.625, 0.625, 0.625);
+    @Override
+    public void render(TileArcaneWorkbenchNew te, double x, double y, double z, float partialTicks, int destroyStage, float alpha) {
+        super.render(te, x, y, z, partialTicks, destroyStage, alpha);
+        ItemStack wand = te.inventoryCraft.getStackInSlot(15);
+        if (wand.isEmpty()) return;
 
-		GlStateManager.rotate(90F, 1, 0, 0);
-		GlStateManager.rotate(20F, 0, 0, 1);
+        GlStateManager.pushMatrix();
+        GlStateManager.translate(x, y + 1.6875, z - 0.2);
+        //GlStateManager.scale(0.625, 0.625, 0.625);
 
-		if(wand.getItem() instanceof ItemWand)
-			model.render(wand);
-		else if(wand.getItem() instanceof ItemScepter)
-			scepter.render(wand);
+        GlStateManager.rotate(90F, 1, 0, 0);
+        GlStateManager.rotate(20F, 0, 0, 1);
+
+        if (wand.getItem() instanceof ItemWand)
+            model.render(wand);
+        else if (wand.getItem() instanceof ItemScepter)
+            scepter.render(wand);
 
 
-		GlStateManager.popMatrix();
-	}
+        GlStateManager.popMatrix();
+    }
 
 }

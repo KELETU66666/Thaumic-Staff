@@ -1,12 +1,10 @@
 itemGroup.thaumicwands=Thaumic Wands
 # --- Blocks ---
-tile.node_stabilizer.name=Node Stabilizer
 
 # --- Items ---
 
 item.item_primal_charm.name=Primal Charm
 item.item_balanced_cluster.name=Balanced Shard
-item.item_magnet_placer.name=Node Magnet
 
 #Wand Rods
 item_wand_rod_greatwood.name=Greatwood Rod
@@ -192,20 +190,6 @@ research.SCEPTER.title=Crafting Scepters
 research.SCEPTER.stage.0=Wands are the stock and trade of the thaumaturge, but sometimes you want more vis stores, then you need to create a new type of wands.
 research.SCEPTER.stage.1=Crafting scepters are specialized wands made to be used to craft mystical objects and nothing else. Foci cannot be attached to them, but they have several features that still make them worthwhile using.<BR>Firstly, they have an additional 10% vis discount above and beyond what their caps would normally grant.<BR>Secondly they are able to hold 50% more vis than their cores would normally allow.<BR>Like other wands they can be crafted using most combinations of rods and caps - just a few examples are given on the next page.
 
-# - Node -
-
-nodetype.0=Normal
-nodetype.1=Sinister
-nodetype.2=Hungry
-nodetype.3=Pure
-nodetype.4=Tainted
-nodetype.5=Unstable
-nodetype.6=Astral
-
-# Node Stabilizer
-research.NODES.title=Nodes
-research.NODES.stage.0=TODO: Description of Nodes.
-
 # Advanced Node Drain
 research.ADVANCED_NODE_DRAIN.title=Advanced Aura Tapping
 research.ADVANCED_NODE_DRAIN.stage.0=Usually the process of drawing vis from the aura with a wand is quite slow...
@@ -216,16 +200,6 @@ research.MASTER_NODE_DRAIN.title=Master Aura Tapping
 research.MASTER_NODE_DRAIN.stage.0=You have added further refinements to the methods you use to tap the aura.
 research.MASTER_NODE_DRAIN.stage.1=You are now able to draw vis three times faster than normal.
 
-# Node Stabilizer
-research.NODE_STABILIZER.title=Node Stabilizer
-research.NODE_STABILIZER.stage.0=Aura nodes have a tendancy to move around and merge just when you don't want it. So you need to create a machine solves that problem.
-research.NODE_STABILIZER.stage.1=Aura nodes have a tendancy to move around and merge just when you don't want it. This device solves that problem.<BR>Simply place it below a node and it will become trapped in a mystical bubble and held in place. The node will not be attracted to other nodes, nor will other nodes be attracted to it.
-
-# Node Magnet
-research.NODE_MAGNET.title=Node Attraction
-research.NODE_MAGNET.stage.0=Manipulating the aura is one thing, but if you were able to move nodes around you could insure a steady supply of vis where and when you want it.
-research.NODE_MAGNET.stage.1=To this end you have developed Node Magnets.<BR>The magnet focuses on the nearest node within 32 blocks and slowly draws it towards itself. It sounds simple, but in effect the node is being forcefully ripped through the aura. This not only requires large amounts of vis of all types, but causes considerable amounts of flux.<BR>The larger a node is, the slower the it moves.<PAGE>The Node Magnet itself is quite fragile and care must be taken not to damage or topple it. It can survive minor knocks, but anything more will shatter the delicate components.<BR>It can be picked up by right-clicking when you sneaking.
-research.NODE_MAGNET.addenda=§nWarning!§r<BR><BR>The moment you place down the node magnet you notice something strange: It seems to emit an almost inaudible humming noise that still manages to set your teeth on edge.<BR>Angry grunts and howls from the surrounding area seems to indicate you are not the only one disturbed by the noise.
 #
 # - Thaumic Additions Compat -
 

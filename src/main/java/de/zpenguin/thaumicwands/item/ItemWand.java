@@ -416,17 +416,17 @@ public class ItemWand extends ItemBase implements IWandBasic {
     @SuppressWarnings("ConstantConditions")
     @Override
     public @Nullable NBTTagCompound getNBTShareTag(@Nonnull ItemStack stack) {
-        if(Loader.isModLoaded("thaumicaugmentation")) {
+        if (Loader.isModLoaded("thaumicaugmentation")) {
             NBTTagCompound tag = new NBTTagCompound();
-            if(stack.hasTagCompound()) {
+            if (stack.hasTagCompound()) {
                 NBTTagCompound itemTag = stack.getTagCompound().copy();
-                if(FMLCommonHandler.instance().getEffectiveSide() == Side.CLIENT && !ThaumicAugmentation.proxy.isSingleplayer()) {
+                if (FMLCommonHandler.instance().getEffectiveSide() == Side.CLIENT && !ThaumicAugmentation.proxy.isSingleplayer()) {
                     itemTag.removeTag("cap");
                 }
                 tag.setTag("item", itemTag);
             }
             NBTTagCompound cap = ItemHelper.tryMakeCapabilityTag(stack, CapabilityAugmentableItem.AUGMENTABLE_ITEM);
-            if(cap != null) {
+            if (cap != null) {
                 tag.setTag("cap", cap);
             }
             return tag;
@@ -437,21 +437,21 @@ public class ItemWand extends ItemBase implements IWandBasic {
     @SuppressWarnings("ConstantConditions")
     @Override
     public void readNBTShareTag(@Nonnull ItemStack stack, @Nullable NBTTagCompound tag) {
-        if(Loader.isModLoaded("thaumicaugmentation")) {
-            if(tag != null) {
-                if(tag.hasKey("cap", 10)) {
+        if (Loader.isModLoaded("thaumicaugmentation")) {
+            if (tag != null) {
+                if (tag.hasKey("cap", 10)) {
                     ((AugmentableItem) stack.getCapability(CapabilityAugmentableItem.AUGMENTABLE_ITEM, null)).deserializeNBT(tag.getCompoundTag("cap"));
                 }
-                if(tag.hasKey("item", 10)) {
+                if (tag.hasKey("item", 10)) {
                     stack.setTagCompound(tag.getCompoundTag("item"));
-                } else if(FMLCommonHandler.instance().getEffectiveSide() == Side.SERVER) {
+                } else if (FMLCommonHandler.instance().getEffectiveSide() == Side.SERVER) {
                     tag.removeTag("cap");
-                    if(!tag.isEmpty()) {
+                    if (!tag.isEmpty()) {
                         stack.setTagCompound(tag);
                     }
                 }
 
-                if(FMLCommonHandler.instance().getEffectiveSide() == Side.CLIENT && !ThaumicAugmentation.proxy.isSingleplayer()) {
+                if (FMLCommonHandler.instance().getEffectiveSide() == Side.CLIENT && !ThaumicAugmentation.proxy.isSingleplayer()) {
                     stack.setTagInfo("cap", tag.getCompoundTag("cap"));
                 }
             }

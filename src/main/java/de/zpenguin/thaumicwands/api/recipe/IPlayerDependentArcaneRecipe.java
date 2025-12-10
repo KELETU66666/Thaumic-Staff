@@ -7,6 +7,6 @@ import thaumcraft.api.crafting.IArcaneRecipe;
 
 public interface IPlayerDependentArcaneRecipe extends IArcaneRecipe {
 
-	public boolean matches(InventoryCrafting inv, World world, EntityPlayer player);
+    public boolean matches(InventoryCrafting inv, World world, EntityPlayer player);
 
 }

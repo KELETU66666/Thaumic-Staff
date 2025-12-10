@@ -4,8 +4,8 @@ import thaumcraft.api.crafting.IDustTrigger;
 
 public interface IWandTrigger extends IDustTrigger {
 
-	public default int getCost() {
-		return 0;
-	}
+    public default int getCost() {
+        return 0;
+    }
 
 }

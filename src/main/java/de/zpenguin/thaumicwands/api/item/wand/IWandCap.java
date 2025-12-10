@@ -6,18 +6,18 @@ import thaumcraft.api.aspects.AspectList;
 
 public interface IWandCap {
 
-	public ResourceLocation getTexture();
+    public ResourceLocation getTexture();
 
-	public String getRequiredResearch();
+    public String getRequiredResearch();
 
-	public ItemStack getItemStack();
+    public ItemStack getItemStack();
 
-	public String getTag();
+    public String getTag();
 
-	public int getCraftCost();
+    public int getCraftCost();
 
-	public float getDiscount();
+    public float getDiscount();
 
-	public AspectList getAspectDiscount();
+    public AspectList getAspectDiscount();
 
 }

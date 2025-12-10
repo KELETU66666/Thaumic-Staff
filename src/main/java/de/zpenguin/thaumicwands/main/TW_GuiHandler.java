@@ -10,28 +10,28 @@ import thaumcraft.common.tiles.crafting.TileArcaneWorkbench;
 
 public class TW_GuiHandler implements IGuiHandler {
 
-	public static final int guiArcaneWorkbench = 0;
+    public static final int guiArcaneWorkbench = 0;
 
-	@Override
-	public Object getClientGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z) {
-		switch(ID) {
-		case guiArcaneWorkbench:
-			return new GuiArcaneWorkbenchNew(player.inventory, (TileArcaneWorkbench) world.getTileEntity(new BlockPos(x, y, z)));
+    @Override
+    public Object getClientGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z) {
+        switch (ID) {
+            case guiArcaneWorkbench:
+                return new GuiArcaneWorkbenchNew(player.inventory, (TileArcaneWorkbench) world.getTileEntity(new BlockPos(x, y, z)));
 
-		}
+        }
 
-		return null;
-	}
+        return null;
+    }
 
-	@Override
-	public Object getServerGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z) {
-		switch(ID) {
-		case guiArcaneWorkbench:
-			return new ContainerArcaneWorkbenchNew(player.inventory, (TileArcaneWorkbench) world.getTileEntity(new BlockPos(x, y, z)));
+    @Override
+    public Object getServerGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z) {
+        switch (ID) {
+            case guiArcaneWorkbench:
+                return new ContainerArcaneWorkbenchNew(player.inventory, (TileArcaneWorkbench) world.getTileEntity(new BlockPos(x, y, z)));
 
-		}
+        }
 
-		return null;
-	}
+        return null;
+    }
 
 }

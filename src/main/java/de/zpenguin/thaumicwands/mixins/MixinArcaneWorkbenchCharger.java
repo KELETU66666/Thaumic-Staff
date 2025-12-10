@@ -20,11 +20,11 @@ import thaumcraft.common.blocks.crafting.BlockArcaneWorkbenchCharger;
 public class MixinArcaneWorkbenchCharger {
 
     @Inject(method = "onBlockActivated", at = @At(value = "HEAD"), cancellable = true)
-    public void mixinOnBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing side, float hitX, float hitY, float hitZ, CallbackInfoReturnable<Boolean> cir){
+    public void mixinOnBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing side, float hitX, float hitY, float hitZ, CallbackInfoReturnable<Boolean> cir) {
         if (world.isRemote)
             cir.setReturnValue(true);
         if (world.getBlockState(pos.down()).getBlock() == BlocksTC.arcaneWorkbench)
-            player.openGui(ThaumicWands.instance, TW_GuiHandler.guiArcaneWorkbench, world, pos.getX(), pos.getY()-1, pos.getZ());
+            player.openGui(ThaumicWands.instance, TW_GuiHandler.guiArcaneWorkbench, world, pos.getX(), pos.getY() - 1, pos.getZ());
         if (world.getBlockState(pos.down()).getBlock() == BlocksTC.wandWorkbench)
             player.openGui(Thaumcraft.instance, 7, world, pos.getX(), pos.down().getY(), pos.getZ());
         cir.setReturnValue(true);

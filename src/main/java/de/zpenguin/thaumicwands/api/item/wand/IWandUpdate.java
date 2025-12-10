@@ -5,6 +5,6 @@ import net.minecraft.item.ItemStack;
 
 public interface IWandUpdate {
 
-	public void onUpdate(ItemStack stack, EntityPlayer player);
+    public void onUpdate(ItemStack stack, EntityPlayer player);
 
 }

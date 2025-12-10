@@ -7,11 +7,7 @@ import de.zpenguin.thaumicwands.util.WandHelper;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.entity.player.InventoryPlayer;
-import net.minecraft.inventory.Container;
-import net.minecraft.inventory.IInventory;
-import net.minecraft.inventory.InventoryCraftResult;
-import net.minecraft.inventory.InventoryCrafting;
-import net.minecraft.inventory.Slot;
+import net.minecraft.inventory.*;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.CraftingManager;
 import net.minecraft.item.crafting.IRecipe;
@@ -32,8 +28,8 @@ import thaumcraft.common.tiles.crafting.TileArcaneWorkbench;
 
 public class ContainerArcaneWorkbenchNew extends Container {
 
-    private TileArcaneWorkbench tileEntity;
-    private InventoryPlayer ip;
+    private final TileArcaneWorkbench tileEntity;
+    private final InventoryPlayer ip;
     public InventoryCraftResult craftResult = new InventoryCraftResult();
     public static int[] xx = new int[]{64, 17, 112, 17, 112, 64};
     public static int[] yy = new int[]{13, 35, 35, 93, 93, 115};
@@ -56,7 +52,7 @@ public class ContainerArcaneWorkbenchNew extends Container {
         addSlotToContainer(new SlotWand(this.tileEntity.inventoryCraft, 15, 160, 24));
 
         // Output Slot 16
-        addSlotToContainer(new SlotArcaneWorkbenchNew(this.tileEntity, inv.player, this.tileEntity.inventoryCraft, (IInventory) this.craftResult, 16, 160, 64));
+        addSlotToContainer(new SlotArcaneWorkbenchNew(this.tileEntity, inv.player, this.tileEntity.inventoryCraft, this.craftResult, 16, 160, 64));
 
         //Player Inventory 17-43
         for (int x = 0; x < 9; x++)
@@ -124,7 +120,7 @@ public class ContainerArcaneWorkbenchNew extends Container {
                 craftRes.setRecipeUsed(arecipe);
                 itemstack = arecipe.getCraftingResult(craftMat);
             } else {
-                InventoryCrafting craftInv = new InventoryCrafting((Container) new ContainerDummy(), 3, 3);
+                InventoryCrafting craftInv = new InventoryCrafting(new ContainerDummy(), 3, 3);
                 for (int a = 0; a < 9; a++)
                     craftInv.setInventorySlotContents(a, craftMat.getStackInSlot(a));
                 IRecipe irecipe = CraftingManager.findMatchingRecipe(craftInv, world);
@@ -142,8 +138,7 @@ public class ContainerArcaneWorkbenchNew extends Container {
 
     @Override
     public boolean canInteractWith(EntityPlayer par1EntityPlayer) {
-        return (this.tileEntity.getWorld().getTileEntity(this.tileEntity.getPos()) != this.tileEntity) ? false
-                : ((par1EntityPlayer.getDistanceSqToCenter(this.tileEntity.getPos()) <= 64.0D));
+        return this.tileEntity.getWorld().getTileEntity(this.tileEntity.getPos()) == this.tileEntity && ((par1EntityPlayer.getDistanceSqToCenter(this.tileEntity.getPos()) <= 64.0D));
     }
 
 

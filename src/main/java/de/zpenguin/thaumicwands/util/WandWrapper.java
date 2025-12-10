@@ -10,82 +10,82 @@ import thaumcraft.api.capabilities.ThaumcraftCapabilities;
 
 public class WandWrapper {
 
-	IWandRod rod;
-	IWandCap cap;
+    IWandRod rod;
+    IWandCap cap;
 
-	public WandWrapper() {
-		this(null,null);
-	}
+    public WandWrapper() {
+        this(null, null);
+    }
 
-	public WandWrapper(IWandRod rod, IWandCap cap) {
-		this.rod = rod;
-		this.cap = cap;
-	}
+    public WandWrapper(IWandRod rod, IWandCap cap) {
+        this.rod = rod;
+        this.cap = cap;
+    }
 
-	public boolean canCraftScepter(EntityPlayer player) {
-		return isValidWand() && ThaumcraftCapabilities.knowsResearch(player, "SCEPTER@1");
-	}
+    public boolean canCraftScepter(EntityPlayer player) {
+        return isValidWand() && ThaumcraftCapabilities.knowsResearch(player, "SCEPTER@1");
+    }
 
-	public boolean canCraft(EntityPlayer player) {
-		return isValidWand();
-	}
+    public boolean canCraft(EntityPlayer player) {
+        return isValidWand();
+    }
 
-	public boolean isValidWand() {
-		return rod!=null && cap!=null && !(rod.getTag() == "wood" && cap.getTag() == "iron");
-	}
+    public boolean isValidWand() {
+        return rod != null && cap != null && !(rod.getTag() == "wood" && cap.getTag() == "iron");
+    }
 
-	public int getVisCost() {
-		return isValidWand() ?  rod.getCraftCost() * cap.getCraftCost() : 0;
-	}
+    public int getVisCost() {
+        return isValidWand() ? rod.getCraftCost() * cap.getCraftCost() : 0;
+    }
 
-	public AspectList getCrystals() {
-		AspectList aspects = new AspectList();
+    public AspectList getCrystals() {
+        AspectList aspects = new AspectList();
 
-		if(isValidWand()) {
-			int cost = Math.max(rod.getCraftCost(), cap.getCraftCost());
-			for(Aspect a: Aspect.getPrimalAspects())
-				aspects.add(a,cost);
-		}
+        if (isValidWand()) {
+            int cost = Math.max(rod.getCraftCost(), cap.getCraftCost());
+            for (Aspect a : Aspect.getPrimalAspects())
+                aspects.add(a, cost);
+        }
 
-		return aspects;
+        return aspects;
 
-	}
+    }
 
-	public ItemStack makeWand() {
-		return isValidWand() ? WandHelper.getWandWithParts(rod.getTag(), cap.getTag()) : ItemStack.EMPTY;
-	}
+    public ItemStack makeWand() {
+        return isValidWand() ? WandHelper.getWandWithParts(rod.getTag(), cap.getTag()) : ItemStack.EMPTY;
+    }
 
-	public ItemStack makeScepter() {
-		return isValidWand() ? WandHelper.getScepterWithParts(rod.getTag(), cap.getTag()) : ItemStack.EMPTY;
-	}
+    public ItemStack makeScepter() {
+        return isValidWand() ? WandHelper.getScepterWithParts(rod.getTag(), cap.getTag()) : ItemStack.EMPTY;
+    }
 
-	public WandWrapper copy() {
-		return new WandWrapper(rod, cap);
-	}
+    public WandWrapper copy() {
+        return new WandWrapper(rod, cap);
+    }
 
-	public IWandCap getCap() {
-		return cap;
-	}
+    public IWandCap getCap() {
+        return cap;
+    }
 
-	public IWandRod getRod() {
-		return rod;
-	}
+    public IWandRod getRod() {
+        return rod;
+    }
 
-	public WandWrapper setCap(IWandCap cap) {
-		this.cap = cap;
-		return this;
-	}
+    public WandWrapper setCap(IWandCap cap) {
+        this.cap = cap;
+        return this;
+    }
 
-	public WandWrapper setRod(IWandRod rod) {
-		this.rod = rod;
-		return this;
-	}
+    public WandWrapper setRod(IWandRod rod) {
+        this.rod = rod;
+        return this;
+    }
 
-	@Override
-	public String toString() {
-		if(rod != null && cap != null)
-			return "Rod: "+rod.getTag()+" | Cap: "+cap.getTag();
-		return "";
-	}
+    @Override
+    public String toString() {
+        if (rod != null && cap != null)
+            return "Rod: " + rod.getTag() + " | Cap: " + cap.getTag();
+        return "";
+    }
 
 }

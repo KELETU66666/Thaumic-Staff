@@ -1,31 +1,31 @@
 package de.zpenguin.thaumicwands.util.research;
 
-import java.util.Arrays;
-import java.util.stream.Collectors;
-
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import thaumcraft.api.research.ResearchStage;
 import thaumcraft.api.research.ResearchStage.Knowledge;
 import thaumcraft.common.lib.research.ResearchManager;
 
+import java.util.Arrays;
+import java.util.stream.Collectors;
+
 public class ResearchStageBuilder {
-    
+
     private ResearchStage entry = new ResearchStage();
-    
-    public static ResearchStageBuilder start(){
+
+    public static ResearchStageBuilder start() {
         return new ResearchStageBuilder();
     }
-    
+
     public ResearchStageBuilder setText(String text) {
         entry.setText(text);
         return this;
     }
-    
+
     public ResearchStageBuilder setRecipes(String... recipes) {
         return setRecipes(Arrays.stream(recipes).map(ResourceLocation::new).collect(Collectors.toList()).toArray(new ResourceLocation[0]));
     }
-    
+
     public ResearchStageBuilder setRequiredCraft(ItemStack... items) {
         entry.setCraft(items);
         if (entry.getCraft() != null && entry.getCraft().length > 0) {
@@ -44,37 +44,37 @@ public class ResearchStageBuilder {
         }
         return this;
     }
-    
+
     public ResearchStageBuilder setRecipes(ResourceLocation... recipes) {
         entry.setRecipes(recipes);
         return this;
     }
-    
+
     public ResearchStageBuilder setWarp(int warp) {
         entry.setWarp(warp);
         return this;
     }
-    
+
     public ResearchStageBuilder setConsumedItems(ItemStack... obtain) {
         entry.setObtain(obtain);
         return this;
     }
-    
+
     public ResearchStageBuilder setCraftReference(int... craftReference) {
         entry.setCraftReference(craftReference);
         return this;
     }
-    
+
     public ResearchStageBuilder setKnow(Knowledge... know) {
         entry.setKnow(know);
         return this;
     }
-    
+
     public ResearchStageBuilder setResearch(String... research) {
         entry.setResearch(research);
         return this;
     }
-    
+
     public ResearchStage build() {
         if (entry == null)
             throw new IllegalStateException("Already built!");
@@ -82,5 +82,5 @@ public class ResearchStageBuilder {
         entry = null;
         return re;
     }
-    
+
 }

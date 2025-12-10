@@ -11,42 +11,42 @@ import net.minecraft.item.ItemStack;
 
 public class ItemStaffRenderer extends TileEntityItemStackRenderer {
 
-	public static TransformType transform = GUI;
-	
-	private final ModelStaff modelStaff = new ModelStaff();
+    public static TransformType transform = GUI;
 
-	@Override
-	public void renderByItem(ItemStack stack) {
-		if(stack == null || !(stack.getItem() instanceof ItemStaff))
-			return;
+    private final ModelStaff modelStaff = new ModelStaff();
 
-		GlStateManager.pushMatrix();
+    @Override
+    public void renderByItem(ItemStack stack) {
+        if (stack == null || !(stack.getItem() instanceof ItemStaff))
+            return;
 
-		if(transform == GUI) {
-			GlStateManager.scale(1.5, 1.5, 1.5);
-			GlStateManager.translate(1.425, 0.55, 0);
-			GlStateManager.rotate(180, 1, 0, 0);
-			GlStateManager.rotate(135, 0, 0, 1);
-			GlStateManager.rotate(60, 0, 1, 0);
-			modelStaff.render(stack);
-		}
+        GlStateManager.pushMatrix();
 
-		if(transform == GROUND) {
-			GlStateManager.scale(0.8, 1, 0.8);
-			GlStateManager.translate(0, 0.5, 0);
-		}
+        if (transform == GUI) {
+            GlStateManager.scale(1.5, 1.5, 1.5);
+            GlStateManager.translate(1.425, 0.55, 0);
+            GlStateManager.rotate(180, 1, 0, 0);
+            GlStateManager.rotate(135, 0, 0, 1);
+            GlStateManager.rotate(60, 0, 1, 0);
+            modelStaff.render(stack);
+        }
 
-		if(transform == FIRST_PERSON_RIGHT_HAND || transform == FIRST_PERSON_LEFT_HAND) {
-			GlStateManager.scale(0.8, 1, 0.8);
-		}
+        if (transform == GROUND) {
+            GlStateManager.scale(0.8, 1, 0.8);
+            GlStateManager.translate(0, 0.5, 0);
+        }
 
-		if(transform == THIRD_PERSON_LEFT_HAND || transform == THIRD_PERSON_RIGHT_HAND) {
-			GlStateManager.translate(-0.175, 0, -0.125);
+        if (transform == FIRST_PERSON_RIGHT_HAND || transform == FIRST_PERSON_LEFT_HAND) {
+            GlStateManager.scale(0.8, 1, 0.8);
+        }
 
-		}
+        if (transform == THIRD_PERSON_LEFT_HAND || transform == THIRD_PERSON_RIGHT_HAND) {
+            GlStateManager.translate(-0.175, 0, -0.125);
 
-		modelStaff.render(stack);
-		GlStateManager.popMatrix();
-	}
+        }
+
+        modelStaff.render(stack);
+        GlStateManager.popMatrix();
+    }
 
 }

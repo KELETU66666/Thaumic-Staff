@@ -55,7 +55,7 @@ public class ModelStaff extends ModelBase {
         GlStateManager.translate(0.85, 0.125, 0.85);
         rod.render(scale);
 
-        GlStateManager.scale(1/0.8, 1/1.4, 1/0.8);
+        GlStateManager.scale(1 / 0.8, 1 / 1.4, 1 / 0.8);
         Minecraft.getMinecraft().renderEngine.bindTexture(wand.getCap(wandStack).getTexture());
         GL11.glScaled(1.275D, 1.0D, 1.275D);
         GlStateManager.enableLighting();

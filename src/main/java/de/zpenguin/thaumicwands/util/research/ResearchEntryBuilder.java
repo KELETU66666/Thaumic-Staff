@@ -1,7 +1,5 @@
 package de.zpenguin.thaumicwands.util.research;
 
-import java.lang.reflect.Method;
-
 import net.minecraft.item.ItemStack;
 import thaumcraft.api.research.ResearchAddendum;
 import thaumcraft.api.research.ResearchEntry;
@@ -9,6 +7,8 @@ import thaumcraft.api.research.ResearchEntry.EnumResearchMeta;
 import thaumcraft.api.research.ResearchStage;
 import thaumcraft.api.research.ResearchStage.Knowledge;
 import thaumcraft.common.lib.research.ResearchManager;
+
+import java.lang.reflect.Method;
 
 public class ResearchEntryBuilder {
 
@@ -95,7 +95,7 @@ public class ResearchEntryBuilder {
     private static Method addResearchToCategory = null;
 
     private static void addResearchToCategory(ResearchEntry ri) {
-        if(addResearchToCategory == null)
+        if (addResearchToCategory == null)
             try {
                 addResearchToCategory = ResearchManager.class.getDeclaredMethod("addResearchToCategory", ResearchEntry.class);
                 addResearchToCategory.setAccessible(true);
@@ -105,7 +105,7 @@ public class ResearchEntryBuilder {
 
         try {
             addResearchToCategory.invoke(null, ri);
-        } catch(Throwable e) {
+        } catch (Throwable e) {
             e.printStackTrace();
         }
     }

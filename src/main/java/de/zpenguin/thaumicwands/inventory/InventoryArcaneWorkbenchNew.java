@@ -10,16 +10,16 @@ import thaumcraft.common.container.InventoryArcaneWorkbench;
 
 public class InventoryArcaneWorkbenchNew extends InventoryArcaneWorkbench {
 
-	private final NonNullList<ItemStack> stackList;
-	private int inventoryHeight = 3;
-	private int inventoryWidth = 5;
-	public Container eventHandler;
+    private final NonNullList<ItemStack> stackList;
+    private int inventoryHeight = 3;
+    private int inventoryWidth = 5;
+    public Container eventHandler;
 
-	public InventoryArcaneWorkbenchNew(TileEntity tileEntity, Container container) {
-		super(tileEntity, container);
-		this.stackList = NonNullList.withSize(16, ItemStack.EMPTY);
+    public InventoryArcaneWorkbenchNew(TileEntity tileEntity, Container container) {
+        super(tileEntity, container);
+        this.stackList = NonNullList.withSize(16, ItemStack.EMPTY);
         this.eventHandler = container;
-	}
+    }
 
     public int getSizeInventory() {
         return this.stackList.size();
@@ -27,13 +27,13 @@ public class InventoryArcaneWorkbenchNew extends InventoryArcaneWorkbench {
 
     public boolean isEmpty() {
         for (ItemStack itemstack : this.stackList)
-        	if (!itemstack.isEmpty())
+            if (!itemstack.isEmpty())
                 return false;
         return true;
     }
 
     public ItemStack getStackInSlot(int index) {
-        return index >= this.getSizeInventory() ? ItemStack.EMPTY : (ItemStack)this.stackList.get(index);
+        return index >= this.getSizeInventory() ? ItemStack.EMPTY : (ItemStack) this.stackList.get(index);
     }
 
     public ItemStack getStackInRowAndColumn(int row, int column) {
@@ -41,7 +41,7 @@ public class InventoryArcaneWorkbenchNew extends InventoryArcaneWorkbench {
     }
 
     public ItemStack removeStackFromSlot(int index) {
-    	ItemStack stack = ItemStackHelper.getAndRemove(this.stackList, index);
+        ItemStack stack = ItemStackHelper.getAndRemove(this.stackList, index);
         this.eventHandler.onCraftMatrixChanged(this);
         return stack;
     }
@@ -74,7 +74,7 @@ public class InventoryArcaneWorkbenchNew extends InventoryArcaneWorkbench {
 
     public void fillStackedContents(RecipeItemHelper helper) {
         for (ItemStack itemstack : this.stackList)
-        	helper.accountStack(itemstack);
+            helper.accountStack(itemstack);
     }
 
 }

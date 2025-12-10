@@ -8,13 +8,13 @@ import net.minecraft.item.ItemStack;
 
 public class SlotWand extends Slot {
 
-	public SlotWand(IInventory inventory, int index, int x, int y) {
-		super(inventory, index, x, y);
-	}
+    public SlotWand(IInventory inventory, int index, int x, int y) {
+        super(inventory, index, x, y);
+    }
 
-	@Override
-	public boolean isItemValid(ItemStack stack) {
-		return stack!=null && stack.getItem() instanceof IWand && stack.getItem()!= TW_Items.itemStaff;
-	}
+    @Override
+    public boolean isItemValid(ItemStack stack) {
+        return stack != null && stack.getItem() instanceof IWand && stack.getItem() != TW_Items.itemStaff;
+    }
 
 }

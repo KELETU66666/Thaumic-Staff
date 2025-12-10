@@ -10,15 +10,15 @@ import thaumcraft.api.items.RechargeHelper;
 
 public class UpdateWater implements IWandUpdate {
 
-	@Override
-	public void onUpdate(ItemStack stack, EntityPlayer player) {
-		if(player.getEntityWorld().getTotalWorldTime() % 20 == 0) {
-			Biome b = player.getEntityWorld().getBiome(player.getPosition());
-		if(BiomeDictionary.getTypes(b).contains(Type.SNOWY) && RechargeHelper.getChargePercentage(stack, player) < 0.5F) {
-				RechargeHelper.rechargeItemBlindly(stack, player, 1);
+    @Override
+    public void onUpdate(ItemStack stack, EntityPlayer player) {
+        if (player.getEntityWorld().getTotalWorldTime() % 20 == 0) {
+            Biome b = player.getEntityWorld().getBiome(player.getPosition());
+            if (BiomeDictionary.getTypes(b).contains(Type.SNOWY) && RechargeHelper.getChargePercentage(stack, player) < 0.5F) {
+                RechargeHelper.rechargeItemBlindly(stack, player, 1);
 
-			}
-		}
-	}
+            }
+        }
+    }
 
 }

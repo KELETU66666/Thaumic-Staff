@@ -27,7 +27,7 @@ public class WandHelper {
     }
 
     public static float getWandDiscount(ItemStack wand) {
-        if(wand.getItem() instanceof ItemScepter)
+        if (wand.getItem() instanceof ItemScepter)
             return ((ItemWand) TW_Items.itemWand).getCap(wand).getDiscount() - 0.10F;
         return ((ItemWand) TW_Items.itemWand).getCap(wand).getDiscount() + (wand.getItem() instanceof ItemStaff ? -0.05F : 0);
     }
@@ -35,7 +35,7 @@ public class WandHelper {
     public static AspectList getActualCrystals(AspectList list, ItemStack wand) {
         if (list == null)
             return null;
-        if(!(wand.getItem() instanceof IWand))
+        if (!(wand.getItem() instanceof IWand))
             return null;
 
         AspectList l = new AspectList();

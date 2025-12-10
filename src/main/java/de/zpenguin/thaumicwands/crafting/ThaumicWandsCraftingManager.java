@@ -10,17 +10,17 @@ import thaumcraft.api.crafting.IArcaneRecipe;
 
 public class ThaumicWandsCraftingManager {
 
-	public static IArcaneRecipe findMatchingArcaneRecipe(InventoryCrafting matrix, EntityPlayer player) {
-		for(ResourceLocation key : CraftingManager.REGISTRY.getKeys()) {
-			IRecipe recipe = (IRecipe) CraftingManager.REGISTRY.getObject(key);
-			if(recipe == null)
-				return null;
-			else if(recipe instanceof IPlayerDependentArcaneRecipe && ((IPlayerDependentArcaneRecipe) recipe).matches(matrix, player.world, player))
-				return (IArcaneRecipe) recipe;
-			else if(recipe instanceof IArcaneRecipe && recipe.matches(matrix, player.world))
-				return (IArcaneRecipe) recipe;
-		}
-		return null;
-	}
+    public static IArcaneRecipe findMatchingArcaneRecipe(InventoryCrafting matrix, EntityPlayer player) {
+        for (ResourceLocation key : CraftingManager.REGISTRY.getKeys()) {
+            IRecipe recipe = CraftingManager.REGISTRY.getObject(key);
+            if (recipe == null)
+                return null;
+            else if (recipe instanceof IPlayerDependentArcaneRecipe && ((IPlayerDependentArcaneRecipe) recipe).matches(matrix, player.world, player))
+                return (IArcaneRecipe) recipe;
+            else if (recipe instanceof IArcaneRecipe && recipe.matches(matrix, player.world))
+                return (IArcaneRecipe) recipe;
+        }
+        return null;
+    }
 
 }
