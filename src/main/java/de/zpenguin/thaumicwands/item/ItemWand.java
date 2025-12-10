@@ -182,7 +182,7 @@ public class ItemWand extends ItemBase implements IWandBasic {
         ItemStack focusStack = getFocusStack(player.getHeldItem(hand));
         ItemFocus focus = getFocus(player.getHeldItem(hand));
         if (focus != null && !isOnCooldown(player)) {
-            CasterManager.setCooldown(player, focus.getActivationTime(focusStack));
+            CasterManager.setCooldown(player, Math.max(focus.getActivationTime(focusStack) / 3, 10));
             FocusPackage core = ItemFocus.getPackage(focusStack);
 
             if (player.isSneaking())
