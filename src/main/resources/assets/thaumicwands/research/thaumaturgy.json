@@ -43,7 +43,8 @@
         "ROUND"
       ],
       "parents": [
-        "NODES"
+        "BASETHAUMATURGY",
+        "BASEAUROMANCY"
       ],
       "location": [
         4,
