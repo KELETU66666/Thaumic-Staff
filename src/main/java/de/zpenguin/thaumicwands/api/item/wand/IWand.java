@@ -5,4 +5,6 @@ import net.minecraft.item.ItemStack;
 
 public interface IWand extends IFractionalVis {
     public IWandCap getCap(ItemStack stack);
+
+    public IWandRod getRod(ItemStack stack);
 }

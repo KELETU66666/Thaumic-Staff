@@ -4,7 +4,6 @@ import de.zpenguin.thaumicwands.api.recipe.IPlayerDependentArcaneRecipe;
 import de.zpenguin.thaumicwands.crafting.ThaumicWandsCraftingManager;
 import de.zpenguin.thaumicwands.util.WandHelper;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.inventory.Container;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.InventoryCrafting;
 import net.minecraft.item.ItemStack;

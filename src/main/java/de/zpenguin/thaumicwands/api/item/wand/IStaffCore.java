@@ -3,7 +3,7 @@ package de.zpenguin.thaumicwands.api.item.wand;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 
-public interface IStaffCore {
+public interface IStaffCore extends IWandRod {
 
     public ResourceLocation getTexture();
 

@@ -92,15 +92,15 @@ public class ItemStaff extends ItemBase implements IStaff {
         super.onUpdate(stack, world, entity, itemSlot, isSelected);
         if (stack != null && stack.getItem() instanceof ItemStaff)
             if (entity instanceof EntityPlayer && itemSlot < 9)
-                if (getCore(stack).hasUpdate())
-                    getCore(stack).getUpdate().onUpdate(stack, (EntityPlayer) entity);
+                if (getRod(stack).hasUpdate())
+                    getRod(stack).getUpdate().onUpdate(stack, (EntityPlayer) entity);
     }
 
     @Override
     public String getItemStackDisplayName(ItemStack stack) {
         String name = I18n.translateToLocal("item.wand.name");
         name = name.replace("%CAP", LocalizationHelper.localize("item.wand." + getCap(stack).getTag() + ".cap"));
-        name = name.replace("%ROD", LocalizationHelper.localize("item.wand." + getCore(stack).getTag() + ".rod"));
+        name = name.replace("%ROD", LocalizationHelper.localize("item.wand." + getRod(stack).getTag() + ".rod"));
         name = name.replace("%OBJ", LocalizationHelper.localize("item.wand.staff.obj"));
         return name;
     }
@@ -317,7 +317,7 @@ public class ItemStaff extends ItemBase implements IStaff {
     }
 
     @Override
-    public IStaffCore getCore(ItemStack stack) {
+    public IStaffCore getRod(ItemStack stack) {
         if (stack.hasTagCompound()) {
             String s = stack.getTagCompound().getString("rod");
             IStaffCore rod = ThaumicWandsAPI.getStaffCore(s);
@@ -337,7 +337,7 @@ public class ItemStaff extends ItemBase implements IStaff {
 
     @Override
     public int getMaxCharge(ItemStack stack, EntityLivingBase player) {
-        return getCore(stack).getCapacity();
+        return getRod(stack).getCapacity();
     }
 
     @Override

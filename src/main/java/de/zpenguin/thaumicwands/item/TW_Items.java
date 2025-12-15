@@ -37,17 +37,10 @@ public class TW_Items {
     }
 
     private static void registerRender(Item item) {
-
         if (item instanceof ItemBaseMeta) {
             ItemBaseMeta it = (ItemBaseMeta) item;
             for (int i = 0; !(i == ((ItemBaseMeta) item).getVariants().length); i++)
                 ModelLoader.setCustomModelResourceLocation(item, i, new ModelResourceLocation(ThaumicWands.modID + ":items/" + it.getBaseName(), it.getVariants()[i]));
-        } else if (item instanceof ItemWand) {
-            ModelLoader.setCustomMeshDefinition(item, stack -> new ModelResourceLocation("thaumicwands:item_wand_3d"));
-        } else if (item instanceof ItemScepter) {
-            ModelLoader.setCustomMeshDefinition(item, stack -> new ModelResourceLocation("thaumicwands:item_scepter_3d"));
-        } else if (item instanceof ItemStaff) {
-            ModelLoader.setCustomMeshDefinition(item, stack -> new ModelResourceLocation("thaumicwands:item_staff_3d"));
         } else {
             ModelLoader.setCustomModelResourceLocation(item, 0, new ModelResourceLocation(item.getRegistryName(), "inventory"));
         }

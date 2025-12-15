@@ -1,9 +1,7 @@
 package de.zpenguin.thaumicwands.client.render.tile;
 
-import de.zpenguin.thaumicwands.client.model.ModelScepter;
+import de.zpenguin.thaumicwands.api.item.wand.IWand;
 import de.zpenguin.thaumicwands.client.model.ModelWand;
-import de.zpenguin.thaumicwands.item.ItemScepter;
-import de.zpenguin.thaumicwands.item.ItemWand;
 import de.zpenguin.thaumicwands.tile.TileArcaneWorkbenchNew;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
@@ -12,7 +10,6 @@ import net.minecraft.item.ItemStack;
 public class TileArcaneWorktableRenderer extends TileEntitySpecialRenderer<TileArcaneWorkbenchNew> {
 
     static ModelWand model = new ModelWand();
-    static ModelScepter scepter = new ModelScepter();
 
     @Override
     public void render(TileArcaneWorkbenchNew te, double x, double y, double z, float partialTicks, int destroyStage, float alpha) {
@@ -21,16 +18,16 @@ public class TileArcaneWorktableRenderer extends TileEntitySpecialRenderer<TileA
         if (wand.isEmpty()) return;
 
         GlStateManager.pushMatrix();
-        GlStateManager.translate(x, y + 1.6875, z - 0.2);
-        //GlStateManager.scale(0.625, 0.625, 0.625);
 
-        GlStateManager.rotate(90F, 1, 0, 0);
-        GlStateManager.rotate(20F, 0, 0, 1);
-
-        if (wand.getItem() instanceof ItemWand)
+        if (wand.getItem() instanceof IWand) {
+            GlStateManager.pushMatrix();
+            GlStateManager.translate((float) x + 0.65f, (float) y + 1.0625f, (float) z + 0.25f);
+            GlStateManager.rotate(90.0f, 1.0f, 0.0f, 0.0f);
+            GlStateManager.rotate(20.0f, 0.0f, 0.0f, 1.0f);
+            GlStateManager.scale(0.5F, 0.5F, 0.5F);
             model.render(wand);
-        else if (wand.getItem() instanceof ItemScepter)
-            scepter.render(wand);
+            GlStateManager.popMatrix();
+        }
 
 
         GlStateManager.popMatrix();

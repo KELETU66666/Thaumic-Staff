@@ -59,6 +59,11 @@ public class StaffCore implements IStaffCore {
     }
 
     @Override
+    public int getCraftCost() {
+        return 0;
+    }
+
+    @Override
     public int getCapacity() {
         return capacity;
     }
