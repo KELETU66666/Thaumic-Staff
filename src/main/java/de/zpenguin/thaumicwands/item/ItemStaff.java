@@ -28,6 +28,7 @@ import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.translation.I18n;
 import net.minecraft.world.World;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
 import net.minecraftforge.common.util.Constants;
 import net.minecraftforge.fml.common.FMLCommonHandler;
@@ -42,9 +43,13 @@ import thaumcraft.common.items.casters.CasterManager;
 import thaumcraft.common.items.casters.ItemFocus;
 import thaumcraft.common.lib.utils.BlockUtils;
 import thecodex6824.thaumicaugmentation.ThaumicAugmentation;
+import thecodex6824.thaumicaugmentation.api.TAConfig;
 import thecodex6824.thaumicaugmentation.api.augment.AugmentableItem;
 import thecodex6824.thaumicaugmentation.api.augment.CapabilityAugmentableItem;
 import thecodex6824.thaumicaugmentation.api.augment.IAugmentableItem;
+import thecodex6824.thaumicaugmentation.api.event.CastEvent;
+import thecodex6824.thaumicaugmentation.api.item.ITieredCaster;
+import thecodex6824.thaumicaugmentation.api.util.FocusWrapper;
 import thecodex6824.thaumicaugmentation.common.capability.provider.SimpleCapabilityProvider;
 import thecodex6824.thaumicaugmentation.common.util.ItemHelper;
 
@@ -56,7 +61,8 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-public class ItemStaff extends ItemBase implements IStaff {
+@Optional.Interface(iface = "thecodex6824.thaumicaugmentation.api.item.ITieredCaster", modid = "thaumicaugmentation")
+public class ItemStaff extends ItemBase implements IStaff, ITieredCaster {
 
     DecimalFormat formatter = new DecimalFormat("#######.#");
 
@@ -164,8 +170,41 @@ public class ItemStaff extends ItemBase implements IStaff {
     }
 
     public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand hand) {
-        ItemStack focusStack = getFocusStack(player.getHeldItem(hand));
-        ItemFocus focus = getFocus(player.getHeldItem(hand));
+        if (Loader.isModLoaded("thaumicaugmentation")) {
+            return onItemRightClickTA(world, player, hand);
+        } else {
+            ItemStack caster = player.getHeldItem(hand);
+            ItemStack focusStack = getFocusStack(caster);
+            ItemFocus focus = getFocus(caster);
+            if (focus != null && !isOnCooldown(player)) {
+                CasterManager.setCooldown(player, Math.max(focus.getActivationTime(focusStack) / 3, 10));
+                FocusPackage core = ItemFocus.getPackage(focusStack);
+
+                if (player.isSneaking())
+                    for (IFocusElement fe : core.nodes)
+                        if (fe instanceof IFocusBlockPicker && player.isSneaking())
+                            return new ActionResult<ItemStack>(EnumActionResult.PASS, caster);
+
+                if (world.isRemote) {
+                    player.swingArm(hand);
+                    return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, caster);
+                }
+                if (consumeVis(caster, player, focus.getVisCost(focusStack), false, false)) {
+                    FocusEngine.castFocusPackage(player, core);
+                    player.swingArm(hand);
+                    return new ActionResult<>(EnumActionResult.SUCCESS, caster);
+                }
+                return new ActionResult<>(EnumActionResult.FAIL, caster);
+            }
+            return super.onItemRightClick(world, player, hand);
+        }
+    }
+
+    @Optional.Method(modid = "thaumicaugmentation")
+    public ActionResult<ItemStack> onItemRightClickTA(World world, EntityPlayer player, EnumHand hand) {
+        ItemStack caster = player.getHeldItem(hand);
+        ItemStack focusStack = getFocusStack(caster);
+        ItemFocus focus = getFocus(caster);
         if (focus != null && !isOnCooldown(player)) {
             CasterManager.setCooldown(player, Math.max(focus.getActivationTime(focusStack) / 3, 10));
             FocusPackage core = ItemFocus.getPackage(focusStack);
@@ -173,18 +212,21 @@ public class ItemStaff extends ItemBase implements IStaff {
             if (player.isSneaking())
                 for (IFocusElement fe : core.nodes)
                     if (fe instanceof IFocusBlockPicker && player.isSneaking())
-                        return new ActionResult<ItemStack>(EnumActionResult.PASS, player.getHeldItem(hand));
+                        return new ActionResult<ItemStack>(EnumActionResult.PASS, caster);
 
-            if (world.isRemote) {
-                player.swingArm(hand);
-                return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, player.getHeldItem(hand));
+            float visCost = ((ItemFocus) focus.getItem()).getVisCost(focusStack) * getConsumptionModifier(caster, player, false);
+            CastEvent.Pre preEvent = new CastEvent.Pre(player, caster, new FocusWrapper(core, (int) (((ItemFocus) focus.getItem()).getActivationTime(focusStack) * getCasterCooldownModifier(caster)), visCost));
+            MinecraftForge.EVENT_BUS.post(preEvent);
+            if (!preEvent.isCanceled()) {
+                if (world.isRemote) {
+                    player.swingArm(hand);
+                } else if (consumeVis(caster, player, focus.getVisCost(focusStack), false, false)) {
+                    FocusEngine.castFocusPackage(player, core);
+                    player.swingArm(hand);
+                }
+                return new ActionResult<>(EnumActionResult.SUCCESS, caster);
             }
-            if (consumeVis(player.getHeldItem(hand), player, focus.getVisCost(focusStack), false, false)) {
-                FocusEngine.castFocusPackage(player, core);
-                player.swingArm(hand);
-                return new ActionResult<>(EnumActionResult.SUCCESS, player.getHeldItem(hand));
-            }
-            return new ActionResult<>(EnumActionResult.FAIL, player.getHeldItem(hand));
+            return new ActionResult<>(EnumActionResult.FAIL, caster);
         }
         return super.onItemRightClick(world, player, hand);
     }
@@ -253,11 +295,15 @@ public class ItemStaff extends ItemBase implements IStaff {
     }
 
     @Override
-    public float getConsumptionModifier(ItemStack wand, EntityPlayer player, boolean crafting) {
-        float consumptionModifier = 1.0F;
-        if (player != null && wand != null && !wand.isEmpty())
-            consumptionModifier = WandHelper.getTotalDiscount(wand, player);
-        return Math.max(consumptionModifier, 0.1F) + 0.05F;
+    public float getConsumptionModifier(ItemStack stack, EntityPlayer user, boolean crafting) {
+        float baseModifier = 1.0F;
+        if (user != null)
+            baseModifier -= CasterManager.getTotalVisDiscount(user);
+
+        if (Loader.isModLoaded("thaumicaugmentation") && stack.getItem() == this)
+            baseModifier -= getCasterVisDiscount(stack);
+
+        return Math.max(baseModifier, 0.1F);
     }
 
     public ItemFocus getFocus(ItemStack stack) {
@@ -439,5 +485,39 @@ public class ItemStaff extends ItemBase implements IStaff {
         } else {
             super.readNBTShareTag(stack, tag);
         }
+    }
+
+    @Override
+    @Optional.Method(modid = "thaumicaugmentation")
+    public float getCasterVisDiscount(ItemStack stack) {
+        if (stack.getItem() == this) {
+            switch (stack.getMetadata()) {
+                case 0:
+                    return (float) TAConfig.gauntletVisDiscounts.getValue()[0];
+                case 1:
+                    return (float) TAConfig.gauntletVisDiscounts.getValue()[1];
+                default:
+                    return 0.0F;
+            }
+        }
+
+        return 0.0F;
+    }
+
+    @Override
+    @Optional.Method(modid = "thaumicaugmentation")
+    public float getCasterCooldownModifier(ItemStack stack) {
+        if (stack.getItem() == this) {
+            switch (stack.getMetadata()) {
+                case 0:
+                    return (float) TAConfig.gauntletCooldownModifiers.getValue()[0];
+                case 1:
+                    return (float) TAConfig.gauntletCooldownModifiers.getValue()[1];
+                default:
+                    return 0.0F;
+            }
+        }
+
+        return 1.0F;
     }
 }

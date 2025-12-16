@@ -147,5 +147,4 @@ public class ItemScepter extends ItemBase implements IScepter {
     public EnumChargeDisplay showInHud(ItemStack arg0, EntityLivingBase arg1) {
         return EnumChargeDisplay.NORMAL;
     }
-
 }

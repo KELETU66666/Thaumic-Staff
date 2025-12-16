@@ -62,12 +62,13 @@ dependencies {
     implementation fg.deobf("curse.maven:thaumcraft-223628:2629023")
     implementation fg.deobf("curse.maven:baubles-227083:2518667")
 
-    compileOnly fg.deobf("curse.maven:modtweaker-220954:3840577")
     implementation fg.deobf("curse.maven:thaumic-augmentation-319441:4486505")
+    implementation fg.deobf("curse.maven:thaumic-isorropia-kedition-1159671:6992970")
 
     implementation fg.deobf("curse.maven:fermiumbooter-${fermiumbooter_version}")
 
     implementation "libs:CraftTweaker2-1.12-4.1.20.709"
+    compileOnly fg.deobf("curse.maven:modtweaker-220954:3840577")
 }
 
 mixin {
