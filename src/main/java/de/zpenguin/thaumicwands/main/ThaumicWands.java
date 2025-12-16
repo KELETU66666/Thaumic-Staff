@@ -33,7 +33,7 @@ public class ThaumicWands {
 
     public static final String modID = "thaumicwands";
     public static final String modName = "Thaumic Wands";
-    public static final String version = "1.8.0";
+    public static final String version = "1.8.1";
     public static final String dependencies = "required-after:fermiumbooter; required-after:thaumcraft;";
 
     public static final Logger logger = LogManager.getLogger("Thaumic Wands");
